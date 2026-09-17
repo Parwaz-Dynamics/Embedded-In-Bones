@@ -167,52 +167,54 @@ ARM Macro Assembler    Page 3
                        N ^ Mask - Toggle a bit
   126 00000000         
   127 00000000         ; Bits and Bytes Reversal
-  128 00000000 4803            LDR              r0, =0x12345678 ; 0b0001_0010_0
-                                                            011_0100_0101_0110_
-                                                            0111_1000
-  129 00000002         
-  130 00000002         ; All bit reversed
-  131 00000002 FA90 F1A0       RBIT             r1, r0      ;     0b0001_1110_0
-                                                            110_1010_0010_1100_
-                                                            0100_1000 - 0x1E6A2
-                                                            C48
-  132 00000006         
-  133 00000006         ; Reverse bytes in a word (first 8 bits to last 8 bits a
-                       nd so on)
-  134 00000006 BA02            REV              r2, r0      ;    0b0111_1000_01
-                                                            01_0110_0011_0100_0
-                                                            001_0010 - 0x785634
-                                                            12
-  135 00000008         
-  136 00000008         ; Reverse bytes in a half word
-  137 00000008 BA43            REV16            r3, r0      ;   0b0011_0100_000
-                                                            1_0010_0111_1000_01
-                                                            01_0110 - 0x3412785
-                                                            6
-  138 0000000A         
-  139 0000000A         ; Reverse the bytes in lower half word and sign extensio
-                       n
-  140 0000000A 4802            LDR              r0, =0x33448877 ; 0b0011_0011_0
+  128 00000000         ;  LDR r0, =0x12345678 ; 0b0001_0010_0011_0100_0101_0110
+                       _0111_1000
+  129 00000000         ;  
+  130 00000000         ;  ; All bit reversed
+  131 00000000         ;  RBIT r1, r0 ;     0b0001_1110_0110_1010_0010_1100_010
+                       0_1000 - 0x1E6A2C48
+  132 00000000         
+  133 00000000         ;  ; Reverse bytes in a word (first 8 bits to last 8 bit
+                       s and so on)
+  134 00000000         ;  REV r2, r0 ;    0b0111_1000_0101_0110_0011_0100_0001_
+                       0010 - 0x78563412
+  135 00000000         ;  
+  136 00000000         ;  ; Reverse bytes in a half word
+  137 00000000         ;  REV16 r3, r0 ;   0b0011_0100_0001_0010_0111_1000_0101
+                       _0110 - 0x34127856
+  138 00000000         ;  
+  139 00000000         ;  ; Reverse the bytes in lower half word and sign exten
+                       sion
+  140 00000000         ;  LDR r0, =0x33448877 ; 0b0011_0011_0100_0100_1000_1000
+                       _1001_1001
+  141 00000000         ;  REVSH r4, r0 ;    0b1111_1111_1111_1111_1001_1001_100
+                       0_1000 - 0xFFFF9988 - 15th bit will be extended
+  142 00000000         
+  143 00000000         ; Sign and Zero Extension
+  144 00000000 4802            LDR              r0, =0x11228091
+  145 00000002         
 
 
 
 ARM Macro Assembler    Page 4 
 
 
-                                                            100_0100_1000_1000_
-                                                            1001_1001
-  141 0000000C BAC4            REVSH            r4, r0      ;    0b1111_1111_11
-                                                            11_1111_1001_1001_1
-                                                            000_1000 - 0xFFFF99
-                                                            88
-  142 0000000E         
-  143 0000000E E7FE    stop    B                stop
-  144 00000010                 ENDP
-  145 00000010         
-  146 00000010                 ALIGN
-  147 00000010                 END
-              12345678 
-              33448877 
+  146 00000002 B241            SXTB             r1, r0      ; Sign extended aft
+                                                            er a byte
+  147 00000004 B201            SXTH             r1, r0      ; Sign extended aft
+                                                            er a word
+  148 00000006         
+  149 00000006 B2C1            UXTB             r1, r0      ; Zero extended aft
+                                                            er a byte
+  150 00000008 B281            UXTH             r1, r0      ; Zero extented aft
+                                                            er a word
+  151 0000000A         
+  152 0000000A E7FE    stop    B                stop
+  153 0000000C                 ENDP
+  154 0000000C         
+  155 0000000C                 ALIGN
+  156 0000000C                 END
+              11228091 
 Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
 --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Users\Abdul
 lah-Wasim\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users
@@ -265,13 +267,13 @@ Symbol: main
    Uses
       None
 Comment: main unused
-stop 0000000E
+stop 0000000A
 
 Symbol: stop
    Definitions
-      At line 143 in file main.s
+      At line 152 in file main.s
    Uses
-      At line 143 in file main.s
+      At line 152 in file main.s
 Comment: stop used once
 3 symbols
 342 symbols in table

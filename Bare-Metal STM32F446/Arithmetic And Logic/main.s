@@ -125,20 +125,29 @@ __main  PROC
 ;		EOR r2, r1, r0	; 0b0001_0100 - Symbol in C '^' - C = N ^ Mask - Toggle a bit
 
 		; Bits and Bytes Reversal
-		LDR r0, =0x12345678	; 0b0001_0010_0011_0100_0101_0110_0111_1000
-		
-		; All bit reversed
-		RBIT r1, r0 ; 		  0b0001_1110_0110_1010_0010_1100_0100_1000 - 0x1E6A2C48
+;		LDR r0, =0x12345678	; 0b0001_0010_0011_0100_0101_0110_0111_1000
+;		
+;		; All bit reversed
+;		RBIT r1, r0 ; 		  0b0001_1110_0110_1010_0010_1100_0100_1000 - 0x1E6A2C48
 
-		; Reverse bytes in a word	(first 8 bits to last 8 bits and so on)
-		REV r2, r0	;		  0b0111_1000_0101_0110_0011_0100_0001_0010 - 0x78563412
+;		; Reverse bytes in a word	(first 8 bits to last 8 bits and so on)
+;		REV r2, r0	;		  0b0111_1000_0101_0110_0011_0100_0001_0010 - 0x78563412
+;		
+;		; Reverse bytes in a half word
+;		REV16 r3, r0	;	  0b0011_0100_0001_0010_0111_1000_0101_0110 - 0x34127856
+;		
+;		; Reverse the bytes in lower half word and sign extension
+;		LDR r0, =0x33448877	; 0b0011_0011_0100_0100_1000_1000_1001_1001
+;		REVSH r4, r0	; 	  0b1111_1111_1111_1111_1001_1001_1000_1000 - 0xFFFF9988 - 15th bit will be extended
 		
-		; Reverse bytes in a half word
-		REV16 r3, r0	;	  0b0011_0100_0001_0010_0111_1000_0101_0110 - 0x34127856
+		; Sign and Zero Extension
+		LDR r0, =0x11228091
 		
-		; Reverse the bytes in lower half word and sign extension
-		LDR r0, =0x33448877	; 0b0011_0011_0100_0100_1000_1000_1001_1001
-		REVSH r4, r0	; 	  0b1111_1111_1111_1111_1001_1001_1000_1000 - 0xFFFF9988 - 15th bit will be extended
+		SXTB r1, r0	; Sign extended after a byte
+		SXTH r1, r0	; Sign extended after a word
+		
+		UXTB r1, r0	; Zero extended after a byte
+		UXTH r1, r0	; Zero extented after a word
 		
 stop    B       stop
         ENDP
