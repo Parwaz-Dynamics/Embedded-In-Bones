@@ -13,27 +13,133 @@ ARM Macro Assembler    Page 1
     6 00000000                 ENTRY
     7 00000000         
     8 00000000         __main  PROC
-    9 00000000 4A03            LDR              r2, =0xF0000001 
-                                                            ; r1 = 0xF0000001
-   10 00000002 2101            MOVS             r1, #1      ; r2 = 1
-   11 00000004 EA11 0342       ANDS             r3, r1, r2, LSL #1 ; r3 = r1 AN
-                                                            D r2 = 1
-   12 00000008 4802            LDR              r0, =result
-   13 0000000A 6003            STR              r3, [r0]    ; write r3 into RAM
-                                                            
-   14 0000000C E7FE    stop    B                stop
-   15 0000000E                 ENDP
-   16 0000000E 00 00           ALIGN
-   17 00000010                 END
-              F0000001 
-              00000000 
+    9 00000000         
+   10 00000000         ;Shift and Rotate
+   11 00000000         ;        LDR     r1, =0x80000003
+   12 00000000         
+   13 00000000         ;        LSL     r2, r1, #1      ; r2 = 0x00000006 - Lef
+                       t Shift
+   14 00000000         ;        LSR     r3, r1, #1      ; r3 = 0x40000001 - Rig
+                       ht Shift
+   15 00000000         ;        ASR     r4, r1, #1      ; r4 = 0xC0000001 - Ari
+                       thmetic Shift
+   16 00000000         ;        ROR     r5, r1, #1      ; r5 = 0xC0000001 - Lef
+                       t Rotate - LSB shift to MSB - LSB to Carry
+   17 00000000         
+   18 00000000         ;        MOVS    r7, #0          ; Clear Carry flag (C =
+                        0)
+   19 00000000         ;        RRX     r6, r1          ; r6 = 0x40000001 - Sim
+                       ilar to ROR
+   20 00000000         
+   21 00000000         ;Arithmetic 
+   22 00000000         
+   23 00000000         ; 1- Addition & Subtraction
+   24 00000000         ;  MOVS r1, #5
+   25 00000000         ;  MOVS r2, #3
+   26 00000000         ;  
+   27 00000000         ;  SUB  r3, r1, r2 ; r3 = r1 - r2
+   28 00000000         ;  SBC  r3, r1, r2 ; r3 = r1 - r2 + Carry - 1
+   29 00000000         ;  RSB  r3, r1, r2 ; r3 = r2 - r1
+   30 00000000         ;  
+   31 00000000         ;  SUB  r3, r1, #4 ; r3 = r1 - 4
+   32 00000000         ;  
+   33 00000000         ;  RSB  r3, r1, r1, LSL #5 ; r3 = r1 << 2 - r1 = r1 * 31
+                       
+   34 00000000         ;  ADD  r3, r1, r1, LSL #3 ; r3 = r1 + r1 << 2 = r1 * 9 
+                        
+   35 00000000         ;  
+   36 00000000         ;  ADDS r3, r1, r2 ; r3 = r1 + r2
+   37 00000000         
+   38 00000000         ;  ;Book Example 
+   39 00000000         ;  ; A = 00001234,00000002,FFFFFFFF
+   40 00000000         ;  ; B = 1234567B,00000004,00000001
+   41 00000000         ;  ; C = A - B
+   42 00000000         ;  
+   43 00000000         ;  ; Loading A
+   44 00000000         ;  LDR r0, =0xFFFFFFFF ; A's lower 32 bits
+   45 00000000         ;  LDR r1, =0x00000002 ; A's middle 32 bits
+   46 00000000         ;  LDR r2, =0x00001234 ; A's upper 32 bits
+   47 00000000         ;  
+   48 00000000         ;  ; Loading B
+   49 00000000         ;  LDR r3, =0x00000001 ; B's lower 32 bits
+   50 00000000         ;  LDR r4, =0x00000004 ; B's middle 32 bits
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   51 00000000         ;  LDR r5, =0x12345678 ; B's middle 32 bits
+   52 00000000         ;  
+   53 00000000         ;  ; C = A - B
+   54 00000000         ;  SUBS r6, r0, r3 ; C[31:0] = A[31:0] - B[31:0], update
+                        carry
+   55 00000000         ;  SBCS r7, r1, r4 ; C[63:32] = A[63:32] - B[63:32] + Ca
+                       rry - 1, update carry
+   56 00000000         ;  SBC  r8, r2, r5 ; C[95:64] = A[95:64] - B[95:64] + Ca
+                       rry - 1
+   57 00000000         
+   58 00000000         ; Short Multiplication & Division
+   59 00000000         ;  MOVS r0, #0x10
+   60 00000000         ;  MOVS r1, #0x2
+   61 00000000         ;  MOVS r3, #1
+   62 00000000         ;  
+   63 00000000         ;  MUL r2, r0, r1 ; r2 = LSB32(r0 * r1)
+   64 00000000         ;;  UMUL r2, r0, r1 ; Not for ARM
+   65 00000000         ;  MLA r2, r0, r1, r3 ; r2 = LSB32(r0 * r1) + 1
+   66 00000000         ;  MLS r2, r0, r1, r3 ; r2 = LSB32(r0 * r1) - 1
+   67 00000000         ;  
+   68 00000000         ;  UDIV r2, r0, r1 ; r2 = r0 / r1 - Unsigned
+   69 00000000         ;  
+   70 00000000         ;  MOVS r0, #-0x10 ; Decimal = -16
+   71 00000000         ;  SDIV r2, r0, r1 ; r2 = r0 / r1 - Signed
+   72 00000000         
+   73 00000000         ; Long Multiplication & Division
+   74 00000000         ;  LDR r0, =0x10
+   75 00000000         ;  LDR r1, =2
+   76 00000000         ;  
+   77 00000000         ;  UMULL r2, r3, r0, r1 ; r4:r3 = r0 * rl, r4 = MSB bits
+                       , r3 = LSB bits - Unsigned
+   78 00000000         ;  SMULL r2, r3, r0, r1 ; r4:r3 = r0 * rl, r4 = MSB bits
+                       , r3 = LSB bits - Signed
+   79 00000000         ;  
+   80 00000000         ;  MOVS r2, #1
+   81 00000000         ;  MOVS r3, #0
+   82 00000000         ;  UMLAL r2, r3, r0, r1 ; r4:r3 = r4:r3 + r0 * r1 - Unsi
+                       gned
+   83 00000000         ;  
+   84 00000000         ;  MOVS r2, #1
+   85 00000000         ;  MOVS r3, #0
+   86 00000000         ;  SMLAL r2, r3, r0, r1 ; r4:r3 = r4:r3 + r0 * r1 - Sign
+                       ed
+   87 00000000         
+   88 00000000         ; Saturation
+   89 00000000 200A            MOVS             r0, #10
+   90 00000002 F380 0103       USAT             r1, #3, r0  ; output range: 0 <
+                                                            = r2 <= 2^3
+   91 00000006         
+   92 00000006 F06F 0009       LDR              r0, =0xFFFFFFF6
+   93 0000000A F300 0102       SSAT             r1, #3, r0  ; output range: -2^
+                                                            3 <= r2 <= 2^3
+   94 0000000E         
+   95 0000000E E7FE    stop    B                stop
+   96 00000010                 ENDP
+   97 00000010         
+   98 00000010                 ALIGN
+   99 00000010                 END
 Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
+
+
+
+ARM Macro Assembler    Page 3 
+
+
 --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Users\Abdul
-lah\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users\Abdul
-lah\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\S
-TM32F4xx\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SET
-A 539" --predefine="_RTE_ SETA 1" --predefine="STM32F446xx SETA 1" --predefine=
-"_RTE_ SETA 1" --list=.\listings\main.lst main.s
+lah-Wasim\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users
+\Abdullah-Wasim\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS
+\Device\ST\STM32F4xx\Include --predefine="__EVAL SETA 1" --predefine="__UVISION
+_VERSION SETA 539" --predefine="_RTE_ SETA 1" --predefine="STM32F446xx SETA 1" 
+--predefine="_RTE_ SETA 1" --list=.\listings\main.lst main.s
 
 
 
@@ -54,8 +160,8 @@ Symbol: result
    Definitions
       At line 2 in file main.s
    Uses
-      At line 12 in file main.s
-Comment: result used once
+      None
+Comment: result unused
 2 symbols
 
 
@@ -79,13 +185,13 @@ Symbol: main
    Uses
       None
 Comment: main unused
-stop 0000000C
+stop 0000000E
 
 Symbol: stop
    Definitions
-      At line 14 in file main.s
+      At line 95 in file main.s
    Uses
-      At line 14 in file main.s
+      At line 95 in file main.s
 Comment: stop used once
 3 symbols
-342 symbols in table
+340 symbols in table

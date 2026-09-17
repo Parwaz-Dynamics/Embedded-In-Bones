@@ -6,12 +6,94 @@ result  SPACE   4
         ENTRY
 
 __main  PROC
-        LDR     r2, =0xF0000001     ; r1 = 0xF0000001
-        MOVS    r1, #1              ; r2 = 1
-        ANDS    r3, r1, r2, LSL	#1         ; r3 = r1 AND r2 = 1
-        LDR     r0, =result
-        STR     r3, [r0]            ; write r3 into RAM
+	
+		;Shift and Rotate
+;        LDR     r1, =0x80000003
+
+;        LSL     r2, r1, #1      ; r2 = 0x00000006 - Left Shift
+;        LSR     r3, r1, #1      ; r3 = 0x40000001 - Right Shift
+;        ASR     r4, r1, #1      ; r4 = 0xC0000001 - Arithmetic Shift
+;        ROR     r5, r1, #1      ; r5 = 0xC0000001 - Left Rotate - LSB shift to MSB - LSB to Carry
+
+;        MOVS    r7, #0          ; Clear Carry flag (C = 0)
+;        RRX     r6, r1          ; r6 = 0x40000001 - Similar to ROR
+
+		;Arithmetic 
+		
+		; 1- Addition & Subtraction
+;		MOVS	r1, #5
+;		MOVS	r2, #3
+;		
+;		SUB 	r3, r1, r2	; r3 = r1 - r2
+;		SBC		r3, r1, r2	; r3 = r1 - r2 + Carry - 1
+;		RSB		r3, r1, r2	; r3 = r2 - r1
+;		
+;		SUB		r3, r1, #4	; r3 = r1 - 4
+;		
+;		RSB 	r3, r1, r1, LSL #5	; r3 = r1 << 2 - r1 = r1 * 31
+;		ADD 	r3, r1, r1, LSL #3	; r3 = r1 + r1 << 2 = r1 * 9		
+;		
+;		ADDS	r3, r1, r2	; r3 = r1 + r2
+
+;		;Book Example 
+;		; A = 00001234,00000002,FFFFFFFF
+;		; B = 1234567B,00000004,00000001
+;		; C = A - B
+;		
+;		; Loading A
+;		LDR	r0, =0xFFFFFFFF	; A's lower 32 bits
+;		LDR r1, =0x00000002	; A's middle 32 bits
+;		LDR	r2, =0x00001234	; A's upper 32 bits
+;		
+;		; Loading B
+;		LDR	r3, =0x00000001	; B's lower 32 bits
+;		LDR r4, =0x00000004	; B's middle 32 bits
+;		LDR	r5, =0x12345678	; B's middle 32 bits
+;		
+;		; C = A - B
+;		SUBS	r6, r0, r3	; C[31:0] = A[31:0] - B[31:0], update carry
+;		SBCS	r7, r1, r4	; C[63:32] = A[63:32] - B[63:32] + Carry - 1, update carry
+;		SBC		r8, r2, r5	; C[95:64] = A[95:64] - B[95:64] + Carry - 1
+
+		; Short Multiplication & Division
+;		MOVS r0, #0x10
+;		MOVS r1, #0x2
+;		MOVS r3, #1
+;		
+;		MUL	r2, r0, r1 ; r2 = LSB32(r0 * r1)
+;;		UMUL r2, r0, r1 ; Not for ARM
+;		MLA	r2, r0, r1, r3 ; r2 = LSB32(r0 * r1) + 1
+;		MLS r2, r0, r1, r3 ; r2 = LSB32(r0 * r1) - 1
+;		
+;		UDIV r2, r0, r1 ; r2 = r0 / r1 - Unsigned
+;		
+;		MOVS r0, #-0x10 ; Decimal = -16
+;		SDIV r2, r0, r1 ; r2 = r0 / r1 - Signed
+
+		; Long Multiplication & Division
+;		LDR r0, =0x10
+;		LDR r1, =2
+;		
+;		UMULL r2, r3, r0, r1 ; r4:r3 = r0 * rl, r4 = MSB bits, r3 = LSB bits - Unsigned
+;		SMULL r2, r3, r0, r1 ; r4:r3 = r0 * rl, r4 = MSB bits, r3 = LSB bits - Signed
+;		
+;		MOVS r2, #1
+;		MOVS r3, #0
+;		UMLAL r2, r3, r0, r1 ; r4:r3 = r4:r3 + r0 * r1 - Unsigned
+;		
+;		MOVS r2, #1
+;		MOVS r3, #0
+;		SMLAL r2, r3, r0, r1 ; r4:r3 = r4:r3 + r0 * r1 - Signed
+
+		; Saturation
+;		MOVS r0, #10
+;		USAT  r1, #3, r0 ; output range: 0 <= r2 <= 2^3
+;		
+;		LDR r0, =0xFFFFFFF6
+;		SSAT  r1, #3, r0 ; output range: -2^(3-1) <= r2 <= 2^(3-1)
+		
 stop    B       stop
         ENDP
+
         ALIGN
         END
