@@ -1,4 +1,4 @@
-        AREA    mydata, DATA, READWRITE
+		AREA    mydata, DATA, READWRITE
 result  SPACE   4
 
         AREA    main, CODE, READONLY
@@ -7,7 +7,7 @@ result  SPACE   4
 
 __main  PROC
 	
-		;Shift and Rotate
+		; Shift and Rotate
 ;        LDR     r1, =0x80000003
 
 ;        LSL     r2, r1, #1      ; r2 = 0x00000006 - Left Shift
@@ -18,9 +18,9 @@ __main  PROC
 ;        MOVS    r7, #0          ; Clear Carry flag (C = 0)
 ;        RRX     r6, r1          ; r6 = 0x40000001 - Similar to ROR
 
-		;Arithmetic 
+		; Arithmetic 
 		
-		; 1- Addition & Subtraction
+		; Addition & Subtraction
 ;		MOVS	r1, #5
 ;		MOVS	r2, #3
 ;		
@@ -91,6 +91,38 @@ __main  PROC
 ;		
 ;		LDR r0, =0xFFFFFFF6
 ;		SSAT  r1, #3, r0 ; output range: -2^(3-1) <= r2 <= 2^(3-1)
+
+		; Barrel Shifters
+;		MOV r0, #0x1000
+;		ADD r1, r0, r0, LSL #3 ; r1 = r0 + r0 << 3 = r0 + r0 *8
+;		ADD r1, r0, r0, LSR #1 ; r1 = r0 + r0 >> 3 = r0 + r0/8 - Unsigned
+;		
+;		LDR r0, =0x10001000
+;		ADD r1, r0, r0, ASR #1 ; r1 = r0 + r0 >> 3 = r0 + r0/8 - Signed
+
+		; Bitwise Logic
+;		LDR r0, =0xD5755755
+;		LDR r1, =0xAABAAAA9
+;		
+;		AND r2, r0, r1
+;		ORR r2, r0, r1
+;		EOR r2, r0, r1
+;		ORN r2, r0, r1
+;		BIC r2, r0, r1 ; NOT r1 than AND with r0
+;		MVN r2, r0
+
+		; Bit Mask
+;		LDR r0, =0x34 	; 0b0011_0100 - N
+;		LDR r1, =(1<<5)	; 0b0010_0000 - Mask
+;		
+;		; In C
+;		; char N = 0x34;
+;		; char Mask = 1<<5;
+;		
+;		ANDS r2, r0, r1	; 0b0010_0000 - Symbol in C '&' - C = N & Mask - Checking the bit
+;		ORR r2, r1, r0	; 0b0011_0100 - Symbol in C '|' - C = N | Mask - Setting a bit
+;		BIC r2, r1, r0	; 0b0001_0100 - C = C & ~Mask - Clearing a bit
+;		EOR r2, r1, r0	; 0b0001_0100 - Symbol in C '^' - C = N ^ Mask - Toggle a bit	
 		
 stop    B       stop
         ENDP
