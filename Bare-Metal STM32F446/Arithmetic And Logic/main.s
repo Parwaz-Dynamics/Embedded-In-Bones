@@ -141,13 +141,25 @@ __main  PROC
 ;		REVSH r4, r0	; 	  0b1111_1111_1111_1111_1001_1001_1000_1000 - 0xFFFF9988 - 15th bit will be extended
 		
 		; Sign and Zero Extension
-		LDR r0, =0x11228091
-		
-		SXTB r1, r0	; Sign extended after a byte
-		SXTH r1, r0	; Sign extended after a word
-		
-		UXTB r1, r0	; Zero extended after a byte
-		UXTH r1, r0	; Zero extented after a word
+;		LDR r0, =0x11228091
+;		
+;		SXTB r1, r0	; Sign extended after a byte
+;		SXTH r1, r0	; Sign extended after a word
+;		
+;		UXTB r1, r0	; Zero extended after a byte
+;		UXTH r1, r0	; Zero extented after a word
+
+		; Data Comparison
+;		MOV r0, #10
+;		MOV r1, #5
+;		
+;		CMP r0, #3	;	Compare r0 with 3 - Carry flag 
+;		CMN r0, #10	;	Compare r0 with -10 - No Carry flag
+;		CMP r0, r1	; 	Compare r0 with r1 - Carry flag
+;		TEQ r0,#'?'	;	Compare r0 with ASCII letter '?' - Carry flag unchanged
+;		
+;		MOV r1, #(1<<31)	;	r1 = 0x80000000
+;		TST r0, r1	;	Compare bits of r0 and r1 - Zero flag & Carry flag unchanged
 		
 stop    B       stop
         ENDP

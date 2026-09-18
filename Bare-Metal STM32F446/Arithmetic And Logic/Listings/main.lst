@@ -191,30 +191,37 @@ ARM Macro Assembler    Page 3
                        0_1000 - 0xFFFF9988 - 15th bit will be extended
   142 00000000         
   143 00000000         ; Sign and Zero Extension
-  144 00000000 4802            LDR              r0, =0x11228091
-  145 00000002         
+  144 00000000         ;  LDR r0, =0x11228091
+  145 00000000         ;  
 
 
 
 ARM Macro Assembler    Page 4 
 
 
-  146 00000002 B241            SXTB             r1, r0      ; Sign extended aft
-                                                            er a byte
-  147 00000004 B201            SXTH             r1, r0      ; Sign extended aft
-                                                            er a word
-  148 00000006         
-  149 00000006 B2C1            UXTB             r1, r0      ; Zero extended aft
-                                                            er a byte
-  150 00000008 B281            UXTH             r1, r0      ; Zero extented aft
-                                                            er a word
-  151 0000000A         
-  152 0000000A E7FE    stop    B                stop
-  153 0000000C                 ENDP
-  154 0000000C         
-  155 0000000C                 ALIGN
-  156 0000000C                 END
-              11228091 
+  146 00000000         ;  SXTB r1, r0 ; Sign extended after a byte
+  147 00000000         ;  SXTH r1, r0 ; Sign extended after a word
+  148 00000000         ;  
+  149 00000000         ;  UXTB r1, r0 ; Zero extended after a byte
+  150 00000000         ;  UXTH r1, r0 ; Zero extented after a word
+  151 00000000         
+  152 00000000         ; Data Comparison
+  153 00000000 F04F 000A       MOV              r0, #10
+  154 00000004 F04F 0105       MOV              r1, #5
+  155 00000008         
+  156 00000008 2803            CMP              r0, #3
+  157 0000000A F110 0F0A       CMN              r0, #10
+  158 0000000E 4288            CMP              r0, r1
+  159 00000010 F090 0F3F       TEQ              r0,#'?'
+  160 00000014         
+  161 00000014 F04F 4100       MOV              r1, #(1<<31)
+  162 00000018 4208            TST              r0, r1
+  163 0000001A         
+  164 0000001A E7FE    stop    B                stop
+  165 0000001C                 ENDP
+  166 0000001C         
+  167 0000001C                 ALIGN
+  168 0000001C                 END
 Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
 --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Users\Abdul
 lah-Wasim\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users
@@ -267,13 +274,13 @@ Symbol: main
    Uses
       None
 Comment: main unused
-stop 0000000A
+stop 0000001A
 
 Symbol: stop
    Definitions
-      At line 152 in file main.s
+      At line 164 in file main.s
    Uses
-      At line 152 in file main.s
+      At line 164 in file main.s
 Comment: stop used once
 3 symbols
-342 symbols in table
+340 symbols in table
