@@ -160,6 +160,29 @@ __main  PROC
 ;		
 ;		MOV r1, #(1<<31)	;	r1 = 0x80000000
 ;		TST r0, r1	;	Compare bits of r0 and r1 - Zero flag & Carry flag unchanged
+
+		; Data Movement between Registers
+;		MOV r0, #5
+;		LDR r1, =0xFFFFFFFE
+;		
+;		MOV r2, r0	;	Load r0 in r2
+;		MVN r3, r1	;	Load not of r1 to r3
+;		
+;		MOVS r0, #0
+;		MRS r0, APSR	;	Load Application Process Status Register to r0
+;		MRS r0, IPSR	;	Load Interrupt Process Status Register to r0
+;		MRS r0, EPSR	;	Load Execution Process Status Register to r0
+;		MRS r0, PSR		;	Load Process Status Register to r0
+;		
+;		LDR r0, =0x00000000
+;		
+;		MSR APSR, r0	; 	Load r0 to ASPR
+
+		; Bit Field Extract
+		LDR r0, =0x1234CDEF
+		
+		UBFX r1, r0, #4, #8
+		SBFX r2, r0, #4, #8
 		
 stop    B       stop
         ENDP

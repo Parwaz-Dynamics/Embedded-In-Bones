@@ -206,22 +206,51 @@ ARM Macro Assembler    Page 4
   150 00000000         ;  UXTH r1, r0 ; Zero extented after a word
   151 00000000         
   152 00000000         ; Data Comparison
-  153 00000000 F04F 000A       MOV              r0, #10
-  154 00000004 F04F 0105       MOV              r1, #5
-  155 00000008         
-  156 00000008 2803            CMP              r0, #3
-  157 0000000A F110 0F0A       CMN              r0, #10
-  158 0000000E 4288            CMP              r0, r1
-  159 00000010 F090 0F3F       TEQ              r0,#'?'
-  160 00000014         
-  161 00000014 F04F 4100       MOV              r1, #(1<<31)
-  162 00000018 4208            TST              r0, r1
-  163 0000001A         
-  164 0000001A E7FE    stop    B                stop
-  165 0000001C                 ENDP
-  166 0000001C         
-  167 0000001C                 ALIGN
-  168 0000001C                 END
+  153 00000000         ;  MOV r0, #10
+  154 00000000         ;  MOV r1, #5
+  155 00000000         ;  
+  156 00000000         ;  CMP r0, #3 ; Compare r0 with 3 - Carry flag 
+  157 00000000         ;  CMN r0, #10 ; Compare r0 with -10 - No Carry flag
+  158 00000000         ;  CMP r0, r1 ;  Compare r0 with r1 - Carry flag
+  159 00000000         ;  TEQ r0,#'?' ; Compare r0 with ASCII letter '?' - Carr
+                       y flag unchanged
+  160 00000000         ;  
+  161 00000000         ;  MOV r1, #(1<<31) ; r1 = 0x80000000
+  162 00000000         ;  TST r0, r1 ; Compare bits of r0 and r1 - Zero flag & 
+                       Carry flag unchanged
+  163 00000000         
+  164 00000000         ; Data Movement between Registers
+  165 00000000         ;  MOV r0, #5
+  166 00000000         ;  LDR r1, =0xFFFFFFFE
+  167 00000000         ;  
+  168 00000000         ;  MOV r2, r0 ; Load r0 in r2
+  169 00000000         ;  MVN r3, r1 ; Load not of r1 to r3
+  170 00000000         ;  
+  171 00000000         ;  MOVS r0, #0
+  172 00000000         ;  MRS r0, APSR ; Load Application Process Status Regist
+                       er to r0
+  173 00000000         ;  MRS r0, IPSR ; Load Interrupt Process Status Register
+                        to r0
+  174 00000000         ;  MRS r0, EPSR ; Load Execution Process Status Register
+                        to r0
+  175 00000000         ;  MRS r0, PSR  ; Load Process Status Register to r0
+  176 00000000         ;  
+  177 00000000         ;  LDR r0, =0x00000000
+  178 00000000         ;  
+  179 00000000         ;  MSR APSR, r0 ;  Load r0 to ASPR
+  180 00000000         
+  181 00000000         ; Bit Field Extract
+  182 00000000 4802            LDR              r0, =0x1234CDEF
+  183 00000002         
+  184 00000002 F3C0 1107       UBFX             r1, r0, #4, #8
+  185 00000006 F340 1207       SBFX             r2, r0, #4, #8
+  186 0000000A         
+  187 0000000A E7FE    stop    B                stop
+  188 0000000C                 ENDP
+  189 0000000C         
+  190 0000000C                 ALIGN
+  191 0000000C                 END
+              1234CDEF 
 Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
 --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Users\Abdul
 lah-Wasim\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users
@@ -274,13 +303,13 @@ Symbol: main
    Uses
       None
 Comment: main unused
-stop 0000001A
+stop 0000000A
 
 Symbol: stop
    Definitions
-      At line 164 in file main.s
+      At line 187 in file main.s
    Uses
-      At line 164 in file main.s
+      At line 187 in file main.s
 Comment: stop used once
 3 symbols
-340 symbols in table
+342 symbols in table
