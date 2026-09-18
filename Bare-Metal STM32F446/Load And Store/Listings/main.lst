@@ -1,0 +1,126 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             mydata, DATA, READWRITE
+    2 00000000 00 00 00 
+              00       result  SPACE            4
+    3 00000004 01 00 02 
+              00 03 00 
+              04 00 05 
+              00       array   DCW              1, 2, 3, 4, 5
+    4 0000000E         
+    5 0000000E                 AREA             main, CODE, READONLY
+    6 00000000                 EXPORT           __main
+    7 00000000                 ENTRY
+    8 00000000         
+    9 00000000         __main  PROC
+   10 00000000         
+   11 00000000         ; Chapter#5 Load and Store 
+   12 00000000         ;  MOV r0, #0xFF ; Move Hexadecimal Number to r0
+   13 00000000         ;  MOV r0, #2_10011100 ; Move Binary Number to r0
+   14 00000000         ;  MOV r0, #54 ; Move Decimal Number to r0
+   15 00000000         ;  
+   16 00000000         ;  MVN r1, #0xFF ; Move not of 0xFF to r1
+   17 00000000         ;  MOVW r1, #5 ; Move 5 to lower half word of r1 and cle
+                       ar top half word
+   18 00000000         ;  MOVT r1, #9 ; Move 9 to top half word of r1 and top h
+                       alf word is unaltered
+   19 00000000         ;  
+   20 00000000         ;  ;LDR Rt, #<immed_8> is equivalent to MOV
+   21 00000000         ;  ;LDR Rt, #<immed_32> is equivalent to MOV
+   22 00000000         
+   23 00000000         ;Pseudo Instruction LDR and ADR
+   24 00000000         ; Not a real instruction but for programmers easiness
+   25 00000000         
+   26 00000000         ;  MOV r2, #1
+   27 00000000         ;  MOV r3, #1
+   28 00000000         ;  
+   29 00000000         ;loop ADD r1, r2, r3
+   30 00000000         ;  ADR r4, loop ; Load a memory address
+   31 00000000         
+   32 00000000         ;Accessing Data in Memory
+   33 00000000 4802            LDR              r0, =0x82000004
+   34 00000002         
+   35 00000002 6801            LDR              r1, [r0]
+   36 00000004 F101 0104       ADD              r1, r1, #4
+   37 00000008 6001            STR              r1, [r0]
+   38 0000000A         
+   39 0000000A E7FE    stop    B                stop
+   40 0000000C                 ENDP
+   41 0000000C         
+   42 0000000C                 ALIGN
+   43 0000000C                 END
+              82000004 
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
+--depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Users\Abdul
+lah-Wasim\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users
+\Abdullah-Wasim\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS
+\Device\ST\STM32F4xx\Include --predefine="__EVAL SETA 1" --predefine="__UVISION
+_VERSION SETA 539" --predefine="_RTE_ SETA 1" --predefine="STM32F446xx SETA 1" 
+--predefine="_RTE_ SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+array 00000004
+
+Symbol: array
+   Definitions
+      At line 3 in file main.s
+   Uses
+      None
+Comment: array unused
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 1 in file main.s
+   Uses
+      None
+Comment: mydata unused
+result 00000000
+
+Symbol: result
+   Definitions
+      At line 2 in file main.s
+   Uses
+      None
+Comment: result unused
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 9 in file main.s
+   Uses
+      At line 6 in file main.s
+Comment: __main used once
+main 00000000
+
+Symbol: main
+   Definitions
+      At line 5 in file main.s
+   Uses
+      None
+Comment: main unused
+stop 0000000A
+
+Symbol: stop
+   Definitions
+      At line 39 in file main.s
+   Uses
+      At line 39 in file main.s
+Comment: stop used once
+3 symbols
+343 symbols in table

@@ -179,10 +179,21 @@ __main  PROC
 ;		MSR APSR, r0	; 	Load r0 to ASPR
 
 		; Bit Field Extract
-		LDR r0, =0x1234CDEF
+;		LDR r0, =0x1234CDEF
+;		
+;		UBFX r1, r0, #4, #8
+;		SBFX r2, r0, #4, #8
+
+		;Exercise
+		MOV r0, #1
+		MOV r1, #5
+		MOV r2, #10
 		
-		UBFX r1, r0, #4, #8
-		SBFX r2, r0, #4, #8
+		RSB r0, r0, r0, LSL #5
+		
+		MOV r0, #1
+		MLA r3, r0, r1, r2
+		SBC r0, r3, r0
 		
 stop    B       stop
         ENDP

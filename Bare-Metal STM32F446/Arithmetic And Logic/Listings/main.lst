@@ -240,17 +240,33 @@ ARM Macro Assembler    Page 4
   179 00000000         ;  MSR APSR, r0 ;  Load r0 to ASPR
   180 00000000         
   181 00000000         ; Bit Field Extract
-  182 00000000 4802            LDR              r0, =0x1234CDEF
-  183 00000002         
-  184 00000002 F3C0 1107       UBFX             r1, r0, #4, #8
-  185 00000006 F340 1207       SBFX             r2, r0, #4, #8
-  186 0000000A         
-  187 0000000A E7FE    stop    B                stop
-  188 0000000C                 ENDP
-  189 0000000C         
-  190 0000000C                 ALIGN
-  191 0000000C                 END
-              1234CDEF 
+  182 00000000         ;  LDR r0, =0x1234CDEF
+  183 00000000         ;  
+  184 00000000         ;  UBFX r1, r0, #4, #8
+  185 00000000         ;  SBFX r2, r0, #4, #8
+  186 00000000         
+  187 00000000         ;Exercise
+  188 00000000 F04F 0001       MOV              r0, #1
+  189 00000004 F04F 0105       MOV              r1, #5
+  190 00000008 F04F 020A       MOV              r2, #10
+  191 0000000C         
+  192 0000000C EBC0 1040       RSB              r0, r0, r0, LSL #5
+  193 00000010         
+  194 00000010 F04F 0001       MOV              r0, #1
+  195 00000014 FB00 2301       MLA              r3, r0, r1, r2
+  196 00000018 EB63 0000       SBC              r0, r3, r0
+  197 0000001C         
+  198 0000001C E7FE    stop    B                stop
+  199 0000001E                 ENDP
+
+
+
+ARM Macro Assembler    Page 5 
+
+
+  200 0000001E         
+  201 0000001E 00 00           ALIGN
+  202 00000020                 END
 Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
 --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Users\Abdul
 lah-Wasim\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users
@@ -303,13 +319,13 @@ Symbol: main
    Uses
       None
 Comment: main unused
-stop 0000000A
+stop 0000001C
 
 Symbol: stop
    Definitions
-      At line 187 in file main.s
+      At line 198 in file main.s
    Uses
-      At line 187 in file main.s
+      At line 198 in file main.s
 Comment: stop used once
 3 symbols
-342 symbols in table
+340 symbols in table
