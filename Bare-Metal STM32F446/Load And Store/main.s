@@ -1,6 +1,5 @@
-		AREA    mydata, DATA, READWRITE
-result  SPACE   4
-array	DCW	1, 2, 3, 4, 5
+		AREA    mydata, DATA, READONLY
+array	DCD	1, 2, 3, 4, 5
 
         AREA    main, CODE, READONLY
         EXPORT  __main
@@ -30,11 +29,45 @@ __main  PROC
 ;		ADR r4, loop	;	Load a memory address
 
 		;Accessing Data in Memory
-		LDR r0, =0x82000004
+;		LDR r0, =0x20000000
+;;		LDR =0, [r0]
+;		
+;		LDR r1, [r0]	;	Load 4 bytes Data on this memory address in r1
+;;		MOV r1, #0
+;		ADD r1, r1, #4
+;		STR r1, [r0]	;	Store r1 in memory address in r0
+;		
+;		; Memory Addressing
+;		
+;		;Pre-Index
+;		LDR r0, =0x20008010
+;		
+;		LDR r1, [r0, #4]	;	Pre-Index - r1 = memory[r0 + 4]
+;		LDR r2, [r0], #4	;	Post-Index - r2 = memory[r0] - r0 = r0 +4
+;		LDR r3, [r0, #4]!	;	Pre-Index with update - r3 = memory[r0 + 4] - r0 = r0 + 4
+		
+		;Load and Store Instructions
+		
+;		LDR Rt, [Rn, #offsett]	;	Load word of memory address Rn + offset
+;		LDRB Rt, [Rn, #offsett]	;	Load byte of memory address Rn + offset
+;		LDRH Rt, [Rn, #offsett]	;	Load 2 Bytes of memory address Rn + offset
+;		LDRSB Rt, [Rn, #offsett]	;	Load byte of memory address Rn + offset - Signed
+;		LDRSH Rt, [Rn, #offsett]	;	Load 2 Bytes of memory address Rn + offset - Signed
+;		LDM	Rt, register_list	;	Load Multiple words
+;		
+;		STR Rt, [Rn, #offsett]	;	Store word of memory address Rn + offset
+;		STRB Rt, [Rn, #offsett]	;	Store byte of memory address Rn + offset
+;		STRH Rt, [Rn, #offsett]	;	Store 2 Bytes of memory address Rn + offset
+;		STM	Rt, register_list	;	Store Multiple words
+		
+		;Accessing an  Array
+		LDR r0, =array
 		
 		LDR r1, [r0]
-		ADD r1, r1, #4
-		STR r1, [r0]
+		LDR r2, [r0, #4]
+		LDR r3, [r0, #8]
+		LDR r4, [r0, #12]
+		LDR r5, [r0, #16]
 		
 stop    B       stop
         ENDP
