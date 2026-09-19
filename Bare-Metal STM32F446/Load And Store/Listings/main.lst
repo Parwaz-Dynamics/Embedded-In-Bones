@@ -4,18 +4,22 @@
 ARM Macro Assembler    Page 1 
 
 
-    1 00000000                 AREA             mydata, DATA, READONLY
+    1 00000000                 AREA             mydata, DATA, READWRITE
     2 00000000 00000001 
               00000002 
               00000003 
               00000004 
               00000005 array   DCD              1, 2, 3, 4, 5
-    3 00000014         
-    4 00000014                 AREA             main, CODE, READONLY
-    5 00000000                 EXPORT           __main
-    6 00000000                 ENTRY
+    3 00000014 00000006 
+              00000007 
+              00000008 
+              00000009 
+              0000000A array2  DCD              6, 7, 8, 9 ,10
+    4 00000028         
+    5 00000028                 AREA             mycode, CODE, READONLY
+    6 00000000                 EXPORT           main
     7 00000000         
-    8 00000000         __main  PROC
+    8 00000000         main    PROC
     9 00000000         
    10 00000000         ; Chapter#5 Load and Store 
    11 00000000         ;  MOV r0, #0xFF ; Move Hexadecimal Number to r0
@@ -59,16 +63,16 @@ ARM Macro Assembler    Page 1
    46 00000000         ;  LDR r2, [r0], #4 ; Post-Index - r2 = memory[r0] - r0 
                        = r0 +4
    47 00000000         ;  LDR r3, [r0, #4]! ; Pre-Index with update - r3 = memo
-                       ry[r0 + 4] - r0 = r0 + 4
-   48 00000000         
-   49 00000000         ;Load and Store Instructions
-   50 00000000         
 
 
 
 ARM Macro Assembler    Page 2 
 
 
+                       ry[r0 + 4] - r0 = r0 + 4
+   48 00000000         
+   49 00000000         ;Load and Store Instructions
+   50 00000000         
    51 00000000         ;  LDR Rt, [Rn, #offsett] ; Load word of memory address 
                        Rn + offset
    52 00000000         ;  LDRB Rt, [Rn, #offsett] ; Load byte of memory address
@@ -90,20 +94,67 @@ ARM Macro Assembler    Page 2
    61 00000000         ;  STM Rt, register_list ; Store Multiple words
    62 00000000         
    63 00000000         ;Accessing an  Array
-   64 00000000 4803            LDR              r0, =array
-   65 00000002         
-   66 00000002 6801            LDR              r1, [r0]
-   67 00000004 6842            LDR              r2, [r0, #4]
-   68 00000006 6883            LDR              r3, [r0, #8]
-   69 00000008 68C4            LDR              r4, [r0, #12]
-   70 0000000A 6905            LDR              r5, [r0, #16]
-   71 0000000C         
-   72 0000000C E7FE    stop    B                stop
-   73 0000000E                 ENDP
-   74 0000000E         
-   75 0000000E 00 00           ALIGN
-   76 00000010                 END
-              00000000 
+   64 00000000         ;    LDR r0, =array
+   65 00000000         ;  
+   66 00000000         ;  ;Pre-index
+   67 00000000         ;  LDR r1, [r0]
+   68 00000000         ;  LDR r2, [r0, #4]
+   69 00000000         ;  LDR r3, [r0, #8]
+   70 00000000         ;  LDR r4, [r0, #12]
+   71 00000000         ;  LDR r5, [r0, #16]
+   72 00000000         ;  
+   73 00000000         ;  ;Post-index
+   74 00000000         ;  LDR r1, [r0], #4
+   75 00000000         ;  LDR r2, [r0], #4
+   76 00000000         ;  LDR r3, [r0], #4
+   77 00000000         ;  LDR r4, [r0], #4
+   78 00000000         ;  LDR r5, [r0], #4
+   79 00000000         ;  
+   80 00000000         ;  ;Pre-index with update
+   81 00000000         ;  LDR r0, =array
+   82 00000000         ;  
+   83 00000000         ;  LDR r1, [r0]
+   84 00000000         ;  LDR r2, [r0, #4]!
+   85 00000000         ;  LDR r3, [r0, #4]!
+   86 00000000         ;  LDR r4, [r0, #4]!
+   87 00000000         ;  LDR r5, [r0, #4]!
+   88 00000000         ;  
+   89 00000000         ;  ;Loading Storing Multiple Registers
+   90 00000000         ;  LDR r0, =array2
+   91 00000000         ;  
+   92 00000000         ;  LDMIA r0, {r1,r2,r3,r4,r5}
+   93 00000000         ;  
+   94 00000000         ;  ADD r1, #-1
+   95 00000000         ;  ADD r2, #-1
+   96 00000000         ;  ADD r3, #-1
+   97 00000000         ;  ADD r4, #-1
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+   98 00000000         ;  ADD r5, #-1
+   99 00000000         ;  
+  100 00000000         ;  STMIA r0, {r1,r2,r3,r4,r5}
+  101 00000000         
+  102 00000000         ;Exercise
+  103 00000000         
+  104 00000000 4801            LDR              r0, =0x20008000
+  105 00000002         ;  MOV r1, #0x79
+  106 00000002         ;  STR r1, [r0]
+  107 00000002         ;  
+  108 00000002         ;  LDR r2, [r0]
+  109 00000002         ;  REV r1, r2
+  110 00000002         
+  111 00000002 E890 0076       LDMIA            r0, {r1,r2,r4,r5,r6}
+  112 00000006         
+  113 00000006 E7FE    stop    B                stop
+  114 00000008                 ENDP
+  115 00000008         
+  116 00000008                 ALIGN
+  117 00000008                 END
+              20008000 
 Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
 --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Users\Abdul
 lah\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users\Abdul
@@ -123,8 +174,16 @@ Symbol: array
    Definitions
       At line 2 in file main.s
    Uses
-      At line 64 in file main.s
-Comment: array used once
+      None
+Comment: array unused
+array2 00000014
+
+Symbol: array2
+   Definitions
+      At line 3 in file main.s
+   Uses
+      None
+Comment: array2 unused
 mydata 00000000
 
 Symbol: mydata
@@ -133,36 +192,36 @@ Symbol: mydata
    Uses
       None
 Comment: mydata unused
-2 symbols
+3 symbols
 
 
 
 ARM Macro Assembler    Page 1 Alphabetic symbol ordering
 Relocatable symbols
 
-__main 00000000
-
-Symbol: __main
-   Definitions
-      At line 8 in file main.s
-   Uses
-      At line 5 in file main.s
-Comment: __main used once
 main 00000000
 
 Symbol: main
    Definitions
-      At line 4 in file main.s
+      At line 8 in file main.s
+   Uses
+      At line 6 in file main.s
+Comment: main used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 5 in file main.s
    Uses
       None
-Comment: main unused
-stop 0000000C
+Comment: mycode unused
+stop 00000006
 
 Symbol: stop
    Definitions
-      At line 72 in file main.s
+      At line 113 in file main.s
    Uses
-      At line 72 in file main.s
+      At line 113 in file main.s
 Comment: stop used once
 3 symbols
-342 symbols in table
+343 symbols in table

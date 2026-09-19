@@ -1,11 +1,11 @@
-		AREA    mydata, DATA, READONLY
-array	DCD	1, 2, 3, 4, 5
+        AREA    mydata, DATA, READWRITE
+array   DCD     1, 2, 3, 4, 5
+array2  DCD     6, 7, 8, 9 ,10
 
-        AREA    main, CODE, READONLY
-        EXPORT  __main
-        ENTRY
+        AREA    mycode, CODE, READONLY
+        EXPORT  main
 
-__main  PROC
+main    PROC
 	
 		; Chapter#5 Load and Store 
 ;		MOV r0, #0xFF	;	Move Hexadecimal Number to r0
@@ -61,13 +61,56 @@ __main  PROC
 ;		STM	Rt, register_list	;	Store Multiple words
 		
 		;Accessing an  Array
-		LDR r0, =array
+;  		LDR r0, =array
+;		
+;		;Pre-index
+;		LDR r1, [r0]
+;		LDR r2, [r0, #4]
+;		LDR r3, [r0, #8]
+;		LDR r4, [r0, #12]
+;		LDR r5, [r0, #16]
+;		
+;		;Post-index
+;		LDR r1, [r0], #4
+;		LDR r2, [r0], #4
+;		LDR r3, [r0], #4
+;		LDR r4, [r0], #4
+;		LDR r5, [r0], #4
+;		
+;		;Pre-index with update
+;		LDR r0, =array
+;		
+;		LDR r1, [r0]
+;		LDR r2, [r0, #4]!
+;		LDR r3, [r0, #4]!
+;		LDR r4, [r0, #4]!
+;		LDR r5, [r0, #4]!
+;		
+;		;Loading Storing Multiple Registers
+;		LDR r0, =array2
+;		
+;		LDMIA r0, {r1,r2,r3,r4,r5}
+;		
+;		ADD r1, #-1
+;		ADD r2, #-1
+;		ADD r3, #-1
+;		ADD r4, #-1
+;		ADD r5, #-1
+;		
+;		STMIA r0, {r1,r2,r3,r4,r5}
+
+		;Exercise
 		
-		LDR r1, [r0]
-		LDR r2, [r0, #4]
-		LDR r3, [r0, #8]
-		LDR r4, [r0, #12]
-		LDR r5, [r0, #16]
+		LDR r0, =0x20008000
+;		MOV r1, #0x79
+;		STR r1, [r0]
+;		
+;		LDR r2, [r0]
+;		REV r1, r2
+
+		LDMIA r0, {r1,r2,r4,r5,r6}
+		
+		LDMIA r0!, {r1,r2,r4,r5,r6}
 		
 stop    B       stop
         ENDP
