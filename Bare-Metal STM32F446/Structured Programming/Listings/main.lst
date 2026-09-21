@@ -1,0 +1,199 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             myData, DATA, READWRITE
+    2 00000000 FFFFFFFF 
+                       x       DCD              0xFFFFFFFF
+    3 00000004 00000017 
+              00000005 
+              00000003 
+              00000008 
+              FFFFFFFF 
+              0000000A 
+              00000006 
+              00000005 
+              00000002 
+              FFFFFFF6 array   DCD              23,5,3,8,-1,10,6,5,2,-10
+    4 0000002C 0000000A 
+                       size    DCD              10
+    5 00000030         
+    6 00000030                 AREA             myCode, CODE, READONLY
+    7 00000000                 EXPORT           main
+    8 00000000                 ENTRY
+    9 00000000         
+   10 00000000         main    PROC
+   11 00000000         
+   12 00000000         ;Structured Programming
+   13 00000000         
+   14 00000000         ; Example 1 - Factorial
+   15 00000000         ;  LDR r0, =x
+   16 00000000         ;  
+   17 00000000         ;  LDR r1, [r0]
+   18 00000000         ;  MOV r2, #1
+   19 00000000         
+   20 00000000         ;factorial
+   21 00000000         ;  CMP r1, #0
+   22 00000000         ;  BEQ end_factorial
+   23 00000000         ;  
+   24 00000000         ;  MUL r2, r1
+   25 00000000         ;  SUB r1, #1
+   26 00000000         ;  
+   27 00000000         ;  B factorial
+   28 00000000         ; 
+   29 00000000         ;end_factorial 
+   30 00000000         
+   31 00000000         ;  ;Example 2 - Number of 1's in 32-bit word
+   32 00000000         ;  LDR r0, =x
+   33 00000000         ;  LDR r1, [r0]
+   34 00000000         ;  
+   35 00000000         ;  MOV r2, #0
+   36 00000000         ;  
+   37 00000000         ;loop   
+   38 00000000         ;  LSLS r1, r1, #1
+   39 00000000         ;  ADC  r2, r2, #0
+   40 00000000         ;  CBZ  r1, stop
+   41 00000000         ;  
+   42 00000000         ;  B  loop
+   43 00000000         
+   44 00000000         ; Example 3 - Finding the Maximum of an Array
+   45 00000000         
+   46 00000000 480A            LDR              r0, =array  ; Address of Array
+   47 00000002 490B            LDR              r1, =size   ; Address of Array 
+                                                            Size
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   48 00000004         
+   49 00000004 680A            LDR              r2, [r1]    ; Load Array Size i
+                                                            n r2
+   50 00000006 F04F 0300       MOV              r3, #0      ; i
+   51 0000000A 6804            LDR              r4, [r0]
+   52 0000000C         
+   53 0000000C 6805            LDR              r5, [r0]    ; Maximum number
+   54 0000000E 6806            LDR              r6, [r0]    ; Minimum number
+   55 00000010         
+   56 00000010 4293    loop    CMP              r3, r2
+   57 00000012 DA0A            BGE              end_function ; if i >= Array Si
+                                                            ze, end the functio
+                                                            n
+   58 00000014         
+   59 00000014 F850 4F04       LDR              r4, [r0, #4]!
+   60 00000018 42AC            CMP              r4, r5
+   61 0000001A BFC8 4625       MOVGT            r5, r4
+   62 0000001E 42B4            CMP              r4, r6
+   63 00000020 BFB8 4626       MOVLT            r6, r4
+   64 00000024 F103 0301       ADD              r3, #1
+   65 00000028         
+   66 00000028 E7F2            B                loop
+   67 0000002A         
+   68 0000002A         end_function
+   69 0000002A         
+   70 0000002A E7FE    stop    B                stop
+   71 0000002C         
+   72 0000002C         ;while_1  
+   73 0000002C         ;  B while_1
+   74 0000002C         
+   75 0000002C                 ENDP
+   76 0000002C                 END
+              00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
+--depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Users\Abdul
+lah\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users\Abdul
+lah\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\S
+TM32F4xx\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SET
+A 539" --predefine="_RTE_ SETA 1" --predefine="STM32F446xx SETA 1" --predefine=
+"_RTE_ SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+array 00000004
+
+Symbol: array
+   Definitions
+      At line 3 in file main.s
+   Uses
+      At line 46 in file main.s
+Comment: array used once
+myData 00000000
+
+Symbol: myData
+   Definitions
+      At line 1 in file main.s
+   Uses
+      None
+Comment: myData unused
+size 0000002C
+
+Symbol: size
+   Definitions
+      At line 4 in file main.s
+   Uses
+      At line 47 in file main.s
+Comment: size used once
+x 00000000
+
+Symbol: x
+   Definitions
+      At line 2 in file main.s
+   Uses
+      None
+Comment: x unused
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+end_function 0000002A
+
+Symbol: end_function
+   Definitions
+      At line 68 in file main.s
+   Uses
+      At line 57 in file main.s
+Comment: end_function used once
+loop 00000010
+
+Symbol: loop
+   Definitions
+      At line 56 in file main.s
+   Uses
+      At line 66 in file main.s
+Comment: loop used once
+main 00000000
+
+Symbol: main
+   Definitions
+      At line 10 in file main.s
+   Uses
+      At line 7 in file main.s
+Comment: main used once
+myCode 00000000
+
+Symbol: myCode
+   Definitions
+      At line 6 in file main.s
+   Uses
+      None
+Comment: myCode unused
+stop 0000002A
+
+Symbol: stop
+   Definitions
+      At line 70 in file main.s
+   Uses
+      At line 70 in file main.s
+Comment: stop used once
+5 symbols
+346 symbols in table
