@@ -69,19 +69,19 @@ main	PROC
 ;		
 ;		BL insert_number		
 
-		;Pass Arguments through Stack
-		
-		MOV	r0, #16
-		MOV	r1, #16
-		MOV	r2, #16
-		MOV	r3, #16
-		
-		PUSH	{r0, r1}
-		
-		MOV	r0, #16
-		MOV	r1, #16
-		
-		BL	sum6
+;		;Pass Arguments through Stack
+;		
+;		MOV	r0, #1
+;		MOV	r1, #2
+;		MOV	r2, #3
+;		MOV	r3, #4
+;		
+;		PUSH	{r0, r1}
+;		
+;		MOV	r0, #5
+;		MOV	r1, #6
+;		
+;		BL	sum6
 		
 stop	B stop
 	

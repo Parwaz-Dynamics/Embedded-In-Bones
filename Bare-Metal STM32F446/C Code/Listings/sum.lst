@@ -1,0 +1,47 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             myCode, CODE, READONLY
+    2 00000000                 EXPORT           sum
+    3 00000000                 ENTRY
+    4 00000000         
+    5 00000000         sum     PROC
+    6 00000000         
+    7 00000000         
+    8 00000000         
+    9 00000000                 ENDP
+   10 00000000                 END
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
+--depend=.\objects\sum.d -o.\objects\sum.o -I.\RTE\_Target_1 -IC:\Users\Abdulla
+h\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users\Abdulla
+h\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM
+32F4xx\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 
+539" --predefine="_RTE_ SETA 1" --predefine="STM32F446xx SETA 1" --predefine="_
+RTE_ SETA 1" --list=.\listings\sum.lst sum.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+myCode 00000000
+
+Symbol: myCode
+   Definitions
+      At line 1 in file sum.s
+   Uses
+      None
+Comment: myCode unused
+sum 00000000
+
+Symbol: sum
+   Definitions
+      At line 5 in file sum.s
+   Uses
+      At line 2 in file sum.s
+Comment: sum used once
+2 symbols
+336 symbols in table

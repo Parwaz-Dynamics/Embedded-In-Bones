@@ -649,7 +649,7 @@ Image component sizes
 
         34          0          0          0          0        388   gcd.o
         42          0          0          0          0        420   insert_number.o
-        32          0          0          0          0        420   main.o
+        32          0          0          0          0        436   main.o
         64         26        452          0       1536        908   startup_stm32f446xx.o
         30          0          0          0          0        392   strcat.o
         30          0          0          0          0        396   strcmp.o
@@ -659,7 +659,7 @@ Image component sizes
         18          0          0          0          0       2791   system_stm32f4xx.o
 
     ----------------------------------------------------------------------
-       318         26        468          0       1536       6867   Object Totals
+       318         26        468          0       1536       6883   Object Totals
          0          0         16          0          0          0   (incl. Generated)
         12          0          0          0          0          0   (incl. Padding)
 
@@ -718,8 +718,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      1152        100        468          0       1632       6927   Grand Totals
-      1152        100        468          0       1632       6927   ELF Image Totals
+      1152        100        468          0       1632       6943   Grand Totals
+      1152        100        468          0       1632       6943   ELF Image Totals
       1152        100        468          0          0          0   ROM Totals
 
 ==============================================================================
