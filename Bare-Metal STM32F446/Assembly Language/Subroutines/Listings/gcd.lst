@@ -1,0 +1,80 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             myCode, CODE, READONLY
+    2 00000000                 EXPORT           gcd
+    3 00000000                 ENTRY
+    4 00000000         
+    5 00000000         gcd     PROC
+    6 00000000         
+    7 00000000 B500            PUSH             {LR}
+    8 00000002         
+    9 00000002 4288            CMP              r0, r1
+   10 00000004 BFBE 4604       MOVLT            r4, r0
+   11 00000008 4608            MOVLT            r0, r1
+   12 0000000A 4621            MOVLT            r1, r4
+   13 0000000C         
+   14 0000000C B131    l       CBZ              r1, exit
+   15 0000000E FB90 F4F1       SDIV             r4, r0, r1
+   16 00000012 FB01 0514       MLS              r5, r1, r4, r0
+   17 00000016         
+   18 00000016 4608            MOV              r0, r1
+   19 00000018 4629            MOV              r1, r5
+   20 0000001A E7F7            B                l
+   21 0000001C         
+   22 0000001C F85D EB04 
+                       exit    POP              {LR}
+   23 00000020 4770            BX               LR
+   24 00000022         
+   25 00000022                 ENDP
+   26 00000022                 END
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
+--depend=.\objects\gcd.d -o.\objects\gcd.o -I.\RTE\_Target_1 -IC:\Users\Abdulla
+h\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users\Abdulla
+h\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM
+32F4xx\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 
+539" --predefine="_RTE_ SETA 1" --predefine="STM32F446xx SETA 1" --predefine="_
+RTE_ SETA 1" --list=.\listings\gcd.lst gcd.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+exit 0000001C
+
+Symbol: exit
+   Definitions
+      At line 22 in file gcd.s
+   Uses
+      At line 14 in file gcd.s
+Comment: exit used once
+gcd 00000000
+
+Symbol: gcd
+   Definitions
+      At line 5 in file gcd.s
+   Uses
+      At line 2 in file gcd.s
+Comment: gcd used once
+l 0000000C
+
+Symbol: l
+   Definitions
+      At line 14 in file gcd.s
+   Uses
+      At line 20 in file gcd.s
+Comment: l used once
+myCode 00000000
+
+Symbol: myCode
+   Definitions
+      At line 1 in file gcd.s
+   Uses
+      None
+Comment: myCode unused
+4 symbols
+339 symbols in table

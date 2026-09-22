@@ -1,0 +1,227 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             mydata, DATA, READWRITE
+    2 00000000 00000001 
+              00000002 
+              00000003 
+              00000004 
+              00000005 array   DCD              1, 2, 3, 4, 5
+    3 00000014 00000006 
+              00000007 
+              00000008 
+              00000009 
+              0000000A array2  DCD              6, 7, 8, 9 ,10
+    4 00000028         
+    5 00000028                 AREA             mycode, CODE, READONLY
+    6 00000000                 EXPORT           main
+    7 00000000         
+    8 00000000         main    PROC
+    9 00000000         
+   10 00000000         ; Chapter#5 Load and Store 
+   11 00000000         ;  MOV r0, #0xFF ; Move Hexadecimal Number to r0
+   12 00000000         ;  MOV r0, #2_10011100 ; Move Binary Number to r0
+   13 00000000         ;  MOV r0, #54 ; Move Decimal Number to r0
+   14 00000000         ;  
+   15 00000000         ;  MVN r1, #0xFF ; Move not of 0xFF to r1
+   16 00000000         ;  MOVW r1, #5 ; Move 5 to lower half word of r1 and cle
+                       ar top half word
+   17 00000000         ;  MOVT r1, #9 ; Move 9 to top half word of r1 and top h
+                       alf word is unaltered
+   18 00000000         ;  
+   19 00000000         ;  ;LDR Rt, #<immed_8> is equivalent to MOV
+   20 00000000         ;  ;LDR Rt, #<immed_32> is equivalent to MOV
+   21 00000000         
+   22 00000000         ;Pseudo Instruction LDR and ADR
+   23 00000000         ; Not a real instruction but for programmers easiness
+   24 00000000         
+   25 00000000         ;  MOV r2, #1
+   26 00000000         ;  MOV r3, #1
+   27 00000000         ;  
+   28 00000000         ;loop ADD r1, r2, r3
+   29 00000000         ;  ADR r4, loop ; Load a memory address
+   30 00000000         
+   31 00000000         ;Accessing Data in Memory
+   32 00000000         ;  LDR r0, =0x20000000
+   33 00000000         ;;  LDR =0, [r0]
+   34 00000000         ;  
+   35 00000000         ;  LDR r1, [r0] ; Load 4 bytes Data on this memory addre
+                       ss in r1
+   36 00000000         ;;  MOV r1, #0
+   37 00000000         ;  ADD r1, r1, #4
+   38 00000000         ;  STR r1, [r0] ; Store r1 in memory address in r0
+   39 00000000         ;  
+   40 00000000         ;  ; Memory Addressing
+   41 00000000         ;  
+   42 00000000         ;  ;Pre-Index
+   43 00000000         ;  LDR r0, =0x20008010
+   44 00000000         ;  
+   45 00000000         ;  LDR r1, [r0, #4] ; Pre-Index - r1 = memory[r0 + 4]
+   46 00000000         ;  LDR r2, [r0], #4 ; Post-Index - r2 = memory[r0] - r0 
+                       = r0 +4
+   47 00000000         ;  LDR r3, [r0, #4]! ; Pre-Index with update - r3 = memo
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                       ry[r0 + 4] - r0 = r0 + 4
+   48 00000000         
+   49 00000000         ;Load and Store Instructions
+   50 00000000         
+   51 00000000         ;  LDR Rt, [Rn, #offsett] ; Load word of memory address 
+                       Rn + offset
+   52 00000000         ;  LDRB Rt, [Rn, #offsett] ; Load byte of memory address
+                        Rn + offset
+   53 00000000         ;  LDRH Rt, [Rn, #offsett] ; Load 2 Bytes of memory addr
+                       ess Rn + offset
+   54 00000000         ;  LDRSB Rt, [Rn, #offsett] ; Load byte of memory addres
+                       s Rn + offset - Signed
+   55 00000000         ;  LDRSH Rt, [Rn, #offsett] ; Load 2 Bytes of memory add
+                       ress Rn + offset - Signed
+   56 00000000         ;  LDM Rt, register_list ; Load Multiple words
+   57 00000000         ;  
+   58 00000000         ;  STR Rt, [Rn, #offsett] ; Store word of memory address
+                        Rn + offset
+   59 00000000         ;  STRB Rt, [Rn, #offsett] ; Store byte of memory addres
+                       s Rn + offset
+   60 00000000         ;  STRH Rt, [Rn, #offsett] ; Store 2 Bytes of memory add
+                       ress Rn + offset
+   61 00000000         ;  STM Rt, register_list ; Store Multiple words
+   62 00000000         
+   63 00000000         ;Accessing an  Array
+   64 00000000         ;    LDR r0, =array
+   65 00000000         ;  
+   66 00000000         ;  ;Pre-index
+   67 00000000         ;  LDR r1, [r0]
+   68 00000000         ;  LDR r2, [r0, #4]
+   69 00000000         ;  LDR r3, [r0, #8]
+   70 00000000         ;  LDR r4, [r0, #12]
+   71 00000000         ;  LDR r5, [r0, #16]
+   72 00000000         ;  
+   73 00000000         ;  ;Post-index
+   74 00000000         ;  LDR r1, [r0], #4
+   75 00000000         ;  LDR r2, [r0], #4
+   76 00000000         ;  LDR r3, [r0], #4
+   77 00000000         ;  LDR r4, [r0], #4
+   78 00000000         ;  LDR r5, [r0], #4
+   79 00000000         ;  
+   80 00000000         ;  ;Pre-index with update
+   81 00000000         ;  LDR r0, =array
+   82 00000000         ;  
+   83 00000000         ;  LDR r1, [r0]
+   84 00000000         ;  LDR r2, [r0, #4]!
+   85 00000000         ;  LDR r3, [r0, #4]!
+   86 00000000         ;  LDR r4, [r0, #4]!
+   87 00000000         ;  LDR r5, [r0, #4]!
+   88 00000000         ;  
+   89 00000000         ;  ;Loading Storing Multiple Registers
+   90 00000000         ;  LDR r0, =array2
+   91 00000000         ;  
+   92 00000000         ;  LDMIA r0, {r1,r2,r3,r4,r5}
+   93 00000000         ;  
+   94 00000000         ;  ADD r1, #-1
+   95 00000000         ;  ADD r2, #-1
+   96 00000000         ;  ADD r3, #-1
+   97 00000000         ;  ADD r4, #-1
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+   98 00000000         ;  ADD r5, #-1
+   99 00000000         ;  
+  100 00000000         ;  STMIA r0, {r1,r2,r3,r4,r5}
+  101 00000000         
+  102 00000000         ;Exercise
+  103 00000000         
+  104 00000000 4801            LDR              r0, =0x20008000
+  105 00000002         ;  MOV r1, #0x79
+  106 00000002         ;  STR r1, [r0]
+  107 00000002         ;  
+  108 00000002         ;  LDR r2, [r0]
+  109 00000002         ;  REV r1, r2
+  110 00000002         
+  111 00000002 E890 0076       LDMIA            r0, {r1,r2,r4,r5,r6}
+  112 00000006         
+  113 00000006 E7FE    stop    B                stop
+  114 00000008                 ENDP
+  115 00000008         
+  116 00000008                 ALIGN
+  117 00000008                 END
+              20008000 
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
+--depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Users\Abdul
+lah\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users\Abdul
+lah\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\S
+TM32F4xx\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SET
+A 539" --predefine="_RTE_ SETA 1" --predefine="STM32F446xx SETA 1" --predefine=
+"_RTE_ SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+array 00000000
+
+Symbol: array
+   Definitions
+      At line 2 in file main.s
+   Uses
+      None
+Comment: array unused
+array2 00000014
+
+Symbol: array2
+   Definitions
+      At line 3 in file main.s
+   Uses
+      None
+Comment: array2 unused
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 1 in file main.s
+   Uses
+      None
+Comment: mydata unused
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+main 00000000
+
+Symbol: main
+   Definitions
+      At line 8 in file main.s
+   Uses
+      At line 6 in file main.s
+Comment: main used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 5 in file main.s
+   Uses
+      None
+Comment: mycode unused
+stop 00000006
+
+Symbol: stop
+   Definitions
+      At line 113 in file main.s
+   Uses
+      At line 113 in file main.s
+Comment: stop used once
+3 symbols
+343 symbols in table

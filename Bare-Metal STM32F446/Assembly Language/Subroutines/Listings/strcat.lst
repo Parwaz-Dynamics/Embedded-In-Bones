@@ -1,0 +1,81 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             myCode, CODE, READONLY
+    2 00000000                 EXPORT           strcat
+    3 00000000                 ENTRY
+    4 00000000         
+    5 00000000         strcat  PROC
+    6 00000000 B500            PUSH             {LR}
+    7 00000002         
+    8 00000002         find_strend
+    9 00000002 7804            LDRB             r4, [r0]
+   10 00000004 B114            CBZ              r4, catstr
+   11 00000006         
+   12 00000006 F100 0001       ADD              r0, r0, #1
+   13 0000000A E7FA            B                find_strend
+   14 0000000C         
+   15 0000000C         
+   16 0000000C         catstr
+   17 0000000C F811 4B01       LDRB             r4, [r1], #1
+   18 00000010 F800 4B01       STRB             r4, [r0], #1
+   19 00000014 2C00            CMP              r4, #0
+   20 00000016 D1F9            BNE              catstr
+   21 00000018         
+   22 00000018         
+   23 00000018 F85D EB04       POP              {LR}
+   24 0000001C 4770            BX               LR
+   25 0000001E         
+   26 0000001E                 ENDP
+   27 0000001E                 END
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
+--depend=.\objects\strcat.d -o.\objects\strcat.o -I.\RTE\_Target_1 -IC:\Users\A
+bdullah\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users\A
+bdullah\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\
+ST\STM32F4xx\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION
+ SETA 539" --predefine="_RTE_ SETA 1" --predefine="STM32F446xx SETA 1" --predef
+ine="_RTE_ SETA 1" --list=.\listings\strcat.lst strcat.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+catstr 0000000C
+
+Symbol: catstr
+   Definitions
+      At line 16 in file strcat.s
+   Uses
+      At line 10 in file strcat.s
+      At line 20 in file strcat.s
+
+find_strend 00000002
+
+Symbol: find_strend
+   Definitions
+      At line 8 in file strcat.s
+   Uses
+      At line 13 in file strcat.s
+Comment: find_strend used once
+myCode 00000000
+
+Symbol: myCode
+   Definitions
+      At line 1 in file strcat.s
+   Uses
+      None
+Comment: myCode unused
+strcat 00000000
+
+Symbol: strcat
+   Definitions
+      At line 5 in file strcat.s
+   Uses
+      At line 2 in file strcat.s
+Comment: strcat used once
+4 symbols
+339 symbols in table

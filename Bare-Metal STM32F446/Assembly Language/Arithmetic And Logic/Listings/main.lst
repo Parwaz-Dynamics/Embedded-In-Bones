@@ -1,0 +1,331 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             mydata, DATA, READWRITE
+    2 00000000 00 00 00 
+              00       result  SPACE            4
+    3 00000004         
+    4 00000004                 AREA             main, CODE, READONLY
+    5 00000000                 EXPORT           __main
+    6 00000000                 ENTRY
+    7 00000000         
+    8 00000000         __main  PROC
+    9 00000000         
+   10 00000000         ; Shift and Rotate
+   11 00000000         ;        LDR     r1, =0x80000003
+   12 00000000         
+   13 00000000         ;        LSL     r2, r1, #1      ; r2 = 0x00000006 - Lef
+                       t Shift
+   14 00000000         ;        LSR     r3, r1, #1      ; r3 = 0x40000001 - Rig
+                       ht Shift
+   15 00000000         ;        ASR     r4, r1, #1      ; r4 = 0xC0000001 - Ari
+                       thmetic Shift
+   16 00000000         ;        ROR     r5, r1, #1      ; r5 = 0xC0000001 - Lef
+                       t Rotate - LSB shift to MSB - LSB to Carry
+   17 00000000         
+   18 00000000         ;        MOVS    r7, #0          ; Clear Carry flag (C =
+                        0)
+   19 00000000         ;        RRX     r6, r1          ; r6 = 0x40000001 - Sim
+                       ilar to ROR
+   20 00000000         
+   21 00000000         ; Arithmetic 
+   22 00000000         
+   23 00000000         ; Addition & Subtraction
+   24 00000000         ;  MOVS r1, #5
+   25 00000000         ;  MOVS r2, #3
+   26 00000000         ;  
+   27 00000000         ;  SUB  r3, r1, r2 ; r3 = r1 - r2
+   28 00000000         ;  SBC  r3, r1, r2 ; r3 = r1 - r2 + Carry - 1
+   29 00000000         ;  RSB  r3, r1, r2 ; r3 = r2 - r1
+   30 00000000         ;  
+   31 00000000         ;  SUB  r3, r1, #4 ; r3 = r1 - 4
+   32 00000000         ;  
+   33 00000000         ;  RSB  r3, r1, r1, LSL #5 ; r3 = r1 << 2 - r1 = r1 * 31
+                       
+   34 00000000         ;  ADD  r3, r1, r1, LSL #3 ; r3 = r1 + r1 << 2 = r1 * 9 
+                        
+   35 00000000         ;  
+   36 00000000         ;  ADDS r3, r1, r2 ; r3 = r1 + r2
+   37 00000000         
+   38 00000000         ;  ;Book Example 
+   39 00000000         ;  ; A = 00001234,00000002,FFFFFFFF
+   40 00000000         ;  ; B = 1234567B,00000004,00000001
+   41 00000000         ;  ; C = A - B
+   42 00000000         ;  
+   43 00000000         ;  ; Loading A
+   44 00000000         ;  LDR r0, =0xFFFFFFFF ; A's lower 32 bits
+   45 00000000         ;  LDR r1, =0x00000002 ; A's middle 32 bits
+   46 00000000         ;  LDR r2, =0x00001234 ; A's upper 32 bits
+   47 00000000         ;  
+   48 00000000         ;  ; Loading B
+   49 00000000         ;  LDR r3, =0x00000001 ; B's lower 32 bits
+   50 00000000         ;  LDR r4, =0x00000004 ; B's middle 32 bits
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   51 00000000         ;  LDR r5, =0x12345678 ; B's middle 32 bits
+   52 00000000         ;  
+   53 00000000         ;  ; C = A - B
+   54 00000000         ;  SUBS r6, r0, r3 ; C[31:0] = A[31:0] - B[31:0], update
+                        carry
+   55 00000000         ;  SBCS r7, r1, r4 ; C[63:32] = A[63:32] - B[63:32] + Ca
+                       rry - 1, update carry
+   56 00000000         ;  SBC  r8, r2, r5 ; C[95:64] = A[95:64] - B[95:64] + Ca
+                       rry - 1
+   57 00000000         
+   58 00000000         ; Short Multiplication & Division
+   59 00000000         ;  MOVS r0, #0x10
+   60 00000000         ;  MOVS r1, #0x2
+   61 00000000         ;  MOVS r3, #1
+   62 00000000         ;  
+   63 00000000         ;  MUL r2, r0, r1 ; r2 = LSB32(r0 * r1)
+   64 00000000         ;;  UMUL r2, r0, r1 ; Not for ARM
+   65 00000000         ;  MLA r2, r0, r1, r3 ; r2 = LSB32(r0 * r1) + 1
+   66 00000000         ;  MLS r2, r0, r1, r3 ; r2 = LSB32(r0 * r1) - 1
+   67 00000000         ;  
+   68 00000000         ;  UDIV r2, r0, r1 ; r2 = r0 / r1 - Unsigned
+   69 00000000         ;  
+   70 00000000         ;  MOVS r0, #-0x10 ; Decimal = -16
+   71 00000000         ;  SDIV r2, r0, r1 ; r2 = r0 / r1 - Signed
+   72 00000000         
+   73 00000000         ; Long Multiplication & Division
+   74 00000000         ;  LDR r0, =0x10
+   75 00000000         ;  LDR r1, =2
+   76 00000000         ;  
+   77 00000000         ;  UMULL r2, r3, r0, r1 ; r4:r3 = r0 * rl, r4 = MSB bits
+                       , r3 = LSB bits - Unsigned
+   78 00000000         ;  SMULL r2, r3, r0, r1 ; r4:r3 = r0 * rl, r4 = MSB bits
+                       , r3 = LSB bits - Signed
+   79 00000000         ;  
+   80 00000000         ;  MOVS r2, #1
+   81 00000000         ;  MOVS r3, #0
+   82 00000000         ;  UMLAL r2, r3, r0, r1 ; r4:r3 = r4:r3 + r0 * r1 - Unsi
+                       gned
+   83 00000000         ;  
+   84 00000000         ;  MOVS r2, #1
+   85 00000000         ;  MOVS r3, #0
+   86 00000000         ;  SMLAL r2, r3, r0, r1 ; r4:r3 = r4:r3 + r0 * r1 - Sign
+                       ed
+   87 00000000         
+   88 00000000         ; Saturation
+   89 00000000         ;  MOVS r0, #10
+   90 00000000         ;  USAT  r1, #3, r0 ; output range: 0 <= r2 <= 2^3
+   91 00000000         ;  
+   92 00000000         ;  LDR r0, =0xFFFFFFF6
+   93 00000000         ;  SSAT  r1, #3, r0 ; output range: -2^(3-1) <= r2 <= 2^
+                       (3-1)
+   94 00000000         
+   95 00000000         ; Barrel Shifters
+   96 00000000         ;  MOV r0, #0x1000
+   97 00000000         ;  ADD r1, r0, r0, LSL #3 ; r1 = r0 + r0 << 3 = r0 + r0 
+                       *8
+   98 00000000         ;  ADD r1, r0, r0, LSR #1 ; r1 = r0 + r0 >> 3 = r0 + r0/
+                       8 - Unsigned
+   99 00000000         ;  
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+  100 00000000         ;  LDR r0, =0x10001000
+  101 00000000         ;  ADD r1, r0, r0, ASR #1 ; r1 = r0 + r0 >> 3 = r0 + r0/
+                       8 - Signed
+  102 00000000         
+  103 00000000         ; Bitwise Logic
+  104 00000000         ;  LDR r0, =0xD5755755
+  105 00000000         ;  LDR r1, =0xAABAAAA9
+  106 00000000         ;  
+  107 00000000         ;  AND r2, r0, r1
+  108 00000000         ;  ORR r2, r0, r1
+  109 00000000         ;  EOR r2, r0, r1
+  110 00000000         ;  ORN r2, r0, r1
+  111 00000000         ;  BIC r2, r0, r1 ; NOT r1 than AND with r0
+  112 00000000         ;  MVN r2, r0
+  113 00000000         
+  114 00000000         ; Bit Mask
+  115 00000000         ;  LDR r0, =0x34  ; 0b0011_0100 - N
+  116 00000000         ;  LDR r1, =(1<<5) ; 0b0010_0000 - Mask
+  117 00000000         ;  
+  118 00000000         ;  ; In C
+  119 00000000         ;  ; char N = 0x34;
+  120 00000000         ;  ; char Mask = 1<<5;
+  121 00000000         ;  
+  122 00000000         ;  ANDS r2, r0, r1 ; 0b0010_0000 - Symbol in C '&' - C =
+                        N & Mask - Checking the bit
+  123 00000000         ;  ORR r2, r1, r0 ; 0b0011_0100 - Symbol in C '|' - C = 
+                       N | Mask - Setting a bit
+  124 00000000         ;  BIC r2, r1, r0 ; 0b0001_0100 - C = C & ~Mask - Cleari
+                       ng a bit
+  125 00000000         ;  EOR r2, r1, r0 ; 0b0001_0100 - Symbol in C '^' - C = 
+                       N ^ Mask - Toggle a bit
+  126 00000000         
+  127 00000000         ; Bits and Bytes Reversal
+  128 00000000         ;  LDR r0, =0x12345678 ; 0b0001_0010_0011_0100_0101_0110
+                       _0111_1000
+  129 00000000         ;  
+  130 00000000         ;  ; All bit reversed
+  131 00000000         ;  RBIT r1, r0 ;     0b0001_1110_0110_1010_0010_1100_010
+                       0_1000 - 0x1E6A2C48
+  132 00000000         
+  133 00000000         ;  ; Reverse bytes in a word (first 8 bits to last 8 bit
+                       s and so on)
+  134 00000000         ;  REV r2, r0 ;    0b0111_1000_0101_0110_0011_0100_0001_
+                       0010 - 0x78563412
+  135 00000000         ;  
+  136 00000000         ;  ; Reverse bytes in a half word
+  137 00000000         ;  REV16 r3, r0 ;   0b0011_0100_0001_0010_0111_1000_0101
+                       _0110 - 0x34127856
+  138 00000000         ;  
+  139 00000000         ;  ; Reverse the bytes in lower half word and sign exten
+                       sion
+  140 00000000         ;  LDR r0, =0x33448877 ; 0b0011_0011_0100_0100_1000_1000
+                       _1001_1001
+  141 00000000         ;  REVSH r4, r0 ;    0b1111_1111_1111_1111_1001_1001_100
+                       0_1000 - 0xFFFF9988 - 15th bit will be extended
+  142 00000000         
+  143 00000000         ; Sign and Zero Extension
+  144 00000000         ;  LDR r0, =0x11228091
+  145 00000000         ;  
+
+
+
+ARM Macro Assembler    Page 4 
+
+
+  146 00000000         ;  SXTB r1, r0 ; Sign extended after a byte
+  147 00000000         ;  SXTH r1, r0 ; Sign extended after a word
+  148 00000000         ;  
+  149 00000000         ;  UXTB r1, r0 ; Zero extended after a byte
+  150 00000000         ;  UXTH r1, r0 ; Zero extented after a word
+  151 00000000         
+  152 00000000         ; Data Comparison
+  153 00000000         ;  MOV r0, #10
+  154 00000000         ;  MOV r1, #5
+  155 00000000         ;  
+  156 00000000         ;  CMP r0, #3 ; Compare r0 with 3 - Carry flag 
+  157 00000000         ;  CMN r0, #10 ; Compare r0 with -10 - No Carry flag
+  158 00000000         ;  CMP r0, r1 ;  Compare r0 with r1 - Carry flag
+  159 00000000         ;  TEQ r0,#'?' ; Compare r0 with ASCII letter '?' - Carr
+                       y flag unchanged
+  160 00000000         ;  
+  161 00000000         ;  MOV r1, #(1<<31) ; r1 = 0x80000000
+  162 00000000         ;  TST r0, r1 ; Compare bits of r0 and r1 - Zero flag & 
+                       Carry flag unchanged
+  163 00000000         
+  164 00000000         ; Data Movement between Registers
+  165 00000000         ;  MOV r0, #5
+  166 00000000         ;  LDR r1, =0xFFFFFFFE
+  167 00000000         ;  
+  168 00000000         ;  MOV r2, r0 ; Load r0 in r2
+  169 00000000         ;  MVN r3, r1 ; Load not of r1 to r3
+  170 00000000         ;  
+  171 00000000         ;  MOVS r0, #0
+  172 00000000         ;  MRS r0, APSR ; Load Application Process Status Regist
+                       er to r0
+  173 00000000         ;  MRS r0, IPSR ; Load Interrupt Process Status Register
+                        to r0
+  174 00000000         ;  MRS r0, EPSR ; Load Execution Process Status Register
+                        to r0
+  175 00000000         ;  MRS r0, PSR  ; Load Process Status Register to r0
+  176 00000000         ;  
+  177 00000000         ;  LDR r0, =0x00000000
+  178 00000000         ;  
+  179 00000000         ;  MSR APSR, r0 ;  Load r0 to ASPR
+  180 00000000         
+  181 00000000         ; Bit Field Extract
+  182 00000000         ;  LDR r0, =0x1234CDEF
+  183 00000000         ;  
+  184 00000000         ;  UBFX r1, r0, #4, #8
+  185 00000000         ;  SBFX r2, r0, #4, #8
+  186 00000000         
+  187 00000000         ;Exercise
+  188 00000000 F04F 0001       MOV              r0, #1
+  189 00000004 F04F 0105       MOV              r1, #5
+  190 00000008 F04F 020A       MOV              r2, #10
+  191 0000000C         
+  192 0000000C EBC0 1040       RSB              r0, r0, r0, LSL #5
+  193 00000010         
+  194 00000010 F04F 0001       MOV              r0, #1
+  195 00000014 FB00 2301       MLA              r3, r0, r1, r2
+  196 00000018 EB63 0000       SBC              r0, r3, r0
+  197 0000001C         
+  198 0000001C E7FE    stop    B                stop
+  199 0000001E                 ENDP
+
+
+
+ARM Macro Assembler    Page 5 
+
+
+  200 0000001E         
+  201 0000001E 00 00           ALIGN
+  202 00000020                 END
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
+--depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Users\Abdul
+lah-Wasim\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users
+\Abdullah-Wasim\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS
+\Device\ST\STM32F4xx\Include --predefine="__EVAL SETA 1" --predefine="__UVISION
+_VERSION SETA 539" --predefine="_RTE_ SETA 1" --predefine="STM32F446xx SETA 1" 
+--predefine="_RTE_ SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 1 in file main.s
+   Uses
+      None
+Comment: mydata unused
+result 00000000
+
+Symbol: result
+   Definitions
+      At line 2 in file main.s
+   Uses
+      None
+Comment: result unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 8 in file main.s
+   Uses
+      At line 5 in file main.s
+Comment: __main used once
+main 00000000
+
+Symbol: main
+   Definitions
+      At line 4 in file main.s
+   Uses
+      None
+Comment: main unused
+stop 0000001C
+
+Symbol: stop
+   Definitions
+      At line 198 in file main.s
+   Uses
+      At line 198 in file main.s
+Comment: stop used once
+3 symbols
+340 symbols in table
