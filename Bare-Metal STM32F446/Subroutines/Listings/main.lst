@@ -27,72 +27,83 @@ ARM Macro Assembler    Page 1
    16 00000000         ;  IMPORT gcd
    17 00000000         ;  IMPORT strcat
    18 00000000         ;  IMPORT strcmp
-   19 00000000                 IMPORT           insert_number
-   20 00000000                 ENTRY
-   21 00000000         
-   22 00000000         main    PROC
-   23 00000000         
-   24 00000000         ;Subroutines
-   25 00000000         
-   26 00000000         ;Pass by Value
-   27 00000000         ;  LDR r0, =0xAAAAAAAA
-   28 00000000         ;  LDR r1, =0x55555555
-   29 00000000         ;  
-   30 00000000         ;  BL sum
-   31 00000000         ;  
-   32 00000000         ;  LDR r4, =result
-   33 00000000         ;  STR r0, [r4]
-   34 00000000         
-   35 00000000         ;  ;Pass by Reference
-   36 00000000         ;  LDR r0, =x
-   37 00000000         ;  LDR r1, =y
-   38 00000000         ;  
-   39 00000000         ;  BL swap
-   40 00000000         
-   41 00000000         ;  ;Example of Greatest Common Divisor
-   42 00000000         ;  MOV r0, #2310
-   43 00000000         ;  MOV r1, #483
-   44 00000000         ;  
-   45 00000000         ;  BL gcd
-   46 00000000         ;  
-   47 00000000         ;  LDR r4, =result
-   48 00000000         ;  STR r0, [r4]
-   49 00000000         
-   50 00000000         ;  ;Example of 2 concatenating strings
-   51 00000000         ;  
-   52 00000000         ;  LDR r0, =str1
-   53 00000000         ;  LDR r1, =str2
-   54 00000000         ;  
+   19 00000000         ;  IMPORT insert_number
+   20 00000000                 IMPORT           sum6
+   21 00000000                 ENTRY
+   22 00000000         
+   23 00000000         main    PROC
+   24 00000000         
+   25 00000000         ;Subroutines
+   26 00000000         
+   27 00000000         ;Pass by Value
+   28 00000000         ;  LDR r0, =0xAAAAAAAA
+   29 00000000         ;  LDR r1, =0x55555555
+   30 00000000         ;  
+   31 00000000         ;  BL sum
+   32 00000000         ;  
+   33 00000000         ;  LDR r4, =result
+   34 00000000         ;  STR r0, [r4]
+   35 00000000         
+   36 00000000         ;  ;Pass by Reference
+   37 00000000         ;  LDR r0, =x
+   38 00000000         ;  LDR r1, =y
+   39 00000000         ;  
+   40 00000000         ;  BL swap
+   41 00000000         
+   42 00000000         ;  ;Example of Greatest Common Divisor
+   43 00000000         ;  MOV r0, #2310
+   44 00000000         ;  MOV r1, #483
+   45 00000000         ;  
+   46 00000000         ;  BL gcd
+   47 00000000         ;  
+   48 00000000         ;  LDR r4, =result
+   49 00000000         ;  STR r0, [r4]
+   50 00000000         
+   51 00000000         ;  ;Example of 2 concatenating strings
+   52 00000000         ;  
+   53 00000000         ;  LDR r0, =str1
+   54 00000000         ;  LDR r1, =str2
 
 
 
 ARM Macro Assembler    Page 2 
 
 
-   55 00000000         ;  BL strcat
-   56 00000000         
-   57 00000000         ;Example of comparing 2 strings
-   58 00000000         
-   59 00000000         ;  LDR r0, =str1
-   60 00000000         ;  LDR r1, =str2
-   61 00000000         ;  
-   62 00000000         ;  BL strcmp
-   63 00000000         
-   64 00000000         ;Example of Inserting Number in Array
-   65 00000000 F04F 0003       MOV              r0, #3
-   66 00000004 4902            LDR              r1, =array
-   67 00000006 F04F 0205       MOV              r2, #5
-   68 0000000A         
-   69 0000000A F7FF FFFE       BL               insert_number
-   70 0000000E         
-   71 0000000E         
-   72 0000000E         
-   73 0000000E         
-   74 0000000E E7FE    stop    B                stop
-   75 00000010         
-   76 00000010                 ENDP
-   77 00000010                 END
-              00000000 
+   55 00000000         ;  
+   56 00000000         ;  BL strcat
+   57 00000000         
+   58 00000000         ;Example of comparing 2 strings
+   59 00000000         
+   60 00000000         ;  LDR r0, =str1
+   61 00000000         ;  LDR r1, =str2
+   62 00000000         ;  
+   63 00000000         ;  BL strcmp
+   64 00000000         
+   65 00000000         ;  ;Example of Inserting Number in Array
+   66 00000000         ;  MOV r0, #3
+   67 00000000         ;  LDR r1, =array
+   68 00000000         ;  MOV r2, #5
+   69 00000000         ;  
+   70 00000000         ;  BL insert_number  
+   71 00000000         
+   72 00000000         ;Pass Arguments through Stack
+   73 00000000         
+   74 00000000 F04F 0001       MOV              r0, #1
+   75 00000004 F04F 0102       MOV              r1, #2
+   76 00000008 F04F 0203       MOV              r2, #3
+   77 0000000C F04F 0304       MOV              r3, #4
+   78 00000010         
+   79 00000010 B403            PUSH             {r0, r1}
+   80 00000012         
+   81 00000012 F04F 0005       MOV              r0, #5
+   82 00000016 F04F 0106       MOV              r1, #6
+   83 0000001A         
+   84 0000001A F7FF FFFE       BL               sum6
+   85 0000001E         
+   86 0000001E E7FE    stop    B                stop
+   87 00000020         
+   88 00000020                 ENDP
+   89 00000020                 END
 Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
 --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Users\Abdul
 lah-Wasim\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users
@@ -112,8 +123,8 @@ Symbol: array
    Definitions
       At line 10 in file main.s
    Uses
-      At line 66 in file main.s
-Comment: array used once
+      None
+Comment: array unused
 myData 00000000
 
 Symbol: myData
@@ -133,7 +144,7 @@ main 00000000
 
 Symbol: main
    Definitions
-      At line 22 in file main.s
+      At line 23 in file main.s
    Uses
       At line 13 in file main.s
 Comment: main used once
@@ -145,13 +156,13 @@ Symbol: myCode
    Uses
       None
 Comment: myCode unused
-stop 0000000E
+stop 0000001E
 
 Symbol: stop
    Definitions
-      At line 74 in file main.s
+      At line 86 in file main.s
    Uses
-      At line 74 in file main.s
+      At line 86 in file main.s
 Comment: stop used once
 3 symbols
 
@@ -160,13 +171,13 @@ Comment: stop used once
 ARM Macro Assembler    Page 1 Alphabetic symbol ordering
 External symbols
 
-insert_number 00000000
+sum6 00000000
 
-Symbol: insert_number
+Symbol: sum6
    Definitions
-      At line 19 in file main.s
+      At line 20 in file main.s
    Uses
-      At line 69 in file main.s
-Comment: insert_number used once
+      At line 84 in file main.s
+Comment: sum6 used once
 1 symbol
-343 symbols in table
+341 symbols in table

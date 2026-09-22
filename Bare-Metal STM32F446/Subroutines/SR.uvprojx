@@ -419,6 +419,11 @@
               <FileType>2</FileType>
               <FilePath>.\insert_number.s</FilePath>
             </File>
+            <File>
+              <FileName>sum6.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\sum6.s</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -16,7 +16,8 @@ array	DCD	1,2,4,5,6,7
 ;		IMPORT	gcd
 ;		IMPORT	strcat
 ;		IMPORT	strcmp
-		IMPORT	insert_number	
+;		IMPORT	insert_number
+		IMPORT	sum6
 		ENTRY
 		
 main	PROC
@@ -61,15 +62,26 @@ main	PROC
 ;		
 ;		BL	strcmp
 
-		;Example of Inserting Number in Array
-		MOV	r0, #3
-		LDR	r1, =array
-		MOV	r2, #5
+;		;Example of Inserting Number in Array
+;		MOV	r0, #3
+;		LDR	r1, =array
+;		MOV	r2, #5
+;		
+;		BL insert_number		
+
+		;Pass Arguments through Stack
 		
-		BL insert_number
+		MOV	r0, #1
+		MOV	r1, #2
+		MOV	r2, #3
+		MOV	r3, #4
 		
+		PUSH	{r0, r1}
 		
+		MOV	r0, #5
+		MOV	r1, #6
 		
+		BL	sum6
 		
 stop	B stop
 	
