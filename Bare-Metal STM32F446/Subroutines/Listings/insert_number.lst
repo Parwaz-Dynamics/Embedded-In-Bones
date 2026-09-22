@@ -1,0 +1,102 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             myCode, CODE, READONLY
+    2 00000000                 EXPORT           insert_number
+    3 00000000                 ENTRY
+    4 00000000         
+    5 00000000         insert_number
+                               PROC
+    6 00000000         
+    7 00000000 B500            PUSH             {LR}
+    8 00000002         
+    9 00000002 4614            MOV              r4, r2      ; i = array size
+   10 00000004         
+   11 00000004 B174    l1      CBZ              r4, end_function ; if i <= 0 
+   12 00000006 F851 5024       LDR              r5, [r1, r4, LSL #2] ;  data[i]
+                                                            
+   13 0000000A         
+   14 0000000A 42A8            CMP              r0, r5      ;  compare data[i] 
+                                                            with r0
+   15 0000000C DA07            BGE              enter_number ; if data[i] <= r0
+                                                            
+   16 0000000E         
+   17 0000000E EB01 0684       ADD              r6, r1, r4, LSL #2
+   18 00000012 F106 0604       ADD              r6, r6, #4
+   19 00000016 6035            STR              r5, [r6]
+   20 00000018         
+   21 00000018 F1A4 0401       SUB              r4, r4, #1  ;  i = i - 1
+   22 0000001C         
+   23 0000001C E7F2            B                l1
+   24 0000001E         
+   25 0000001E         enter_number
+   26 0000001E         
+   27 0000001E F1A6 0604       SUB              r6, r6, #4
+   28 00000022 6030            STR              r0, [r6]
+   29 00000024         
+   30 00000024         end_function
+   31 00000024         
+   32 00000024 F85D EB04       POP              {LR}
+   33 00000028 4770            BX               LR
+   34 0000002A         
+   35 0000002A                 ENDP
+   36 0000002A                 END
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
+--depend=.\objects\insert_number.d -o.\objects\insert_number.o -I.\RTE\_Target_
+1 -IC:\Users\Abdullah-Wasim\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\
+Include -IC:\Users\Abdullah-Wasim\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.
+17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include --predefine="__EVAL SETA 1" --pr
+edefine="__UVISION_VERSION SETA 539" --predefine="_RTE_ SETA 1" --predefine="ST
+M32F446xx SETA 1" --predefine="_RTE_ SETA 1" --list=.\listings\insert_number.ls
+t insert_number.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+end_function 00000024
+
+Symbol: end_function
+   Definitions
+      At line 30 in file insert_number.s
+   Uses
+      At line 11 in file insert_number.s
+Comment: end_function used once
+enter_number 0000001E
+
+Symbol: enter_number
+   Definitions
+      At line 25 in file insert_number.s
+   Uses
+      At line 15 in file insert_number.s
+Comment: enter_number used once
+insert_number 00000000
+
+Symbol: insert_number
+   Definitions
+      At line 5 in file insert_number.s
+   Uses
+      At line 2 in file insert_number.s
+Comment: insert_number used once
+l1 00000004
+
+Symbol: l1
+   Definitions
+      At line 11 in file insert_number.s
+   Uses
+      At line 23 in file insert_number.s
+Comment: l1 used once
+myCode 00000000
+
+Symbol: myCode
+   Definitions
+      At line 1 in file insert_number.s
+   Uses
+      None
+Comment: myCode unused
+5 symbols
+340 symbols in table

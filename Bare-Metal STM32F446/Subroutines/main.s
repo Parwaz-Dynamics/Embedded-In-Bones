@@ -3,9 +3,11 @@
 ;y		DCD 5
 ;result	DCD 0
 
-str1	DCB	"String-1",0
-str1_	SPACE	20
-str2	DCB	"String-1",0
+;str1	DCB	"String-1",0
+;str1_	SPACE	20
+;str2	DCB	"String-1",0
+
+array	DCD	1,2,4,5,6,7
 			
 		AREA	myCode, CODE, READONLY
 		EXPORT	main
@@ -13,7 +15,8 @@ str2	DCB	"String-1",0
 ;		IMPORT	swap
 ;		IMPORT	gcd
 ;		IMPORT	strcat
-		IMPORT	strcmp
+;		IMPORT	strcmp
+		IMPORT	insert_number	
 		ENTRY
 		
 main	PROC
@@ -53,10 +56,18 @@ main	PROC
 
 		;Example of comparing 2 strings
 		
-		LDR	r0, =str1
-		LDR	r1, =str2
+;		LDR	r0, =str1
+;		LDR	r1, =str2
+;		
+;		BL	strcmp
+
+		;Example of Inserting Number in Array
+		MOV	r0, #3
+		LDR	r1, =array
+		MOV	r2, #5
 		
-		BL	strcmp
+		BL insert_number
+		
 		
 		
 		
