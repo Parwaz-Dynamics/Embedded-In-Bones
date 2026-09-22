@@ -1,0 +1,183 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             myData, DATA, READWRITE
+    2 00000000         ;x  DCD 10
+    3 00000000         ;y  DCD 5
+    4 00000000         ;result DCD 0
+    5 00000000         
+    6 00000000 53 74 72 
+              69 6E 67 
+              2D 31 00 str1    DCB              "String-1",0
+    7 00000009 00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00    str1_   SPACE            20
+    8 0000001D 53 74 72 
+              69 6E 67 
+              2D 31 00 str2    DCB              "String-1",0
+    9 00000026         
+   10 00000026                 AREA             myCode, CODE, READONLY
+   11 00000000                 EXPORT           main
+   12 00000000         ;  IMPORT sum
+   13 00000000         ;  IMPORT swap
+   14 00000000         ;  IMPORT gcd
+   15 00000000         ;  IMPORT strcat
+   16 00000000                 IMPORT           strcmp
+   17 00000000                 ENTRY
+   18 00000000         
+   19 00000000         main    PROC
+   20 00000000         
+   21 00000000         ;Subroutines
+   22 00000000         
+   23 00000000         ;Pass by Value
+   24 00000000         ;  LDR r0, =0xAAAAAAAA
+   25 00000000         ;  LDR r1, =0x55555555
+   26 00000000         ;  
+   27 00000000         ;  BL sum
+   28 00000000         ;  
+   29 00000000         ;  LDR r4, =result
+   30 00000000         ;  STR r0, [r4]
+   31 00000000         
+   32 00000000         ;  ;Pass by Reference
+   33 00000000         ;  LDR r0, =x
+   34 00000000         ;  LDR r1, =y
+   35 00000000         ;  
+   36 00000000         ;  BL swap
+   37 00000000         
+   38 00000000         ;  ;Example of Greatest Common Divisor
+   39 00000000         ;  MOV r0, #2310
+   40 00000000         ;  MOV r1, #483
+   41 00000000         ;  
+   42 00000000         ;  BL gcd
+   43 00000000         ;  
+   44 00000000         ;  LDR r4, =result
+   45 00000000         ;  STR r0, [r4]
+   46 00000000         
+   47 00000000         ;  ;Example of 2 concatenating strings
+   48 00000000         ;  
+   49 00000000         ;  LDR r0, =str1
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   50 00000000         ;  LDR r1, =str2
+   51 00000000         ;  
+   52 00000000         ;  BL strcat
+   53 00000000         
+   54 00000000         ;Example of comparing 2 strings
+   55 00000000         
+   56 00000000 4802            LDR              r0, =str1
+   57 00000002 4903            LDR              r1, =str2
+   58 00000004         
+   59 00000004 F7FF FFFE       BL               strcmp
+   60 00000008         
+   61 00000008         
+   62 00000008         
+   63 00000008 E7FE    stop    B                stop
+   64 0000000A         
+   65 0000000A                 ENDP
+   66 0000000A                 END
+              00 00 00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
+--depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Users\Abdul
+lah-Wasim\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users
+\Abdullah-Wasim\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS
+\Device\ST\STM32F4xx\Include --predefine="__EVAL SETA 1" --predefine="__UVISION
+_VERSION SETA 539" --predefine="_RTE_ SETA 1" --predefine="STM32F446xx SETA 1" 
+--predefine="_RTE_ SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+myData 00000000
+
+Symbol: myData
+   Definitions
+      At line 1 in file main.s
+   Uses
+      None
+Comment: myData unused
+str1 00000000
+
+Symbol: str1
+   Definitions
+      At line 6 in file main.s
+   Uses
+      At line 56 in file main.s
+Comment: str1 used once
+str1_ 00000009
+
+Symbol: str1_
+   Definitions
+      At line 7 in file main.s
+   Uses
+      None
+Comment: str1_ unused
+str2 0000001D
+
+Symbol: str2
+   Definitions
+      At line 8 in file main.s
+   Uses
+      At line 57 in file main.s
+Comment: str2 used once
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+main 00000000
+
+Symbol: main
+   Definitions
+      At line 19 in file main.s
+   Uses
+      At line 11 in file main.s
+Comment: main used once
+myCode 00000000
+
+Symbol: myCode
+   Definitions
+      At line 10 in file main.s
+   Uses
+      None
+Comment: myCode unused
+stop 00000008
+
+Symbol: stop
+   Definitions
+      At line 63 in file main.s
+   Uses
+      At line 63 in file main.s
+Comment: stop used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+strcmp 00000000
+
+Symbol: strcmp
+   Definitions
+      At line 16 in file main.s
+   Uses
+      At line 59 in file main.s
+Comment: strcmp used once
+1 symbol
+345 symbols in table
