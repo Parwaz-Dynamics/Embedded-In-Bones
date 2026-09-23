@@ -1,0 +1,109 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             countFuncs, CODE
+    2 00000000                 IMPORT           counter
+    3 00000000                 ALIGN
+    4 00000000         
+    5 00000000         setCount
+                               PROC
+    6 00000000                 EXPORT           setCount
+    7 00000000         
+    8 00000000 4C05            LDR              r4, =counter
+    9 00000002 6020            STR              r0, [r4]
+   10 00000004 4770            BX               LR
+   11 00000006         
+   12 00000006                 ENDP
+   13 00000006         
+   14 00000006         getCount
+                               PROC
+   15 00000006                 EXPORT           getCount
+   16 00000006         
+   17 00000006 4C04            LDR              r4, =counter
+   18 00000008 6820            LDR              r0, [r4]
+   19 0000000A 4770            BX               LR
+   20 0000000C         
+   21 0000000C                 ENDP
+   22 0000000C         
+   23 0000000C         increament
+                               PROC
+   24 0000000C                 EXPORT           increament  [WEAK]
+   25 0000000C         
+   26 0000000C 4C02            LDR              r4, =counter
+   27 0000000E 6825            LDR              r5, [r4]
+   28 00000010 F105 0501       ADD              r5, r5, #1
+   29 00000014 6025            STR              r5, [r4]
+   30 00000016         
+   31 00000016 4770            BX               LR
+   32 00000018         
+   33 00000018                 ENDP
+   34 00000018         
+   35 00000018                 END
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
+--depend=.\objects\count.d -o.\objects\count.o -I.\RTE\_Target_1 -IC:\Users\Abd
+ullah-Wasim\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Use
+rs\Abdullah-Wasim\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMS
+IS\Device\ST\STM32F4xx\Include --predefine="__EVAL SETA 1" --predefine="__UVISI
+ON_VERSION SETA 539" --predefine="_RTE_ SETA 1" --predefine="STM32F446xx SETA 1
+" --predefine="_RTE_ SETA 1" --list=.\listings\count.lst count.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+countFuncs 00000000
+
+Symbol: countFuncs
+   Definitions
+      At line 1 in file count.s
+   Uses
+      None
+Comment: countFuncs unused
+getCount 00000006
+
+Symbol: getCount
+   Definitions
+      At line 14 in file count.s
+   Uses
+      At line 15 in file count.s
+Comment: getCount used once
+increament 0000000C
+
+Symbol: increament
+   Definitions
+      At line 23 in file count.s
+   Uses
+      At line 24 in file count.s
+Comment: increament used once
+setCount 00000000
+
+Symbol: setCount
+   Definitions
+      At line 5 in file count.s
+   Uses
+      At line 6 in file count.s
+Comment: setCount used once
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+counter 00000000
+
+Symbol: counter
+   Definitions
+      At line 2 in file count.s
+   Uses
+      At line 8 in file count.s
+      At line 17 in file count.s
+      At line 26 in file count.s
+
+1 symbol
+342 symbols in table

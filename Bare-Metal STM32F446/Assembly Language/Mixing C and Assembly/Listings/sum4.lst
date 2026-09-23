@@ -1,0 +1,56 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             sumCode, CODE
+    2 00000000                 EXPORT           sum4
+    3 00000000                 ALIGN
+    4 00000000         
+    5 00000000         sum4    PROC
+    6 00000000         
+    7 00000000 B510            PUSH             {r4, LR}
+    8 00000002         
+    9 00000002 4604            MOV              r4, r0
+   10 00000004 440C            ADD              r4, r4, r1
+   11 00000006 4414            ADD              r4, r4, r2
+   12 00000008 441C            ADD              r4, r4, r3
+   13 0000000A         
+   14 0000000A 4620            MOV              r0, r4
+   15 0000000C         
+   16 0000000C BD10            POP              {r4, PC}
+   17 0000000E         
+   18 0000000E                 ENDP
+   19 0000000E                 END
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
+--depend=.\objects\sum4.d -o.\objects\sum4.o -I.\RTE\_Target_1 -IC:\Users\Abdul
+lah-Wasim\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\Users
+\Abdullah-Wasim\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS
+\Device\ST\STM32F4xx\Include --predefine="__EVAL SETA 1" --predefine="__UVISION
+_VERSION SETA 539" --predefine="_RTE_ SETA 1" --predefine="STM32F446xx SETA 1" 
+--predefine="_RTE_ SETA 1" --list=.\listings\sum4.lst sum4.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+sum4 00000000
+
+Symbol: sum4
+   Definitions
+      At line 5 in file sum4.s
+   Uses
+      At line 2 in file sum4.s
+Comment: sum4 used once
+sumCode 00000000
+
+Symbol: sumCode
+   Definitions
+      At line 1 in file sum4.s
+   Uses
+      None
+Comment: sumCode unused
+2 symbols
+337 symbols in table

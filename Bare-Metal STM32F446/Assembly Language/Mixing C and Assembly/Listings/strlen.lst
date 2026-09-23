@@ -1,0 +1,79 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             stringLength, CODE
+    2 00000000                 EXPORT           my_strlen
+    3 00000000                 ALIGN
+    4 00000000         
+    5 00000000         my_strlen
+                               PROC
+    6 00000000         
+    7 00000000 B530            PUSH             {r4-r5, LR}
+    8 00000002         
+    9 00000002 F04F 0500       MOV              r5, #0
+   10 00000006         
+   11 00000006         loop
+   12 00000006 5D44            LDRB             r4, [r0, r5]
+   13 00000008 B114            CBZ              r4, end_func
+   14 0000000A F105 0501       ADD              r5, r5, #1
+   15 0000000E         
+   16 0000000E E7FA            B                loop
+   17 00000010         
+   18 00000010         end_func
+   19 00000010         
+   20 00000010 4628            MOV              r0, r5
+   21 00000012         
+   22 00000012 BD30            POP              {r4-r5, PC}
+   23 00000014         
+   24 00000014                 ENDP
+   25 00000014                 END
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M4.fp.sp 
+--depend=.\objects\strlen.d -o.\objects\strlen.o -I.\RTE\_Target_1 -IC:\Users\A
+bdullah-Wasim\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include -IC:\U
+sers\Abdullah-Wasim\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\C
+MSIS\Device\ST\STM32F4xx\Include --predefine="__EVAL SETA 1" --predefine="__UVI
+SION_VERSION SETA 539" --predefine="_RTE_ SETA 1" --predefine="STM32F446xx SETA
+ 1" --predefine="_RTE_ SETA 1" --list=.\listings\strlen.lst strlen.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+end_func 00000010
+
+Symbol: end_func
+   Definitions
+      At line 18 in file strlen.s
+   Uses
+      At line 13 in file strlen.s
+Comment: end_func used once
+loop 00000006
+
+Symbol: loop
+   Definitions
+      At line 11 in file strlen.s
+   Uses
+      At line 16 in file strlen.s
+Comment: loop used once
+my_strlen 00000000
+
+Symbol: my_strlen
+   Definitions
+      At line 5 in file strlen.s
+   Uses
+      At line 2 in file strlen.s
+Comment: my_strlen used once
+stringLength 00000000
+
+Symbol: stringLength
+   Definitions
+      At line 1 in file strlen.s
+   Uses
+      None
+Comment: stringLength unused
+4 symbols
+339 symbols in table
