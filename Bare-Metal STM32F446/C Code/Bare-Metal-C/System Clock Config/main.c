@@ -1,13 +1,26 @@
 #include "stm32f446xx.h"
 
 void SystemClock_Config(void);
+void GPIO_Config(void);
 
+static void delay(int delay_time_us)
+{
+	while(delay_time_us--);
+}
 
 int main(void)
 {
 	SystemClock_Config();
+	GPIO_Config();
 	
-	while(1);
+	while(1)
+	{
+		GPIOA->BSRR |= (1<<5);	// Set output pin A5 high
+		delay(10000000);
+		
+		GPIOA->BSRR |= ((1<<5)<<16);	// Set output pin A5 low
+		delay(10000000);
+	}
 }
 
 void SystemClock_Config(void)
@@ -39,12 +52,12 @@ void SystemClock_Config(void)
 	PWR->CR |= PWR_CR_VOS;
 	
 //	3. Configure the FLASH PREFETCH and the LATENCY Related Settings
-	FLASH->ACR |=	FLASH_ACR_ICEN | FLASH_ACR_DCEN | FLASH_ACR_PRFTEN | FLASH_ACR_LATENCY_5WS;	//Embedded Flash Memory Interface
+	FLASH->ACR =	FLASH_ACR_ICEN | FLASH_ACR_DCEN | FLASH_ACR_PRFTEN | FLASH_ACR_LATENCY_5WS;	//Embedded Flash Memory Interface
 	
 //	4. Configure the PRESCALARS HCLK, PCLK1, PCLK2
 
 	//AHB Prescalar
-	RCC->CFGR |= RCC_CFGR_HPRE_DIV1;
+	RCC->CFGR |= RCC_CFGR_HPRE_DIV1;    
 	
 	// APB1 Prescalar
 	RCC->CFGR |= RCC_CFGR_PPRE1_DIV4;
@@ -55,9 +68,9 @@ void SystemClock_Config(void)
 //	5. Configure the MAIN PLL
 
 	// PLL M
-	RCC->PLLCFGR |= (PLL_M << 0) | (PLL_N << 6) | (PLL_P << 16);
-	
-	// PLL Source Mux
+	RCC->PLLCFGR = (PLL_M << 0) | (PLL_N << 6) | (PLL_P << 16);
+
+
 	RCC->PLLCFGR |= RCC_PLLCFGR_PLLSRC_HSE;
 	
 //	6. Enable the PLL and wait for it to become ready
@@ -66,6 +79,28 @@ void SystemClock_Config(void)
 	
 //	7. Select the Clock Source and wait for it to be set
 	RCC->CFGR |= RCC_CFGR_SW_PLL;
-	while(!(RCC->CFGR & RCC_CFGR_SWS_PLL));
+	while((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL);
 	
+}
+
+void GPIO_Config(void)
+{
+	
+	/*************>>>>>>> STEPS FOLLOWED <<<<<<<<************
+	
+	1. Enable GPIO Clock
+	2. Set the pin as output
+	3. Configure the output mode
+	
+	********************************************************/
+	
+//	1. Enable GPIO Clock
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+
+//	2. Set the pin as output
+	GPIOA->MODER |= (1<<10);
+	
+//	3. Configure the output mode
+	GPIOA->OTYPER = 0;
+	GPIOA->OSPEEDR = 0;
 }
