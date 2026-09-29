@@ -277,9 +277,9 @@ OUTPUT(Debug/blink.elf elf32-littlearm)
  .debug_aranges
                 0x00000020       0x28 Debug/Startup/startup_stm32f446xx.o
 
-.debug_line     0x00000000      0x187
- .debug_line    0x00000000      0x104 Debug/Src/main.o
- .debug_line    0x00000104       0x83 Debug/Startup/startup_stm32f446xx.o
+.debug_line     0x00000000      0x184
+ .debug_line    0x00000000      0x101 Debug/Src/main.o
+ .debug_line    0x00000101       0x83 Debug/Startup/startup_stm32f446xx.o
 
 .debug_str      0x00000000      0x131
  .debug_str     0x00000000      0x131 Debug/Src/main.o
