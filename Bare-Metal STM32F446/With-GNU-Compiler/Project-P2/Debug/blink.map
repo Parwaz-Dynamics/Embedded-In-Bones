@@ -1,0 +1,297 @@
+Archive member included because of file (symbol)
+
+c:/program files (x86)/cypress/ez-usb fx3 sdk/1.3/arm gcc/bin/../lib/gcc/arm-none-eabi/4.8.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-init.o)
+                              Debug/Startup/startup_stm32f446xx.o (__libc_init_array)
+
+Discarded input sections
+
+ .data          0x00000000        0x0 Debug/Src/main.o
+ .bss           0x00000000        0x0 Debug/Src/main.o
+ .text          0x00000000       0x14 Debug/Startup/startup_stm32f446xx.o
+ .data          0x00000000        0x0 Debug/Startup/startup_stm32f446xx.o
+ .bss           0x00000000        0x0 Debug/Startup/startup_stm32f446xx.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/ez-usb fx3 sdk/1.3/arm gcc/bin/../lib/gcc/arm-none-eabi/4.8.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-init.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/ez-usb fx3 sdk/1.3/arm gcc/bin/../lib/gcc/arm-none-eabi/4.8.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-init.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+RAM              0x20000000         0x00020000         xrw
+FLASH            0x08000000         0x00080000         xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD Debug/Src/main.o
+LOAD Debug/Startup/startup_stm32f446xx.o
+START GROUP
+LOAD c:/program files (x86)/cypress/ez-usb fx3 sdk/1.3/arm gcc/bin/../lib/gcc/arm-none-eabi/4.8.1/thumb2\libgcc.a
+LOAD c:/program files (x86)/cypress/ez-usb fx3 sdk/1.3/arm gcc/bin/../lib/gcc/arm-none-eabi/4.8.1/../../../../arm-none-eabi/lib/thumb2\libc.a
+END GROUP
+                0x00000200                _Min_Heap_Size = 0x200
+                0x00000400                _Min_Stack_Size = 0x400
+                0x20020000                _estack = (ORIGIN (RAM) + 0x20000)
+
+.isr_vector     0x08000000      0x1c4
+                0x08000000                . = ALIGN (0x4)
+ *(.isr_vector)
+ .isr_vector    0x08000000      0x1c4 Debug/Startup/startup_stm32f446xx.o
+                0x08000000                g_pfnVectors
+                0x080001c4                . = ALIGN (0x4)
+
+.text           0x080001c4      0x25c
+                0x080001c4                . = ALIGN (0x4)
+ *(.text)
+ .text          0x080001c4      0x1ac Debug/Src/main.o
+                0x080001c4                SystemClock_Config
+                0x08000344                SystemInit
+                0x08000350                _init
+                0x0800035c                _fini
+                0x08000368                main
+ .text          0x08000370       0x5c c:/program files (x86)/cypress/ez-usb fx3 sdk/1.3/arm gcc/bin/../lib/gcc/arm-none-eabi/4.8.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-init.o)
+                0x08000370                __libc_init_array
+ *(.text*)
+ .text.Reset_Handler
+                0x080003cc       0x50 Debug/Startup/startup_stm32f446xx.o
+                0x080003cc                Reset_Handler
+ .text.Default_Handler
+                0x0800041c        0x2 Debug/Startup/startup_stm32f446xx.o
+                0x0800041c                RTC_Alarm_IRQHandler
+                0x0800041c                EXTI2_IRQHandler
+                0x0800041c                TIM8_CC_IRQHandler
+                0x0800041c                DebugMon_Handler
+                0x0800041c                FMPI2C1_EV_IRQHandler
+                0x0800041c                SPI4_IRQHandler
+                0x0800041c                TIM1_CC_IRQHandler
+                0x0800041c                DMA2_Stream5_IRQHandler
+                0x0800041c                HardFault_Handler
+                0x0800041c                DMA1_Stream5_IRQHandler
+                0x0800041c                SysTick_Handler
+                0x0800041c                PVD_IRQHandler
+                0x0800041c                SDIO_IRQHandler
+                0x0800041c                TAMP_STAMP_IRQHandler
+                0x0800041c                PendSV_Handler
+                0x0800041c                NMI_Handler
+                0x0800041c                CAN2_RX1_IRQHandler
+                0x0800041c                EXTI3_IRQHandler
+                0x0800041c                TIM8_TRG_COM_TIM14_IRQHandler
+                0x0800041c                TIM1_UP_TIM10_IRQHandler
+                0x0800041c                TIM8_UP_TIM13_IRQHandler
+                0x0800041c                I2C3_ER_IRQHandler
+                0x0800041c                EXTI0_IRQHandler
+                0x0800041c                I2C2_EV_IRQHandler
+                0x0800041c                DMA1_Stream2_IRQHandler
+                0x0800041c                CAN1_RX0_IRQHandler
+                0x0800041c                FPU_IRQHandler
+                0x0800041c                OTG_HS_WKUP_IRQHandler
+                0x0800041c                UsageFault_Handler
+                0x0800041c                CAN2_SCE_IRQHandler
+                0x0800041c                DMA2_Stream2_IRQHandler
+                0x0800041c                SPI1_IRQHandler
+                0x0800041c                TIM6_DAC_IRQHandler
+                0x0800041c                TIM1_BRK_TIM9_IRQHandler
+                0x0800041c                DCMI_IRQHandler
+                0x0800041c                CAN2_RX0_IRQHandler
+                0x0800041c                DMA2_Stream3_IRQHandler
+                0x0800041c                SAI2_IRQHandler
+                0x0800041c                USART6_IRQHandler
+                0x0800041c                USART3_IRQHandler
+                0x0800041c                CAN1_RX1_IRQHandler
+                0x0800041c                UART5_IRQHandler
+                0x0800041c                DMA2_Stream0_IRQHandler
+                0x0800041c                TIM4_IRQHandler
+                0x0800041c                QUADSPI_IRQHandler
+                0x0800041c                I2C1_EV_IRQHandler
+                0x0800041c                DMA1_Stream6_IRQHandler
+                0x0800041c                DMA1_Stream1_IRQHandler
+                0x0800041c                UART4_IRQHandler
+                0x0800041c                TIM3_IRQHandler
+                0x0800041c                RCC_IRQHandler
+                0x0800041c                TIM8_BRK_TIM12_IRQHandler
+                0x0800041c                Default_Handler
+                0x0800041c                CEC_IRQHandler
+                0x0800041c                EXTI15_10_IRQHandler
+                0x0800041c                ADC_IRQHandler
+                0x0800041c                DMA1_Stream7_IRQHandler
+                0x0800041c                TIM7_IRQHandler
+                0x0800041c                CAN2_TX_IRQHandler
+                0x0800041c                TIM5_IRQHandler
+                0x0800041c                DMA2_Stream7_IRQHandler
+                0x0800041c                I2C3_EV_IRQHandler
+                0x0800041c                EXTI9_5_IRQHandler
+                0x0800041c                RTC_WKUP_IRQHandler
+                0x0800041c                SPDIF_RX_IRQHandler
+                0x0800041c                SPI2_IRQHandler
+                0x0800041c                OTG_HS_EP1_IN_IRQHandler
+                0x0800041c                MemManage_Handler
+                0x0800041c                DMA1_Stream0_IRQHandler
+                0x0800041c                CAN1_TX_IRQHandler
+                0x0800041c                SVC_Handler
+                0x0800041c                FMPI2C1_ER_IRQHandler
+                0x0800041c                EXTI4_IRQHandler
+                0x0800041c                OTG_HS_EP1_OUT_IRQHandler
+                0x0800041c                WWDG_IRQHandler
+                0x0800041c                TIM2_IRQHandler
+                0x0800041c                OTG_FS_WKUP_IRQHandler
+                0x0800041c                TIM1_TRG_COM_TIM11_IRQHandler
+                0x0800041c                OTG_HS_IRQHandler
+                0x0800041c                EXTI1_IRQHandler
+                0x0800041c                USART2_IRQHandler
+                0x0800041c                I2C2_ER_IRQHandler
+                0x0800041c                DMA2_Stream1_IRQHandler
+                0x0800041c                CAN1_SCE_IRQHandler
+                0x0800041c                FLASH_IRQHandler
+                0x0800041c                DMA2_Stream4_IRQHandler
+                0x0800041c                BusFault_Handler
+                0x0800041c                USART1_IRQHandler
+                0x0800041c                OTG_FS_IRQHandler
+                0x0800041c                SPI3_IRQHandler
+                0x0800041c                DMA1_Stream4_IRQHandler
+                0x0800041c                I2C1_ER_IRQHandler
+                0x0800041c                FMC_IRQHandler
+                0x0800041c                DMA2_Stream6_IRQHandler
+                0x0800041c                SAI1_IRQHandler
+                0x0800041c                DMA1_Stream3_IRQHandler
+ *(.glue_7)
+ .glue_7        0x00000000        0x0 linker stubs
+ *(.glue_7t)
+ .glue_7t       0x00000000        0x0 linker stubs
+ *(.eh_frame)
+ *(.init)
+ *(.fini)
+                0x08000420                . = ALIGN (0x4)
+ *fill*         0x0800041e        0x2 
+                0x08000420                _etext = .
+
+.vfp11_veneer   0x08000420        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x08000420        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x08000420        0x0
+ .iplt          0x00000000        0x0 Debug/Src/main.o
+
+.rel.dyn        0x08000420        0x0
+ .rel.iplt      0x00000000        0x0 Debug/Src/main.o
+
+.rodata         0x08000420        0x0
+                0x08000420                . = ALIGN (0x4)
+ *(.rodata)
+ *(.rodata*)
+                0x08000420                . = ALIGN (0x4)
+
+.ARM.extab      0x08000420        0x0
+                0x08000420                . = ALIGN (0x4)
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x08000420                . = ALIGN (0x4)
+
+.ARM            0x08000420        0x0
+                0x08000420                . = ALIGN (0x4)
+                0x08000420                __exidx_start = .
+ *(.ARM.exidx*)
+                0x08000420                __exidx_end = .
+                0x08000420                . = ALIGN (0x4)
+
+.preinit_array  0x08000420        0x0
+                0x08000420                . = ALIGN (0x4)
+                0x08000420                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array*)
+                0x08000420                PROVIDE (__preinit_array_end, .)
+                0x08000420                . = ALIGN (0x4)
+
+.init_array     0x08000420        0x0
+                0x08000420                . = ALIGN (0x4)
+                0x08000420                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array*)
+                0x08000420                PROVIDE (__init_array_end, .)
+                0x08000420                . = ALIGN (0x4)
+
+.fini_array     0x08000420        0x0
+                0x08000420                . = ALIGN (0x4)
+                0x08000420                PROVIDE (__fini_array_start, .)
+ *(SORT(.fini_array.*))
+ *(.fini_array*)
+                0x08000420                PROVIDE (__fini_array_end, .)
+                0x08000420                . = ALIGN (0x4)
+                0x08000420                _sidata = LOADADDR (.data)
+
+.data           0x20000000        0x0 load address 0x08000420
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _sdata = .
+ *(.data)
+ *(.data*)
+ *(.RamFunc)
+ *(.RamFunc*)
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _edata = .
+
+.igot.plt       0x20000000        0x0 load address 0x08000420
+ .igot.plt      0x00000000        0x0 Debug/Src/main.o
+                0x20000000                . = ALIGN (0x4)
+
+.bss            0x20000000        0x0 load address 0x08000420
+                0x20000000                _sbss = .
+                0x20000000                __bss_start__ = _sbss
+ *(.bss)
+ *(.bss*)
+ *(COMMON)
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _ebss = .
+                0x20000000                __bss_end__ = _ebss
+
+._user_heap_stack
+                0x20000000      0x600 load address 0x08000420
+                0x20000000                . = ALIGN (0x8)
+                0x20000000                PROVIDE (end, .)
+                0x20000000                PROVIDE (_end, .)
+                0x20000200                . = (. + _Min_Heap_Size)
+ *fill*         0x20000000      0x200 
+                0x20000600                . = (. + _Min_Stack_Size)
+ *fill*         0x20000200      0x400 
+                0x20000600                . = ALIGN (0x8)
+
+.ARM.attributes
+                0x00000000       0x31
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x33 Debug/Src/main.o
+ .ARM.attributes
+                0x00000033       0x21 Debug/Startup/startup_stm32f446xx.o
+ .ARM.attributes
+                0x00000054       0x29 c:/program files (x86)/cypress/ez-usb fx3 sdk/1.3/arm gcc/bin/../lib/gcc/arm-none-eabi/4.8.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-init.o)
+OUTPUT(Debug/blink.elf elf32-littlearm)
+
+.debug_info     0x00000000      0x186
+ .debug_info    0x00000000       0xd0 Debug/Src/main.o
+ .debug_info    0x000000d0       0xb6 Debug/Startup/startup_stm32f446xx.o
+
+.debug_abbrev   0x00000000       0x7b
+ .debug_abbrev  0x00000000       0x69 Debug/Src/main.o
+ .debug_abbrev  0x00000069       0x12 Debug/Startup/startup_stm32f446xx.o
+
+.debug_aranges  0x00000000       0x48
+ .debug_aranges
+                0x00000000       0x20 Debug/Src/main.o
+ .debug_aranges
+                0x00000020       0x28 Debug/Startup/startup_stm32f446xx.o
+
+.debug_line     0x00000000      0x187
+ .debug_line    0x00000000      0x104 Debug/Src/main.o
+ .debug_line    0x00000104       0x83 Debug/Startup/startup_stm32f446xx.o
+
+.debug_str      0x00000000      0x131
+ .debug_str     0x00000000      0x131 Debug/Src/main.o
+                                0x165 (size before relaxing)
+
+.comment        0x00000000       0x30
+ .comment       0x00000000       0x30 Debug/Src/main.o
+                                 0x31 (size before relaxing)
+
+.debug_frame    0x00000000       0xb4
+ .debug_frame   0x00000000       0x88 Debug/Src/main.o
+ .debug_frame   0x00000088       0x2c c:/program files (x86)/cypress/ez-usb fx3 sdk/1.3/arm gcc/bin/../lib/gcc/arm-none-eabi/4.8.1/../../../../arm-none-eabi/lib/thumb2\libc.a(lib_a-init.o)
+
+.debug_ranges   0x00000000       0x20
+ .debug_ranges  0x00000000       0x20 Debug/Startup/startup_stm32f446xx.o
