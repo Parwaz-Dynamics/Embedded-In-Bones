@@ -1,5 +1,5 @@
 # ===== Simple Makefile for Project-P1 =====
-# Output goes into the Debug/ folder.
+# Output goes into the Debug/ folder (mirrors Core/ layout).
 
 # ---- Toolchain ----
 CC      = arm-none-eabi-gcc
@@ -7,16 +7,16 @@ OBJCOPY = arm-none-eabi-objcopy
 SIZE    = arm-none-eabi-size
 
 # ---- Folders ----
-BUILD_DIR = Debug
-SRC_DIR   = Core/Src
+BUILD_DIR   = Debug
+SRC_DIR     = Core/Src
 STARTUP_DIR = Core/Startup
-INC_DIR   = Core/Inc
+INC_DIR     = Core/Inc
 
 # ---- Output name ----
 TARGET = blink
 
-# ---- Linker script (place it in the project root) ----
-LDSCRIPT = stm32f446.ld
+# ---- Linker script (in project root) ----
+LDSCRIPT = STM32F446RETX_FLASH.ld
 
 # ---- CPU flags ----
 CPU = -mcpu=cortex-m4 -mthumb
@@ -27,24 +27,27 @@ CFLAGS  = $(CPU) -g -O0 -Wall -I$(INC_DIR)
 # ---- Linker flags ----
 LDFLAGS = $(CPU) -T$(LDSCRIPT) -nostartfiles --specs=nano.specs
 
-# ---- Object files (built inside Debug/) ----
-OBJS = $(BUILD_DIR)/main.o $(BUILD_DIR)/startup.o
+# ---- Object files (mirror source folders) ----
+OBJS = $(BUILD_DIR)/Src/main.o $(BUILD_DIR)/Startup/startup.o
 
 # ===== Rules =====
 
 # Default: build everything
 all: $(BUILD_DIR)/$(TARGET).bin $(BUILD_DIR)/$(TARGET).hex
 
-# Make the Debug folder if it doesn't exist
-$(BUILD_DIR):
-	mkdir $(BUILD_DIR)
+# Create output subfolders if missing
+$(BUILD_DIR)/Src:
+	mkdir "$(BUILD_DIR)\Src"
 
-# Compile main.c -> Debug/main.o
-$(BUILD_DIR)/main.o: $(SRC_DIR)/main.c | $(BUILD_DIR)
+$(BUILD_DIR)/Startup:
+	mkdir "$(BUILD_DIR)\Startup"
+
+# Compile main.c -> Debug/Src/main.o
+$(BUILD_DIR)/Src/main.o: $(SRC_DIR)/main.c | $(BUILD_DIR)/Src
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Assemble startup -> Debug/startup.o
-$(BUILD_DIR)/startup.o: $(STARTUP_DIR)/startup_stm32f446xx.s | $(BUILD_DIR)
+# Assemble startup -> Debug/Startup/startup.o
+$(BUILD_DIR)/Startup/startup.o: $(STARTUP_DIR)/startup_stm32f446xx.s | $(BUILD_DIR)/Startup
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Link both .o -> Debug/blink.elf
