@@ -27,7 +27,65 @@ Project File Date:  10/07/2026
 <h2>Output:</h2>
 *** Using Compiler 'V6.21', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-".\Objects\DMAbasedUSART.axf" - 0 Error(s), 0 Warning(s).
+main.c(18): warning: no previous extern declaration for non-static variable 'tickms' [-Wmissing-variable-declarations]
+   18 | volatile uint32_t tickms = 0;
+      |                   ^
+main.c(18): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+   18 | volatile uint32_t tickms = 0;
+      |          ^
+main.c(72): warning: cast from 'volatile unsigned char *' to 'unsigned char *' drops volatile qualifier [-Wcast-qual]
+   72 |             USART1_DMA_Write((uint8_t *)rx_packet, rx_packet_len);
+      |                                         ^
+main.c(237): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+  237 |         uint16_t head = RX_BUF_SIZE - (uint16_t)DMA2_Stream2->NDTR;
+      |                  ^
+main.c(223): warning: no previous prototype for function 'USART1_IRQHandler' [-Wmissing-prototypes]
+  223 | void USART1_IRQHandler(void)
+      |      ^
+main.c(223): note: declare 'static' if the function is not intended to be used outside of this translation unit
+  223 | void USART1_IRQHandler(void)
+      | ^
+      | static 
+main.c(253): warning: no previous prototype for function 'DMA2_Stream7_IRQHandler' [-Wmissing-prototypes]
+  253 | void DMA2_Stream7_IRQHandler(void)
+      |      ^
+main.c(253): note: declare 'static' if the function is not intended to be used outside of this translation unit
+  253 | void DMA2_Stream7_IRQHandler(void)
+      | ^
+      | static 
+main.c(272): warning: no newline at end of file [-Wnewline-eof]
+  272 | }
+      |  ^
+main.c(267): warning: no previous prototype for function 'DMA2_Stream2_IRQHandler' [-Wmissing-prototypes]
+  267 | void DMA2_Stream2_IRQHandler(void)
+      |      ^
+main.c(267): note: declare 'static' if the function is not intended to be used outside of this translation unit
+  267 | void DMA2_Stream2_IRQHandler(void)
+      | ^
+      | static 
+main.c(115): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  115 |     GPIOA->AFR[1] &= ~((0xFU << ((9 - 8) * 4)) | (0xFU << ((10 - 8) * 4)));
+      |     ^~~~~~~~~~
+C:/Users/Abdullah-Wasim/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f446xx.h(1121): note: expanded from macro 'GPIOA'
+ 1121 | #define GPIOA               ((GPIO_TypeDef *) GPIOA_BASE)
+      |                             ^
+main.c(116): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  116 |     GPIOA->AFR[1] |=  ((7U   << ((9 - 8) * 4)) | (7U   << ((10 - 8) * 4)));
+      |     ^~~~~~~~~~
+C:/Users/Abdullah-Wasim/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f446xx.h(1121): note: expanded from macro 'GPIOA'
+ 1121 | #define GPIOA               ((GPIO_TypeDef *) GPIOA_BASE)
+      |                             ^
+main.c(242): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  242 |             rx_packet[n++] = RxData[rx_tail];
+      |             ^~~~~~~~~
+main.c(242): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  242 |             rx_packet[n++] = RxData[rx_tail];
+      |                              ^~~~~~
+11 warnings generated.
+compiling main.c...
+linking...
+Program Size: Code=2020 RO-data=484 RW-data=8 ZI-data=1680  
+".\Objects\DMAbasedUSART.axf" - 0 Error(s), 11 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -58,7 +116,7 @@ Package Vendor: Keil
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f446xx.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
