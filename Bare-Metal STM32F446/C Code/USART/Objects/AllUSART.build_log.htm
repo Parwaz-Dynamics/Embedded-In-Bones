@@ -27,47 +27,7 @@ Project File Date:  10/07/2026
 <h2>Output:</h2>
 *** Using Compiler 'V6.21', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-main.c(16): warning: no previous extern declaration for non-static variable 'TxData' [-Wmissing-variable-declarations]
-   16 | uint8_t TxData[15] = "Hello\r\n";
-      |         ^
-main.c(16): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-   16 | uint8_t TxData[15] = "Hello\r\n";
-      | ^
-main.c(48): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
-   48 |         GPIOA->MODER &= ~(2 << 10);
-      |                      ~~ ^~~~~~~~~~
-main.c(55): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
-   55 |   GPIOA->MODER &= ~(0xF << (2*9));
-      |                ~~ ^~~~~~~~~~~~~~~
-main.c(17): warning: no previous extern declaration for non-static variable 'RxData' [-Wmissing-variable-declarations]
-   17 | uint8_t RxData[15];
-      |         ^
-main.c(17): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-   17 | uint8_t RxData[15];
-      | ^
-main.c(66): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-   66 |   GPIOA->AFR[1] &= ~((0xFU << ((9 - 8) * 4)) | (0xFU << ((10 - 8) * 4)));
-      |   ^~~~~~~~~~
-C:/Users/Abdullah-Wasim/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f446xx.h(1121): note: expanded from macro 'GPIOA'
- 1121 | #define GPIOA               ((GPIO_TypeDef *) GPIOA_BASE)
-      |                             ^
-main.c(67): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-   67 |   GPIOA->AFR[1] |=  ((7U   << ((9 - 8) * 4)) | (7U   << ((10 - 8) * 4)));       
-      |   ^~~~~~~~~~
-C:/Users/Abdullah-Wasim/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f446xx.h(1121): note: expanded from macro 'GPIOA'
- 1121 | #define GPIOA               ((GPIO_TypeDef *) GPIOA_BASE)
-      |                             ^
-main.c(107): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-  107 |     USART1->DR = buffer[i] & 0xFF;
-      |                  ^~~~~~
-main.c(123): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-  123 |                 buffer[i] = (uint8_t) USART1->DR;
-      |                 ^~~~~~
-8 warnings generated.
-compiling main.c...
-linking...
-Program Size: Code=1260 RO-data=468 RW-data=0 ZI-data=1656  
-".\Objects\AllUSART.axf" - 0 Error(s), 8 Warning(s).
+".\Objects\AllUSART.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -93,12 +53,12 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE@5.6.0
 
    * Component: Keil::Device:Startup@2.6.3
-      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Source file:   MDK/Device/Source/ARM/STM32F446xx_OPT.s
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f446xx.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

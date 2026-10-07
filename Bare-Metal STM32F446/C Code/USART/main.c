@@ -10,11 +10,28 @@ void GPIOA_Init(void);
 
 void USART1_Init(void);
 
-void USART1_Write(uint8_t *buffer, uint16_t size);
-void USART1_Read(uint8_t *buffer, uint16_t size);
+// For Polling USART
+void USART1_Write_Polling(uint8_t *buffer, uint16_t size);
+void USART1_Read_Polling(uint8_t *buffer, uint16_t size);
 
-uint8_t TxData[15] = "Hello\r\n";
-uint8_t RxData[15];
+// For Interrupt USART
+#define USART1_Buffer_Size 15							// Receive Buffer Size
+static volatile uint16_t counterRx = 0;		// Rx Index
+
+static volatile uint8_t *TxBuf;
+static volatile uint16_t TxIdx = 0;
+static volatile uint16_t TxLen = 0;
+
+void USART1_IRQHandler(void);
+
+void USART_Write_IT(uint8_t *buffer, uint16_t len);		// To send data for Tx
+void USART_Write_Interrupt(USART_TypeDef *USARTx ,uint8_t *buffer, uint16_t *Size);	// Tx Interrupt Management
+
+void USART_Read_Interrupt(USART_TypeDef *USARTx ,uint8_t *buffer, uint16_t *Size);	// Rx Interrupt Management
+
+// Data Buffers
+static uint8_t TxData[10] = "Hello\r\n";
+static uint8_t RxData[USART1_Buffer_Size];
 
 int main(void)
 {
@@ -23,12 +40,25 @@ int main(void)
 	GPIOA_Init();
 	USART1_Init();
 	
+	/* For Interrupt based USART */
+	
+	// Enable USART Receiver Not Empty Interrupt Event
+	USART1->CR1 |= USART_CR1_RXNEIE;
+	
+	// Enable USART Transmitter Empty Interrupt Event
+	USART1->CR1 &= ~USART_CR1_TXEIE;
+	
+	// Set Interrupt Priority
+	NVIC_SetPriority(USART1_IRQn, 0); 		// Highiest Urgency
+	NVIC_EnableIRQ(USART1_IRQn);					// Enable NVIC
+	
 	while(1)
 	{
 		delay(1000);
 		GPIOA->ODR ^= 1<<5;
-//		USART1_Write(TxData, 15);
-		USART1_Read(RxData, 5);
+//		USART_Write_IT(TxData, 10);			// To send data through Interrupt
+//		USART1_Write_Polling(TxData, 15);
+//		USART1_Read(RxData, 5);
 	}
 	
 }
@@ -45,14 +75,14 @@ void GPIOA_Init(void)
 	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
 	
 	// Select the pin mode od Pin A5 as output
-	GPIOA->MODER &= ~(2 << 10);
+	GPIOA->MODER &= ~(2U << 10);
 	GPIOA->MODER |= (01 << 10);
 	
 	// Enable USART1 on APB2
   RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
 
   // PA9 / PA10 -> alternate function mode (MODER = 0b10)
-  GPIOA->MODER &= ~(0xF << (2*9));
+  GPIOA->MODER &= ~(0xFU << (2*9));
   GPIOA->MODER |=  0xA << (2*9);
 
 	// Output type push-pull and high speed for the TX pin */
@@ -66,7 +96,6 @@ void GPIOA_Init(void)
   GPIOA->AFR[1] &= ~((0xFU << ((9 - 8) * 4)) | (0xFU << ((10 - 8) * 4)));
   GPIOA->AFR[1] |=  ((7U   << ((9 - 8) * 4)) | (7U   << ((10 - 8) * 4)));	
 }
-
 
 void USART1_Init(void)
 {
@@ -96,7 +125,9 @@ void USART1_Init(void)
 	USART1->CR1 |= USART_CR1_UE;
 }
 
-void USART1_Write(uint8_t *buffer, uint16_t size)
+
+// Polling Based USART Write and Read
+void USART1_Write_Polling(uint8_t *buffer, uint16_t size)
 {
 	// For multiple bytes
 	for(int i = 0; i < size; i++)
@@ -111,7 +142,7 @@ void USART1_Write(uint8_t *buffer, uint16_t size)
 	while(!(USART1->SR & USART_SR_TC)){}
 }
 
-void USART1_Read(uint8_t *buffer, uint16_t size)
+void USART1_Read_Polling(uint8_t *buffer, uint16_t size)
 {
 	// For multiple bytes
 	for(int i = 0; i < size; i++)
@@ -121,5 +152,44 @@ void USART1_Read(uint8_t *buffer, uint16_t size)
 		
 		// Store the data	
 		buffer[i] = (uint8_t) USART1->DR;
+	}
+}
+
+void USART1_IRQHandler(void)
+{
+	if(USART1->SR & USART_SR_RXNE)		// If Rx is not empty
+		USART_Read_Interrupt(USART1, RxData, &counterRx);
+	if(USART1->SR & USART_SR_TXE)			// If Tx is empty -> means ready to send data
+		USART_Write_Interrupt(USART1, TxBuf, &TxIdx);
+}
+
+void USART_Write_IT(uint8_t *buffer, uint16_t len)
+{
+	TxBuf = buffer;
+	TxLen = len;
+	TxIdx = 0;
+	
+	// Enable USART Transmitter Empty Interrupt Event
+	USART1->CR1 |= USART_CR1_TXEIE;
+}
+
+void USART_Write_Interrupt(USART_TypeDef *USARTx ,uint8_t *buffer, uint16_t *Idx)
+{
+		if (TxIdx < TxLen) {
+        USARTx->DR = buffer[*Idx] & 0xFF;   // send current byte
+        (*Idx)++;                            // advance AFTER sending
+    } else {
+        USARTx->CR1 &= ~USART_CR1_TXEIE;    // nothing left -> stop TXE interrupts
+    }
+}
+
+void USART_Read_Interrupt(USART_TypeDef *USARTx ,uint8_t *buffer, uint16_t *Size)
+{
+//	Store the buffer index value to the Data Register of USART1
+	buffer[*Size] = (uint8_t) USARTx->DR;
+	(*Size)++;			// Increase the index
+	if((*Size) >= USART1_Buffer_Size)		// If idex exceed the buffer size
+	{
+		*Size = 0;	// Jump back to index 0 -> Ring Buffer
 	}
 }
