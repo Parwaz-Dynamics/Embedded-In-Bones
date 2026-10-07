@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'Floating Point' 
+ * Project: 'GPIO' 
  * Target:  'Target 1' 
  */
 

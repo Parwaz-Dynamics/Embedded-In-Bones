@@ -1,8 +1,8 @@
 #include "stm32f446xx.h"
 
-void SystemClock_Config(void);
+void SystemClock_Init(void);
 
-void SystemClock_Config(void)
+void SystemClock_Init(void)
 {
 		/*************>>>>>>> STEPS FOLLOWED <<<<<<<<************
 	

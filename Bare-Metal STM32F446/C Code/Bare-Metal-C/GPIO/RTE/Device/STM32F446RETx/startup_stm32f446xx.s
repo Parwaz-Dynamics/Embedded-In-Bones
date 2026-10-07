@@ -229,7 +229,7 @@ PendSV_Handler  PROC
                 ENDP
 SysTick_Handler PROC
                 EXPORT  SysTick_Handler            [WEAK]
-                B       .
+                B .
                 ENDP
 
 Default_Handler PROC

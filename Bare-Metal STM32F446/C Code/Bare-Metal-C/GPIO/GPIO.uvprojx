@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>Floating Point</OutputName>
+          <OutputName>GPIO</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -390,9 +390,14 @@
               <FilePath>.\main.c</FilePath>
             </File>
             <File>
-              <FileName>SystemClock_Config.h</FileName>
+              <FileName>blinky_driver.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\SystemClock_Config.h</FilePath>
+              <FilePath>.\blinky_driver.h</FilePath>
+            </File>
+            <File>
+              <FileName>delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\delay.h</FilePath>
             </File>
           </Files>
         </Group>
