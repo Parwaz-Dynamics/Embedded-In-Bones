@@ -20,7 +20,7 @@ static void GPIOA_Init(void)
 	// SPI nCS
 	
 	GPIOA->MODER &= ~(0x3U << (2 * 9));
-	GPIOA->MODER |=  (0x1U << (2 * 8));		// PA5 LED
+	GPIOA->MODER |=  (0x1U << (2 * 9));		// SPI CS
 	
 	// SPI MOSI, MISO, SCK
 	
