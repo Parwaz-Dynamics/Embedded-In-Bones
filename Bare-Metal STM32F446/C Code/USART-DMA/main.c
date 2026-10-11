@@ -12,7 +12,7 @@
  *  DMA mapping (fixed in hardware):
  *          USART1_TX -> DMA2 Stream7, Channel4
  *          USART1_RX -> DMA2 Stream2, Channel4  (circular)
- * ======================================================================== */
+ * ======================================================================== */d
 
 /* ---------------- Tick / delay ---------------- */
 volatile uint32_t tickms = 0;

@@ -1,0 +1,227 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.39.0.0
+Copyright (C) 2023 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Abdullah Wasim, Parwaz-Dynamics, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.39.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.21
+Assembler:       Armasm.exe V6.21
+Linker/Locator:  ArmLink.exe V6.21
+Library Manager: ArmAr.exe V6.21
+Hex Converter:   FromElf.exe V6.21
+CPU DLL:         SARMCM3.DLL V5.39.0.0
+Dialog DLL:      DCM.DLL V1.17.5.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.2.0.0
+Dialog DLL:      TCM.DLL V1.56.4.0
+ 
+<h2>Project:</h2>
+C:\Users\Abdullah\Desktop\Parwaz Dynamics\Embedded-In-Bones\Bare-Metal STM32F446\C Code\I2C\i2c.uvprojx
+Project File Date:  10/11/2026
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.21', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+Build target 'Target 1'
+RTE/Device/STM32F446RETx/system_stm32f4xx.c(263): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  263 |   tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4)];
+      |         ^~~~~~~~~~~~~
+1 warning generated.
+compiling system_stm32f4xx.c...
+compiling SystemClock_Config.c...
+main.c(85): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+   85 |         uint32_t temp __attribute__((unused)) = I2C1->SR1 | I2C1->SR2;
+      |                  ^
+main.c(99): warning: implicit conversion loses integer precision: 'int' to 'uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+   99 |         I2C1_SlaveAddress(devAddr << 1);
+      |         ~~~~~~~~~~~~~~~~~ ~~~~~~~~^~~~
+main.c(107): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+  107 |         I2C1->DR = (devAddr << 1) | 0x01;       // address + read bit
+      |                  ~ ~~~~~~~~~~~~~~~^~~~~~
+main.c(124): warning: implicit conversion loses integer precision: 'int' to 'uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+  124 |         I2C1_SlaveAddress(devAddr << 1);
+      |         ~~~~~~~~~~~~~~~~~ ~~~~~~~~^~~~
+main.c(132): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+  132 |         I2C1->DR = (devAddr << 1) | 0x01;
+      |                  ~ ~~~~~~~~~~~~~~~^~~~~~
+main.c(210): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  210 |                 // default ranges: <B1>2 g (16384 LSB/g), <B1>250 dps (131 LSB/dps)
+      |                                    ^
+main.c(210): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  210 |                 // default ranges: <B1>2 g (16384 LSB/g), <B1>250 dps (131 LSB/dps)
+      |                                                           ^
+main.c(222): warning: no newline at end of file [-Wnewline-eof]
+  222 | }
+      |  ^
+main.c(183): warning: no previous extern declaration for non-static variable 'who' [-Wmissing-variable-declarations]
+  183 | uint8_t  who;
+      |          ^
+main.c(183): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+  183 | uint8_t  who;
+      | ^
+main.c(184): warning: no previous extern declaration for non-static variable 'raw' [-Wmissing-variable-declarations]
+  184 | uint8_t  raw[12];
+      |          ^
+main.c(184): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+  184 | uint8_t  raw[12];
+      | ^
+main.c(185): warning: no previous extern declaration for non-static variable 'ax' [-Wmissing-variable-declarations]
+  185 | int16_t  ax, ay, az, gx, gy, gz;
+      |          ^
+main.c(185): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+  185 | int16_t  ax, ay, az, gx, gy, gz;
+      | ^
+main.c(185): warning: no previous extern declaration for non-static variable 'ay' [-Wmissing-variable-declarations]
+  185 | int16_t  ax, ay, az, gx, gy, gz;
+      |              ^
+main.c(185): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+  185 | int16_t  ax, ay, az, gx, gy, gz;
+      | ^
+main.c(185): warning: no previous extern declaration for non-static variable 'az' [-Wmissing-variable-declarations]
+  185 | int16_t  ax, ay, az, gx, gy, gz;
+      |                  ^
+main.c(185): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+  185 | int16_t  ax, ay, az, gx, gy, gz;
+      | ^
+main.c(185): warning: no previous extern declaration for non-static variable 'gx' [-Wmissing-variable-declarations]
+  185 | int16_t  ax, ay, az, gx, gy, gz;
+      |                      ^
+main.c(185): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+  185 | int16_t  ax, ay, az, gx, gy, gz;
+      | ^
+main.c(185): warning: no previous extern declaration for non-static variable 'gy' [-Wmissing-variable-declarations]
+  185 | int16_t  ax, ay, az, gx, gy, gz;
+      |                          ^
+main.c(185): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+  185 | int16_t  ax, ay, az, gx, gy, gz;
+      | ^
+main.c(185): warning: no previous extern declaration for non-static variable 'gz' [-Wmissing-variable-declarations]
+  185 | int16_t  ax, ay, az, gx, gy, gz;
+      |                              ^
+main.c(185): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+  185 | int16_t  ax, ay, az, gx, gy, gz;
+      | ^
+main.c(186): warning: no previous extern declaration for non-static variable 'accel_g' [-Wmissing-variable-declarations]
+  186 | float    accel_g[3], gyro_dps[3];
+      |          ^
+main.c(186): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+  186 | float    accel_g[3], gyro_dps[3];
+      | ^
+main.c(186): warning: no previous extern declaration for non-static variable 'gyro_dps' [-Wmissing-variable-declarations]
+  186 | float    accel_g[3], gyro_dps[3];
+      |                      ^
+main.c(186): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+  186 | float    accel_g[3], gyro_dps[3];
+      | ^
+main.c(47): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+   47 |         GPIOB->AFR[1] &= ~(0xFFU << 0);
+      |         ^~~~~~~~~~
+C:/Users/Abdullah/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f446xx.h(1122): note: expanded from macro 'GPIOB'
+ 1122 | #define GPIOB               ((GPIO_TypeDef *) GPIOB_BASE)
+      |                             ^
+main.c(48): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+   48 |         GPIOB->AFR[1] |=  (0x44U << 0);         // AF4 = I2C1
+      |         ^~~~~~~~~~
+C:/Users/Abdullah/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f446xx.h(1122): note: expanded from macro 'GPIOB'
+ 1122 | #define GPIOB               ((GPIO_TypeDef *) GPIOB_BASE)
+      |                             ^
+main.c(139): warning: unsafe pointer arithmetic [-Wunsafe-buffer-usage]
+  139 |                 *buf++ = (uint8_t)I2C1->DR;
+      |                  ^~~
+main.c(146): warning: unsafe pointer arithmetic [-Wunsafe-buffer-usage]
+  146 |         *buf++ = (uint8_t)I2C1->DR;                             // DataN-2
+      |          ^~~
+main.c(150): warning: unsafe pointer arithmetic [-Wunsafe-buffer-usage]
+  150 |         *buf++ = (uint8_t)I2C1->DR;                             // DataN-1
+      |          ^~~
+main.c(153): warning: unsafe pointer arithmetic [-Wunsafe-buffer-usage]
+  153 |         *buf++ = (uint8_t)I2C1->DR;                             // DataN
+      |          ^~~
+main.c(202): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  202 |                 ax = (int16_t)((raw[0]  << 8) | raw[1]);
+      |                                                 ^~~
+main.c(203): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  203 |                 ay = (int16_t)((raw[2]  << 8) | raw[3]);
+      |                                 ^~~
+main.c(203): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  203 |                 ay = (int16_t)((raw[2]  << 8) | raw[3]);
+      |                                                 ^~~
+main.c(204): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  204 |                 az = (int16_t)((raw[4]  << 8) | raw[5]);
+      |                                 ^~~
+main.c(204): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  204 |                 az = (int16_t)((raw[4]  << 8) | raw[5]);
+      |                                                 ^~~
+main.c(205): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  205 |                 gx = (int16_t)((raw[6]  << 8) | raw[7]);
+      |                                 ^~~
+main.c(205): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  205 |                 gx = (int16_t)((raw[6]  << 8) | raw[7]);
+      |                                                 ^~~
+main.c(206): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  206 |                 gy = (int16_t)((raw[8]  << 8) | raw[9]);
+      |                                 ^~~
+main.c(206): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  206 |                 gy = (int16_t)((raw[8]  << 8) | raw[9]);
+      |                                                 ^~~
+main.c(207): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  207 |                 gz = (int16_t)((raw[10] << 8) | raw[11]);
+      |                                 ^~~
+main.c(207): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  207 |                 gz = (int16_t)((raw[10] << 8) | raw[11]);
+      |                                                 ^~~
+main.c(212): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  212 |                 accel_g[1] = ay / 16384.0f;
+      |                 ^~~~~~~
+main.c(213): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  213 |                 accel_g[2] = az / 16384.0f;
+      |                 ^~~~~~~
+main.c(215): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  215 |                 gyro_dps[1] = gy / 131.0f;
+      |                 ^~~~~~~~
+main.c(216): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  216 |                 gyro_dps[2] = gz / 131.0f;
+      |                 ^~~~~~~~
+39 warnings generated.
+compiling main.c...
+linking...
+Program Size: Code=2404 RO-data=468 RW-data=0 ZI-data=1696  
+".\Objects\i2c.axf" - 0 Error(s), 40 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
+                ARM::CMSIS@5.9.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.6.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.1.pack
+                Keil::STM32F4xx_DFP@2.17.1
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+   * Component: Startup Version: 2.6.3
+
+<h2>Collection of Component include folders:</h2>
+  ./RTE/_Target_1
+  C:/Users/Abdullah/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  C:/Users/Abdullah/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE@5.6.0
+
+   * Component: Keil::Device:Startup@2.6.3
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f446xx.s
+      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+      Source file:   MDK/Device/Source/ARM/STM32F446xx_OPT.s
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
