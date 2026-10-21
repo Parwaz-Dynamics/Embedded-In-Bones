@@ -429,7 +429,7 @@
                   <MiscControls></MiscControls>
                   <Define></Define>
                   <Undefine></Undefine>
-                  <IncludePath>..\bsps\f446</IncludePath>
+                  <IncludePath>..\objects\f446\bsp;..\objects\f446\drivers</IncludePath>
                 </VariousControls>
               </Cads>
               <Aads>
@@ -459,24 +459,34 @@
               <FilePath>.\main.c</FilePath>
             </File>
             <File>
-              <FileName>rcc.h</FileName>
+              <FileName>blinky.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\objects\f446\drivers\blinky.c</FilePath>
+            </File>
+            <File>
+              <FileName>blinky.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\bsps\f446\rcc.h</FilePath>
+              <FilePath>..\objects\f446\drivers\blinky.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\objects\f446\bsp\bsp.h</FilePath>
+            </File>
+            <File>
+              <FileName>gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\objects\f446\bsp\gpio.c</FilePath>
             </File>
             <File>
               <FileName>rcc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\bsps\f446\rcc.c</FilePath>
+              <FilePath>..\objects\f446\bsp\rcc.c</FilePath>
             </File>
             <File>
               <FileName>systick.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\bsps\f446\systick.c</FilePath>
-            </File>
-            <File>
-              <FileName>systick.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\bsps\f446\systick.h</FilePath>
+              <FilePath>..\objects\f446\bsp\systick.c</FilePath>
             </File>
           </Files>
         </Group>

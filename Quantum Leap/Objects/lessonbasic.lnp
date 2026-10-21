@@ -1,5 +1,7 @@
 --cpu=Cortex-M4.fp.sp
 ".\objects\main.o"
+".\objects\blinky.o"
+".\objects\gpio.o"
 ".\objects\rcc.o"
 ".\objects\systick.o"
 ".\objects\startup_stm32f446xx.o"
