@@ -1,16 +1,31 @@
 #include "blinky.h"
 
-void LED_Toggle(void)
-{
-    GPIOA->ODR ^= (1<<5);
-}
-
-void LED_Off(void)
+void Green_LED_Off(void)
 {
     GPIOA->BSRR |= ((1<<5)<<16);
 }
 
-void LED_On(void)
+void Green_LED_On(void)
 {
     GPIOA->BSRR |= (1<<5);
+}
+
+void Yellow_LED_Off(void)
+{
+    GPIOA->BSRR |= ((1<<6)<<16);
+}
+
+void Yellow_LED_On(void)
+{
+    GPIOA->BSRR |= (1<<6);
+}
+
+void Red_LED_Off(void)
+{
+    GPIOA->BSRR |= ((1<<7)<<16);
+}
+
+void Red_LED_On(void)
+{
+    GPIOA->BSRR |= (1<<7);
 }
