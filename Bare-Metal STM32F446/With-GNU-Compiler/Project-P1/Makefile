@@ -1,5 +1,4 @@
-# ===== Simple Makefile for Project-P1 =====
-# Output goes into the Debug/ folder (mirrors Core/ layout).
+# ===== Makefile for STM32F446RE (Project-P1) =====
 
 # ---- Toolchain ----
 CC      = arm-none-eabi-gcc
@@ -15,56 +14,64 @@ INC_DIR     = Core/Inc
 # ---- Output name ----
 TARGET = blink
 
-# ---- Linker script (in project root) ----
+# ---- Linker script ----
 LDSCRIPT = STM32F446RETX_FLASH.ld
 
-# ---- CPU flags ----
-CPU = -mcpu=cortex-m4 -mthumb
+# ---- Flags ----
+CPU     = -mcpu=cortex-m4 -mthumb
+CFLAGS  = $(CPU) -g -O0 -Wall -I$(INC_DIR) -MMD -MP
+LDFLAGS = $(CPU) -T$(LDSCRIPT) -nostartfiles \
+          -Wl,-Map=$(BUILD_DIR)/$(TARGET).map -Wl,--gc-sections
 
-# ---- Compiler flags ----
-CFLAGS  = $(CPU) -g -O0 -Wall -I$(INC_DIR)
+# ---- Objects (auto-discovered) ----
+SRCS = $(wildcard $(SRC_DIR)/*.c)
+ASMS = $(wildcard $(STARTUP_DIR)/*.s)
+OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/Src/%.o,$(SRCS)) \
+       $(patsubst $(STARTUP_DIR)/%.s,$(BUILD_DIR)/Startup/%.o,$(ASMS))
 
-# ---- Linker flags ----
-LDFLAGS = $(CPU) -T$(LDSCRIPT) -nostartfiles --specs=nano.specs
-
-# ---- Object files (mirror source folders) ----
-OBJS = $(BUILD_DIR)/Src/main.o $(BUILD_DIR)/Startup/startup.o
+# ---- Shell-portable helpers ----
+# GNU make uses sh if it finds one, otherwise cmd.exe
+ifeq ($(findstring sh,$(notdir $(SHELL))),)
+  MKDIR = if not exist "$(subst /,\,$@)" mkdir "$(subst /,\,$@)"
+  RM    = if exist "$(subst /,\,$(BUILD_DIR))" del /Q /S "$(subst /,\,$(BUILD_DIR))\*.*" >nul 2>&1
+else
+  MKDIR = mkdir -p $@
+  RM    = rm -f $(BUILD_DIR)/*.elf $(BUILD_DIR)/*.bin $(BUILD_DIR)/*.hex $(BUILD_DIR)/*.map \
+                $(BUILD_DIR)/Src/* $(BUILD_DIR)/Startup/*
+endif
 
 # ===== Rules =====
+all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).bin $(BUILD_DIR)/$(TARGET).hex
 
-# Default: build everything
-all: $(BUILD_DIR)/$(TARGET).bin $(BUILD_DIR)/$(TARGET).hex
+# Output directories
+$(BUILD_DIR)/Src $(BUILD_DIR)/Startup:
+	$(MKDIR)
 
-# Create output subfolders if missing
-$(BUILD_DIR)/Src:
-	mkdir "$(BUILD_DIR)\Src"
-
-$(BUILD_DIR)/Startup:
-	mkdir "$(BUILD_DIR)\Startup"
-
-# Compile main.c -> Debug/Src/main.o
-$(BUILD_DIR)/Src/main.o: $(SRC_DIR)/main.c | $(BUILD_DIR)/Src
+# Core/Src/*.c -> Debug/Src/*.o
+$(BUILD_DIR)/Src/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)/Src
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Assemble startup -> Debug/Startup/startup.o
-$(BUILD_DIR)/Startup/startup.o: $(STARTUP_DIR)/startup_stm32f446xx.s | $(BUILD_DIR)/Startup
+# Core/Startup/*.s -> Debug/Startup/*.o
+$(BUILD_DIR)/Startup/%.o: $(STARTUP_DIR)/%.s | $(BUILD_DIR)/Startup
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Link both .o -> Debug/blink.elf
-$(BUILD_DIR)/$(TARGET).elf: $(OBJS)
-	$(CC) $(LDFLAGS) $(OBJS) -o $@
+# Link -> .elf
+$(BUILD_DIR)/$(TARGET).elf: $(OBJS) $(LDSCRIPT)
+	$(CC) $(OBJS) $(LDFLAGS) -o $@
 	$(SIZE) $@
 
-# ELF -> BIN
+# .elf -> .bin / .hex
 $(BUILD_DIR)/$(TARGET).bin: $(BUILD_DIR)/$(TARGET).elf
 	$(OBJCOPY) -O binary $< $@
 
-# ELF -> HEX
 $(BUILD_DIR)/$(TARGET).hex: $(BUILD_DIR)/$(TARGET).elf
 	$(OBJCOPY) -O ihex $< $@
 
-# Delete the whole Debug folder
+# Removes build outputs but keeps the Debug/Src and Debug/Startup folders
 clean:
-	rmdir /S /Q $(BUILD_DIR)
+	$(RM)
+
+# Header dependency tracking
+-include $(OBJS:.o=.d)
 
 .PHONY: all clean

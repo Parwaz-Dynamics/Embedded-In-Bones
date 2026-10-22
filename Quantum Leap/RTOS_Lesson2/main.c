@@ -47,7 +47,7 @@ int main(void)
 	
 	OS_Init();
 	
-	// Set SysTick interrupt priority to lowest
+	// Set SysTick interrupt priority to highest
 	NVIC_SetPriority(SysTick_IRQn, 0U);
 	
 	__enable_irq();

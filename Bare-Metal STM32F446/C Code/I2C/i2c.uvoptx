@@ -158,17 +158,12 @@
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ax</ItemText>
+          <ItemText>accel_g</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ay</ItemText>
-        </Ww>
-        <Ww>
-          <count>3</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>az</ItemText>
+          <ItemText>gyro_dps</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

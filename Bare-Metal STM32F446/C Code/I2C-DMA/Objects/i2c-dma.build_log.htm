@@ -1,0 +1,215 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.39.0.0
+Copyright (C) 2023 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Abdullah Wasim, Parwaz-Dynamics, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.39.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.21
+Assembler:       Armasm.exe V6.21
+Linker/Locator:  ArmLink.exe V6.21
+Library Manager: ArmAr.exe V6.21
+Hex Converter:   FromElf.exe V6.21
+CPU DLL:         SARMCM3.DLL V5.39.0.0
+Dialog DLL:      DCM.DLL V1.17.5.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.2.0.0
+Dialog DLL:      TCM.DLL V1.56.4.0
+ 
+<h2>Project:</h2>
+C:\Users\Abdullah\Desktop\Parwaz Dynamics\Embedded-In-Bones\Bare-Metal STM32F446\C Code\I2C-DMA\i2c-dma.uvprojx
+Project File Date:  10/11/2026
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.21', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+Build target 'Target 1'
+main.c(71): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+   71 |         uint32_t t __attribute__((unused)) = I2C1->SR1 | I2C1->SR2;
+      |                  ^
+main.c(79): warning: implicit conversion loses integer precision: 'int' to 'uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+   79 |         I2C1_SlaveAddress(devAddr << 1);
+      |         ~~~~~~~~~~~~~~~~~ ~~~~~~~~^~~~
+main.c(84): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+   84 |         I2C1->DR = (devAddr << 1) | 0x01;
+      |                  ~ ~~~~~~~~~~~~~~~^~~~~~
+main.c(127): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+  127 |                 if (i2c_state == ST_SEND_REG) I2C1->DR = (i2c_devaddr << 1);
+      |                                                        ~  ~~~~~~~~~~~~^~~~
+main.c(128): warning: implicit conversion changes signedness: 'int' to 'uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+  128 |                 else                          I2C1->DR = (i2c_devaddr << 1) | 0x01;
+      |                                                        ~ ~~~~~~~~~~~~~~~~~~~^~~~~~
+main.c(216): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+  216 |                 uint32_t now = micros();
+      |                          ^
+main.c(294): warning: no newline at end of file [-Wnewline-eof]
+  294 | }
+      |  ^
+main.c(94): warning: no previous extern declaration for non-static variable 'i2c_buf' [-Wmissing-variable-declarations]
+   94 | volatile uint8_t  *i2c_buf;
+      |                    ^
+main.c(94): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+   94 | volatile uint8_t  *i2c_buf;
+      |          ^
+main.c(95): warning: no previous extern declaration for non-static variable 'i2c_len' [-Wmissing-variable-declarations]
+   95 | volatile uint32_t  i2c_len, i2c_idx;
+      |                    ^
+main.c(95): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+   95 | volatile uint32_t  i2c_len, i2c_idx;
+      |          ^
+main.c(95): warning: no previous extern declaration for non-static variable 'i2c_idx' [-Wmissing-variable-declarations]
+   95 | volatile uint32_t  i2c_len, i2c_idx;
+      |                             ^
+main.c(95): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+   95 | volatile uint32_t  i2c_len, i2c_idx;
+      |          ^
+main.c(96): warning: no previous extern declaration for non-static variable 'i2c_devaddr' [-Wmissing-variable-declarations]
+   96 | volatile uint8_t   i2c_devaddr, i2c_reg;
+      |                    ^
+main.c(96): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+   96 | volatile uint8_t   i2c_devaddr, i2c_reg;
+      |          ^
+main.c(96): warning: no previous extern declaration for non-static variable 'i2c_reg' [-Wmissing-variable-declarations]
+   96 | volatile uint8_t   i2c_devaddr, i2c_reg;
+      |                                 ^
+main.c(96): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+   96 | volatile uint8_t   i2c_devaddr, i2c_reg;
+      |          ^
+main.c(97): warning: no previous extern declaration for non-static variable 'i2c_busy' [-Wmissing-variable-declarations]
+   97 | volatile uint8_t   i2c_busy;                    // read in progress
+      |                    ^
+main.c(97): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+   97 | volatile uint8_t   i2c_busy;                    // read in progress
+      |          ^
+main.c(98): warning: no previous extern declaration for non-static variable 'i2c_ready' [-Wmissing-variable-declarations]
+   98 | volatile uint8_t   i2c_ready;                   // new data in buffer
+      |                    ^
+main.c(98): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+   98 | volatile uint8_t   i2c_ready;                   // new data in buffer
+      |          ^
+main.c(99): warning: no previous extern declaration for non-static variable 'i2c_error' [-Wmissing-variable-declarations]
+   99 | volatile uint8_t   i2c_error;
+      |                    ^
+main.c(99): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+   99 | volatile uint8_t   i2c_error;
+      |          ^
+main.c(100): warning: no previous extern declaration for non-static variable 'i2c_overruns' [-Wmissing-variable-declarations]
+  100 | volatile uint32_t  i2c_overruns;                // timer fired while still busy
+      |                    ^
+main.c(100): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+  100 | volatile uint32_t  i2c_overruns;                // timer fired while still busy
+      |          ^
+main.c(103): warning: no previous extern declaration for non-static variable 'i2c_state' [-Wmissing-variable-declarations]
+  103 | volatile i2c_state_t i2c_state;
+      |                      ^
+main.c(103): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+  103 | volatile i2c_state_t i2c_state;
+      |          ^
+main.c(193): warning: no previous extern declaration for non-static variable 'dt_us' [-Wmissing-variable-declarations]
+  193 | volatile uint32_t dt_us;                                // measured sample period
+      |                   ^
+main.c(193): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+  193 | volatile uint32_t dt_us;                                // measured sample period
+      |          ^
+main.c(35): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+   35 |         GPIOB->AFR[1] &= ~(0xFFU << 0);
+      |         ^~~~~~~~~~
+C:/Users/Abdullah/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f446xx.h(1122): note: expanded from macro 'GPIOB'
+ 1122 | #define GPIOB               ((GPIO_TypeDef *) GPIOB_BASE)
+      |                             ^
+main.c(36): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+   36 |         GPIOB->AFR[1] |=  (0x44U << 0);         // AF4 = I2C1
+      |         ^~~~~~~~~~
+C:/Users/Abdullah/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include\stm32f446xx.h(1122): note: expanded from macro 'GPIOB'
+ 1122 | #define GPIOB               ((GPIO_TypeDef *) GPIOB_BASE)
+      |                             ^
+main.c(153): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  153 |                 i2c_buf[i2c_idx++] = (uint8_t)I2C1->DR;
+      |                 ^~~~~~~
+main.c(274): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  274 |                         ax = (int16_t)((raw[0]  << 8) | raw[1]);
+      |                                                         ^~~
+main.c(275): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  275 |                         ay = (int16_t)((raw[2]  << 8) | raw[3]);
+      |                                         ^~~
+main.c(275): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  275 |                         ay = (int16_t)((raw[2]  << 8) | raw[3]);
+      |                                                         ^~~
+main.c(276): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  276 |                         az = (int16_t)((raw[4]  << 8) | raw[5]);
+      |                                         ^~~
+main.c(276): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  276 |                         az = (int16_t)((raw[4]  << 8) | raw[5]);
+      |                                                         ^~~
+main.c(277): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  277 |                         gx = (int16_t)((raw[6]  << 8) | raw[7]);
+      |                                         ^~~
+main.c(277): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  277 |                         gx = (int16_t)((raw[6]  << 8) | raw[7]);
+      |                                                         ^~~
+main.c(278): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  278 |                         gy = (int16_t)((raw[8]  << 8) | raw[9]);
+      |                                         ^~~
+main.c(278): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  278 |                         gy = (int16_t)((raw[8]  << 8) | raw[9]);
+      |                                                         ^~~
+main.c(279): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  279 |                         gz = (int16_t)((raw[10] << 8) | raw[11]);
+      |                                         ^~~
+main.c(279): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  279 |                         gz = (int16_t)((raw[10] << 8) | raw[11]);
+      |                                                         ^~~
+main.c(282): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  282 |                         accel_g[1]  = ay / 16384.0f;
+      |                         ^~~~~~~
+main.c(283): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  283 |                         accel_g[2]  = az / 16384.0f;
+      |                         ^~~~~~~
+main.c(285): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  285 |                         gyro_dps[1] = gy / 131.0f;
+      |                         ^~~~~~~~
+main.c(286): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  286 |                         gyro_dps[2] = gz / 131.0f;
+      |                         ^~~~~~~~
+36 warnings generated.
+compiling main.c...
+linking...
+Program Size: Code=3320 RO-data=484 RW-data=4 ZI-data=1728  
+".\Objects\i2c-dma.axf" - 0 Error(s), 36 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
+                ARM::CMSIS@5.9.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.6.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.1.pack
+                Keil::STM32F4xx_DFP@2.17.1
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+   * Component: Startup Version: 2.6.3
+
+<h2>Collection of Component include folders:</h2>
+  ./RTE/_Target_1
+  C:/Users/Abdullah/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  C:/Users/Abdullah/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE@5.6.0
+
+   * Component: Keil::Device:Startup@2.6.3
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
+      Source file:   MDK/Device/Source/ARM/STM32F446xx_OPT.s
+      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f446xx.s
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>

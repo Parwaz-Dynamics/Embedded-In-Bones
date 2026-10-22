@@ -23,7 +23,7 @@ void SystemClock_Config(void)
 	********************************************************/
 
 	#define PLL_M		4
-	#define PLL_N		160
+	#define PLL_N		180
 	#define PLL_P		0 		// 0 means 2
 
 
