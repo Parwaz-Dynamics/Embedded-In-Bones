@@ -39,30 +39,42 @@ void main_blinky2(void)
 	}
 }
 
+uint32_t stack_blinky3[40];
+OSThread sp_blinky3;
+
+void main_blinky3(void)
+{		
+	while(1)
+	{		
+		Red_LED_On();
+		delay(1000 / 3);
+		Red_LED_Off();
+		delay(1000 * 3 / 5);
+	}
+}
+
 int main(void)
 {	
-	SystemClock_Config();
-	SysTick_Config(180000);
 	GPIO_Init();
-	
 	OS_Init();
 	
-	// Set SysTick interrupt priority to highest
-	NVIC_SetPriority(SysTick_IRQn, 0U);
-	
-	__enable_irq();
-	
-	/* fabricate Cortex-M ISR stack frame for blinky1*/
-	
+	// start blinky thread 1
 	OSThread_Start(&sp_blinky1,
 								 &main_blinky1,
 								stack_blinky1, sizeof(stack_blinky1));
 	
+	// start blinky thread 2
 	OSThread_Start(&sp_blinky2,
 								 &main_blinky2,
 								stack_blinky2, sizeof(stack_blinky2));
 	
-	while(1){}
+	// start blinky thread 3
+	OSThread_Start(&sp_blinky3,
+								 &main_blinky3,
+								stack_blinky3, sizeof(stack_blinky3));
+	
+	// transfer control to RTOS to run threads
+	OS_Run();
 	
 	return 0;
 }

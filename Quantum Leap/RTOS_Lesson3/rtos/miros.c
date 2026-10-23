@@ -1,7 +1,11 @@
 #include "miros.h"
 
 OSThread * volatile OS_Curr; // Pointer to the current thread
-OSThread * volatile OS_Next; // Pointer to the next thread
+OSThread * volatile OS_Next; // Pointer to the next thread/
+
+OSThread *OS_Thread[32 + 1]; // Array of threads started
+uint8_t OS_ThreadNum; // Number of threads started so far
+uint8_t OS_CurrIdx;	// Current index of the thread
 
 void OS_Init(void)
 {
@@ -13,26 +17,30 @@ void OS_Sched(void)
 {
 	// OS Thread Scheduling
 	
-	if(OS_Curr == 0x0U)
-	{
-		OS_Next = (uint32_t *) 0x20000068U;
-	}
+	// increament thread index
+	OS_CurrIdx = (++OS_CurrIdx == OS_ThreadNum)? 0 : OS_CurrIdx;
 	
-	if(OS_Curr == 0x20000068U)
-	{
-		OS_Next = (uint32_t *) 0x2000006CU;
-	}
-	
-	if(OS_Curr == 0x2000006CU)
-	{
-		OS_Next = (uint32_t *) 0x20000068U;
-	}
+	// assign the next thread
+	OS_Next = OS_Thread[OS_CurrIdx];
 	
 	if(OS_Next != OS_Curr)
 	{
 		// Generate PendSV interrupt
 		*(uint32_t volatile *) 0xE000ED04 |= (0x1U << 28);
 	}
+}
+
+void OS_Run(void)
+{
+	// callback to configure and start interrupt 
+	OS_onStartup();
+	
+	__disable_irq();
+	OS_Sched();
+	__enable_irq();
+	
+	// this section should never execute
+	NVIC_SystemReset();
 }
 
 void OSThread_Start(
@@ -64,12 +72,20 @@ void OSThread_Start(
 	// Save the top of the stack in the thread attribute
 	me->sp = sp;
 	
+	// Set the stack limit
 	stk_limit = (uint32_t *)((((uint32_t) stkSto - 1) / 8 + 1) * 8);
 	
+	// fill the remaining entries of stacks with 0xDEADBEEF
 	for(sp = sp -1; sp >= stk_limit; --sp)
 	{
 		*sp = 0xDEADBEEFU;
 	}
+	
+	// tell the thread array that new task is loaded 
+	OS_Thread[OS_ThreadNum] = me;
+	
+	// increase the number of thread to be run
+	++OS_ThreadNum;
 }
 
 __attribute__((naked))
