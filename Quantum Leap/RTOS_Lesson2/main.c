@@ -1,4 +1,3 @@
-
 #include "stm32f446xx.h"
 #include "stdint.h"
 
@@ -8,12 +7,13 @@
 
 #include "miros.h"
 
-// GPIO
 
-// Interrupts
+// Fake Start
+uint32_t stack_blinky1[40];		
 
-uint32_t stack_blinky1[40];
-OSThread sp_blinky1;
+// Stack Pointer for blinky1
+OSThread sp_blinky1;	// Since OSThread have only *sp which is a pointer
+											// so sp_blinky1 is a pointer
 
 void main_blinky1(void){		
 	while(1)

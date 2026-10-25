@@ -15,7 +15,7 @@ typedef struct{
 void OS_Init(void);
 void OS_Sched(void);
 
-typedef void (*OSThreadHandler) ();
+typedef void (*OSThreadHandler) ();			// Pointer to function
 
 void OSThread_Start(
 	OSThread *me,

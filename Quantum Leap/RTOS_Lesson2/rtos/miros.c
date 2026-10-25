@@ -9,9 +9,24 @@ void OS_Init(void)
 	*(uint32_t volatile *)0xE000ED20 |= (0xFFU << 16);
 }	
 
+uint32_t address1 = 0;
+uint32_t address2 = 0;
+
 void OS_Sched(void)
-{
-	// OS Thread Scheduling
+{	
+	
+	if(OS_Curr == 0)
+	{
+		OS_Next = (uint32_t volatile *) 0x2000006C;
+	}
+	if(OS_Curr == 0x20000068)
+	{
+		OS_Next = (uint32_t volatile *) 0x2000006C;
+	}
+	if(OS_Curr == 0x2000006C)
+	{
+		OS_Next = (uint32_t volatile *) 0x20000068;
+	}
 	
 	if(OS_Next != OS_Curr)
 	{
@@ -25,11 +40,16 @@ void OSThread_Start(
 	OSThreadHandler threadHandler,
 	void *stkSto, uint32_t stkSize)
 {
+	// Fake stack address last address
+	// stkSto is start address of the fake stack
+	// stkSize is the size of the fake sack
+	// (uint32_t) stoSto + stkSize means the last address of the stack
+	// (uint32_t*) is to make it an address which  is then assigned to sp
 	uint32_t *sp = (uint32_t *)((((uint32_t) stkSto + stkSize) / 8) * 8);
 	uint32_t *stk_limit;
 	
 	*(--sp) = (1<<24);		// xPSR
-	*(--sp) = (uint32_t) threadHandler;		// PC
+	*(--sp) = (uint32_t) threadHandler;		// The function address to store in PC
 	*(--sp) = 0x0000000EU;		// LR
 	*(--sp) = 0x0000000CU;		// R12
 	*(--sp) = 0x00000003U;		// R3
@@ -45,13 +65,12 @@ void OSThread_Start(
 	*(--sp) = 0x00000005U;		// R5
 	*(--sp) = 0x00000004U;		// R4
 
-	
 	// Save the top of the stack in the thread attribute
 	me->sp = sp;
 	
 	stk_limit = (uint32_t *)((((uint32_t) stkSto - 1) / 8 + 1) * 8);
 	
-	for(sp = sp -1; sp >= stk_limit; --sp)
+	for(sp = sp - 1; sp >= stk_limit; --sp)
 	{
 		*sp = 0xDEADBEEFU;
 	}

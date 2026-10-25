@@ -19,9 +19,10 @@ void main_idleThread(void){
 	}
 }
 
+// Idle task that will run while no task is ready
 void OS_onIdle(void)
 {
-	
+	__WFI();
 }
 
 // OS delay puts the thread from running state to blocked state
@@ -50,18 +51,23 @@ void OS_Delay(uint32_t ticks)
 void OS_Tick(void)
 {
 	uint8_t n;
+	// check readiness of each task
 	for(n = 1U; n < OS_ThreadNum; ++n)
 	{
+		// if tasks wait is not complete
 		if(OS_Thread[n]->timeout != 0U)
 		{
+			// decrease the timeout or task
 			--OS_Thread[n]->timeout;
+			
+			// if task's timeout is complete
 			if(OS_Thread[n]->timeout == 0U)
 			{
+				// set the task as ready
 				OS_readySet |= (1U << (n - 1U));
 			}
 		}
 	}
-	
 }
 
 
@@ -90,9 +96,16 @@ void OS_Sched(void)
 	else
 	{
 		do{
+				// increament the index of task to run 
+				// for example if current index is 0
+				// task to run become 1
 				++OS_CurrIdx;
+			
+				// limit the task number to number of tasks available
 				if(OS_CurrIdx == OS_ThreadNum)
 					OS_CurrIdx = 1U;
+				
+				// if task is not ready to run, check next task
 			}while((OS_readySet & (1U << (OS_CurrIdx - 1U))) == 0U);
 	}
 	
