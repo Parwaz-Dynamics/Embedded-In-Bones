@@ -22,6 +22,8 @@ void main_idleThread(void){
 // Idle task that will run while no task is ready
 void OS_onIdle(void)
 {
+	
+	// Wait fo interrupt
 	__WFI();
 }
 

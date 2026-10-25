@@ -1865,9 +1865,9 @@
       <ActiveTab>0</ActiveTab>
       <Doc>
         <Name>.\rtos\miros.c</Name>
-        <ColumnNumber>1</ColumnNumber>
+        <ColumnNumber>22</ColumnNumber>
         <TopLine>11</TopLine>
-        <CurrentLine>24</CurrentLine>
+        <CurrentLine>26</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
