@@ -1,0 +1,928 @@
+Component: Arm Compiler for Embedded 6.21 Tool: armlink [5ec1fa00]
+
+==============================================================================
+
+Section Cross References
+
+    gpio.o(.ARM.exidx.text.GPIO_Init) refers to gpio.o(.text.GPIO_Init) for [Anonymous Symbol]
+    os.o(.text.QF_onStartup) refers to rcc.o(.text.SystemClock_Config) for SystemClock_Config
+    os.o(.text.QF_onStartup) refers to os.o(.text.SysTick_Config) for SysTick_Config
+    os.o(.text.QF_onStartup) refers to os.o(.text.__NVIC_SetPriority) for __NVIC_SetPriority
+    os.o(.ARM.exidx.text.QF_onStartup) refers to os.o(.text.QF_onStartup) for [Anonymous Symbol]
+    os.o(.text.SysTick_Config) refers to os.o(.text.__NVIC_SetPriority) for __NVIC_SetPriority
+    os.o(.ARM.exidx.text.SysTick_Config) refers to os.o(.text.SysTick_Config) for [Anonymous Symbol]
+    os.o(.ARM.exidx.text.__NVIC_SetPriority) refers to os.o(.text.__NVIC_SetPriority) for [Anonymous Symbol]
+    os.o(.ARM.exidx.text.QF_onCleanup) refers to os.o(.text.QF_onCleanup) for [Anonymous Symbol]
+    os.o(.ARM.exidx.text.QXK_onIdle) refers to os.o(.text.QXK_onIdle) for [Anonymous Symbol]
+    rcc.o(.ARM.exidx.text.SystemClock_Config) refers to rcc.o(.text.SystemClock_Config) for [Anonymous Symbol]
+    systick.o(.text.SysTick_Handler) refers to qf_time.o(.text.QTimeEvt_tick_) for QTimeEvt_tick_
+    systick.o(.text.SysTick_Handler) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    systick.o(.ARM.exidx.text.SysTick_Handler) refers to systick.o(.text.SysTick_Handler) for [Anonymous Symbol]
+    blinky.o(.ARM.exidx.text.Green_LED_Off) refers to blinky.o(.text.Green_LED_Off) for [Anonymous Symbol]
+    blinky.o(.ARM.exidx.text.Green_LED_On) refers to blinky.o(.text.Green_LED_On) for [Anonymous Symbol]
+    blinky.o(.ARM.exidx.text.Yellow_LED_Off) refers to blinky.o(.text.Yellow_LED_Off) for [Anonymous Symbol]
+    blinky.o(.ARM.exidx.text.Yellow_LED_On) refers to blinky.o(.text.Yellow_LED_On) for [Anonymous Symbol]
+    blinky.o(.ARM.exidx.text.Red_LED_Off) refers to blinky.o(.text.Red_LED_Off) for [Anonymous Symbol]
+    blinky.o(.ARM.exidx.text.Red_LED_On) refers to blinky.o(.text.Red_LED_On) for [Anonymous Symbol]
+    main.o(.text.main_blinky1) refers to blinky.o(.text.Green_LED_On) for Green_LED_On
+    main.o(.text.main_blinky1) refers to blinky.o(.text.Green_LED_Off) for Green_LED_Off
+    main.o(.text.main_blinky1) refers to qxk_xthr.o(.text.QXThread_delay) for QXThread_delay
+    main.o(.ARM.exidx.text.main_blinky1) refers to main.o(.text.main_blinky1) for [Anonymous Symbol]
+    main.o(.text.main_blinky2) refers to blinky.o(.text.Yellow_LED_On) for Yellow_LED_On
+    main.o(.text.main_blinky2) refers to blinky.o(.text.Yellow_LED_Off) for Yellow_LED_Off
+    main.o(.text.main_blinky2) refers to qxk_xthr.o(.text.QXThread_delay) for QXThread_delay
+    main.o(.ARM.exidx.text.main_blinky2) refers to main.o(.text.main_blinky2) for [Anonymous Symbol]
+    main.o(.text.main_blinky3) refers to blinky.o(.text.Red_LED_On) for Red_LED_On
+    main.o(.text.main_blinky3) refers to qxk_xthr.o(.text.QXThread_delay) for QXThread_delay
+    main.o(.text.main_blinky3) refers to blinky.o(.text.Red_LED_Off) for Red_LED_Off
+    main.o(.ARM.exidx.text.main_blinky3) refers to main.o(.text.main_blinky3) for [Anonymous Symbol]
+    main.o(.text.main) refers to gpio.o(.text.GPIO_Init) for GPIO_Init
+    main.o(.text.main) refers to qxk.o(.text.QF_init) for QF_init
+    main.o(.text.main) refers to main.o(.bss.blinky1) for blinky1
+    main.o(.text.main) refers to main.o(.text.main_blinky1) for main_blinky1
+    main.o(.text.main) refers to qxk_xthr.o(.text.QXThread_ctor) for QXThread_ctor
+    main.o(.text.main) refers to main.o(.bss.blinky2) for blinky2
+    main.o(.text.main) refers to main.o(.text.main_blinky2) for main_blinky2
+    main.o(.text.main) refers to main.o(.bss.stack_blinky1) for stack_blinky1
+    main.o(.text.main) refers to qxk.o(.text.QActive_start_) for QActive_start_
+    main.o(.text.main) refers to main.o(.bss.stack_blinky2) for stack_blinky2
+    main.o(.text.main) refers to qxk.o(.text.QF_run) for QF_run
+    main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
+    qep_hsm.o(.text.QHsm_ctor) refers to qep_hsm.o(.rodata.QHsm_ctor.vtable) for QHsm_ctor.vtable
+    qep_hsm.o(.text.QHsm_ctor) refers to qep_hsm.o(.text.QHsm_top) for QHsm_top
+    qep_hsm.o(.ARM.exidx.text.QHsm_ctor) refers to qep_hsm.o(.text.QHsm_ctor) for [Anonymous Symbol]
+    qep_hsm.o(.text.QHsm_init_) refers to qep_hsm.o(.text.QHsm_top) for QHsm_top
+    qep_hsm.o(.text.QHsm_init_) refers to qep_hsm.o(.rodata.Q_this_module_) for Q_this_module_
+    qep_hsm.o(.text.QHsm_init_) refers to qep_hsm.o(.rodata.QEvt_reserved_) for QEvt_reserved_
+    qep_hsm.o(.ARM.exidx.text.QHsm_init_) refers to qep_hsm.o(.text.QHsm_init_) for [Anonymous Symbol]
+    qep_hsm.o(.text.QHsm_dispatch_) refers to qep_hsm.o(.rodata.Q_this_module_) for Q_this_module_
+    qep_hsm.o(.text.QHsm_dispatch_) refers to qep_hsm.o(.text.QEvt_verify_) for QEvt_verify_
+    qep_hsm.o(.text.QHsm_dispatch_) refers to qep_hsm.o(.rodata.QEvt_reserved_) for QEvt_reserved_
+    qep_hsm.o(.text.QHsm_dispatch_) refers to qep_hsm.o(.text.QHsm_tran_) for QHsm_tran_
+    qep_hsm.o(.ARM.exidx.text.QHsm_dispatch_) refers to qep_hsm.o(.text.QHsm_dispatch_) for [Anonymous Symbol]
+    qep_hsm.o(.ARM.exidx.text.QHsm_top) refers to qep_hsm.o(.text.QHsm_top) for [Anonymous Symbol]
+    qep_hsm.o(.ARM.exidx.text.QEvt_verify_) refers to qep_hsm.o(.text.QEvt_verify_) for [Anonymous Symbol]
+    qep_hsm.o(.text.QHsm_tran_) refers to qep_hsm.o(.rodata.QEvt_reserved_) for QEvt_reserved_
+    qep_hsm.o(.text.QHsm_tran_) refers to qep_hsm.o(.rodata.Q_this_module_) for Q_this_module_
+    qep_hsm.o(.ARM.exidx.text.QHsm_tran_) refers to qep_hsm.o(.text.QHsm_tran_) for [Anonymous Symbol]
+    qep_hsm.o(.text.QHsm_isIn) refers to qep_hsm.o(.rodata.Q_this_module_) for Q_this_module_
+    qep_hsm.o(.text.QHsm_isIn) refers to qep_hsm.o(.rodata.QEvt_reserved_) for QEvt_reserved_
+    qep_hsm.o(.ARM.exidx.text.QHsm_isIn) refers to qep_hsm.o(.text.QHsm_isIn) for [Anonymous Symbol]
+    qep_hsm.o(.text.QHsm_childState) refers to qep_hsm.o(.rodata.QEvt_reserved_) for QEvt_reserved_
+    qep_hsm.o(.text.QHsm_childState) refers to qep_hsm.o(.rodata.Q_this_module_) for Q_this_module_
+    qep_hsm.o(.ARM.exidx.text.QHsm_childState) refers to qep_hsm.o(.text.QHsm_childState) for [Anonymous Symbol]
+    qep_hsm.o(.rodata.QHsm_ctor.vtable) refers to qep_hsm.o(.text.QHsm_init_) for QHsm_init_
+    qep_hsm.o(.rodata.QHsm_ctor.vtable) refers to qep_hsm.o(.text.QHsm_dispatch_) for QHsm_dispatch_
+    qep_msm.o(.text.QMsm_ctor) refers to qep_msm.o(.rodata.QMsm_ctor.vtable) for QMsm_ctor.vtable
+    qep_msm.o(.text.QMsm_ctor) refers to qep_msm.o(.rodata.l_msm_top_s) for l_msm_top_s
+    qep_msm.o(.ARM.exidx.text.QMsm_ctor) refers to qep_msm.o(.text.QMsm_ctor) for [Anonymous Symbol]
+    qep_msm.o(.text.QMsm_init_) refers to qep_msm.o(.rodata.l_msm_top_s) for l_msm_top_s
+    qep_msm.o(.text.QMsm_init_) refers to qep_msm.o(.rodata.Q_this_module_) for Q_this_module_
+    qep_msm.o(.text.QMsm_init_) refers to qep_msm.o(.text.QMsm_execTatbl_) for QMsm_execTatbl_
+    qep_msm.o(.ARM.exidx.text.QMsm_init_) refers to qep_msm.o(.text.QMsm_init_) for [Anonymous Symbol]
+    qep_msm.o(.text.QMsm_dispatch_) refers to qep_msm.o(.rodata.Q_this_module_) for Q_this_module_
+    qep_msm.o(.text.QMsm_dispatch_) refers to qep_msm.o(.text.QEvt_verify_) for QEvt_verify_
+    qep_msm.o(.text.QMsm_dispatch_) refers to qep_msm.o(.text.QMsm_exitToTranSource_) for QMsm_exitToTranSource_
+    qep_msm.o(.text.QMsm_dispatch_) refers to qep_msm.o(.text.QMsm_execTatbl_) for QMsm_execTatbl_
+    qep_msm.o(.text.QMsm_dispatch_) refers to qep_msm.o(.text.QMsm_enterHistory_) for QMsm_enterHistory_
+    qep_msm.o(.ARM.exidx.text.QMsm_dispatch_) refers to qep_msm.o(.text.QMsm_dispatch_) for [Anonymous Symbol]
+    qep_msm.o(.text.QMsm_execTatbl_) refers to qep_msm.o(.rodata.Q_this_module_) for Q_this_module_
+    qep_msm.o(.ARM.exidx.text.QMsm_execTatbl_) refers to qep_msm.o(.text.QMsm_execTatbl_) for [Anonymous Symbol]
+    qep_msm.o(.ARM.exidx.text.QEvt_verify_) refers to qep_msm.o(.text.QEvt_verify_) for [Anonymous Symbol]
+    qep_msm.o(.text.QMsm_exitToTranSource_) refers to qep_msm.o(.rodata.Q_this_module_) for Q_this_module_
+    qep_msm.o(.ARM.exidx.text.QMsm_exitToTranSource_) refers to qep_msm.o(.text.QMsm_exitToTranSource_) for [Anonymous Symbol]
+    qep_msm.o(.text.QMsm_enterHistory_) refers to qep_msm.o(.rodata.Q_this_module_) for Q_this_module_
+    qep_msm.o(.ARM.exidx.text.QMsm_enterHistory_) refers to qep_msm.o(.text.QMsm_enterHistory_) for [Anonymous Symbol]
+    qep_msm.o(.ARM.exidx.text.QMsm_isInState) refers to qep_msm.o(.text.QMsm_isInState) for [Anonymous Symbol]
+    qep_msm.o(.text.QMsm_childStateObj) refers to qep_msm.o(.rodata.Q_this_module_) for Q_this_module_
+    qep_msm.o(.ARM.exidx.text.QMsm_childStateObj) refers to qep_msm.o(.text.QMsm_childStateObj) for [Anonymous Symbol]
+    qep_msm.o(.rodata.QMsm_ctor.vtable) refers to qep_msm.o(.text.QMsm_init_) for QMsm_init_
+    qep_msm.o(.rodata.QMsm_ctor.vtable) refers to qep_msm.o(.text.QMsm_dispatch_) for QMsm_dispatch_
+    qf_act.o(.ARM.exidx.text.QF_bzero_) refers to qf_act.o(.text.QF_bzero_) for [Anonymous Symbol]
+    qf_actq.o(.text.QActive_post_) refers to qf_actq.o(.text.QEvt_verify_) for QEvt_verify_
+    qf_actq.o(.text.QActive_post_) refers to qf_actq.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_actq.o(.text.QActive_post_) refers to qf_actq.o(.text.QEvt_getPoolId_) for QEvt_getPoolId_
+    qf_actq.o(.text.QActive_post_) refers to qf_actq.o(.text.QEvt_refCtr_inc_) for QEvt_refCtr_inc_
+    qf_actq.o(.text.QActive_post_) refers to qxk_xthr.o(.text.QXThread_teDisarm_) for QXThread_teDisarm_
+    qf_actq.o(.text.QActive_post_) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qf_actq.o(.text.QActive_post_) refers to qf_actq.o(.text.QPSet_insert) for QPSet_insert
+    qf_actq.o(.text.QActive_post_) refers to qf_actq.o(.text.QPSet_update_) for QPSet_update_
+    qf_actq.o(.text.QActive_post_) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    qf_actq.o(.text.QActive_post_) refers to qxk.o(.text.QXK_activate_) for QXK_activate_
+    qf_actq.o(.text.QActive_post_) refers to qf_dyn.o(.text.QF_gc) for QF_gc
+    qf_actq.o(.ARM.exidx.text.QActive_post_) refers to qf_actq.o(.text.QActive_post_) for [Anonymous Symbol]
+    qf_actq.o(.ARM.exidx.text.QEvt_verify_) refers to qf_actq.o(.text.QEvt_verify_) for [Anonymous Symbol]
+    qf_actq.o(.ARM.exidx.text.QEvt_getPoolId_) refers to qf_actq.o(.text.QEvt_getPoolId_) for [Anonymous Symbol]
+    qf_actq.o(.ARM.exidx.text.QEvt_refCtr_inc_) refers to qf_actq.o(.text.QEvt_refCtr_inc_) for [Anonymous Symbol]
+    qf_actq.o(.ARM.exidx.text.QPSet_insert) refers to qf_actq.o(.text.QPSet_insert) for [Anonymous Symbol]
+    qf_actq.o(.ARM.exidx.text.QPSet_update_) refers to qf_actq.o(.text.QPSet_update_) for [Anonymous Symbol]
+    qf_actq.o(.text.QActive_postLIFO_) refers to qf_actq.o(.text.QEvt_verify_) for QEvt_verify_
+    qf_actq.o(.text.QActive_postLIFO_) refers to qf_actq.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_actq.o(.text.QActive_postLIFO_) refers to qf_actq.o(.text.QEvt_getPoolId_) for QEvt_getPoolId_
+    qf_actq.o(.text.QActive_postLIFO_) refers to qf_actq.o(.text.QEvt_refCtr_inc_) for QEvt_refCtr_inc_
+    qf_actq.o(.text.QActive_postLIFO_) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qf_actq.o(.text.QActive_postLIFO_) refers to qf_actq.o(.text.QPSet_insert) for QPSet_insert
+    qf_actq.o(.text.QActive_postLIFO_) refers to qf_actq.o(.text.QPSet_update_) for QPSet_update_
+    qf_actq.o(.text.QActive_postLIFO_) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    qf_actq.o(.text.QActive_postLIFO_) refers to qxk.o(.text.QXK_activate_) for QXK_activate_
+    qf_actq.o(.ARM.exidx.text.QActive_postLIFO_) refers to qf_actq.o(.text.QActive_postLIFO_) for [Anonymous Symbol]
+    qf_actq.o(.text.QActive_get_) refers to qf_actq.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_actq.o(.ARM.exidx.text.QActive_get_) refers to qf_actq.o(.text.QActive_get_) for [Anonymous Symbol]
+    qf_actq.o(.text.QF_getQueueMin) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qf_actq.o(.text.QF_getQueueMin) refers to qf_actq.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_actq.o(.ARM.exidx.text.QF_getQueueMin) refers to qf_actq.o(.text.QF_getQueueMin) for [Anonymous Symbol]
+    qf_actq.o(.text.QTicker_ctor) refers to qf_qact.o(.text.QActive_ctor) for QActive_ctor
+    qf_actq.o(.text.QTicker_ctor) refers to qf_actq.o(.rodata.QTicker_ctor.vtable) for QTicker_ctor.vtable
+    qf_actq.o(.ARM.exidx.text.QTicker_ctor) refers to qf_actq.o(.text.QTicker_ctor) for [Anonymous Symbol]
+    qf_actq.o(.ARM.exidx.text.QTicker_init_) refers to qf_actq.o(.text.QTicker_init_) for [Anonymous Symbol]
+    qf_actq.o(.text.QTicker_dispatch_) refers to qf_time.o(.text.QTimeEvt_tick_) for QTimeEvt_tick_
+    qf_actq.o(.ARM.exidx.text.QTicker_dispatch_) refers to qf_actq.o(.text.QTicker_dispatch_) for [Anonymous Symbol]
+    qf_actq.o(.text.QTicker_trig_) refers to qf_actq.o(.rodata.QTicker_trig_.tickEvt) for QTicker_trig_.tickEvt
+    qf_actq.o(.text.QTicker_trig_) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qf_actq.o(.text.QTicker_trig_) refers to qf_actq.o(.text.QPSet_insert) for QPSet_insert
+    qf_actq.o(.text.QTicker_trig_) refers to qf_actq.o(.text.QPSet_update_) for QPSet_update_
+    qf_actq.o(.text.QTicker_trig_) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    qf_actq.o(.text.QTicker_trig_) refers to qxk.o(.text.QXK_activate_) for QXK_activate_
+    qf_actq.o(.ARM.exidx.text.QTicker_trig_) refers to qf_actq.o(.text.QTicker_trig_) for [Anonymous Symbol]
+    qf_actq.o(.rodata.QTicker_ctor.vtable) refers to qf_actq.o(.text.QTicker_init_) for QTicker_init_
+    qf_actq.o(.rodata.QTicker_ctor.vtable) refers to qf_actq.o(.text.QTicker_dispatch_) for QTicker_dispatch_
+    qf_defer.o(.text.QActive_defer) refers to qf_qeq.o(.text.QEQueue_post) for QEQueue_post
+    qf_defer.o(.ARM.exidx.text.QActive_defer) refers to qf_defer.o(.text.QActive_defer) for [Anonymous Symbol]
+    qf_defer.o(.text.QActive_recall) refers to qf_qeq.o(.text.QEQueue_get) for QEQueue_get
+    qf_defer.o(.text.QActive_recall) refers to qf_actq.o(.text.QActive_postLIFO_) for QActive_postLIFO_
+    qf_defer.o(.text.QActive_recall) refers to qf_defer.o(.text.QEvt_getPoolId_) for QEvt_getPoolId_
+    qf_defer.o(.text.QActive_recall) refers to qf_defer.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_defer.o(.text.QActive_recall) refers to qf_defer.o(.text.QEvt_refCtr_dec_) for QEvt_refCtr_dec_
+    qf_defer.o(.ARM.exidx.text.QActive_recall) refers to qf_defer.o(.text.QActive_recall) for [Anonymous Symbol]
+    qf_defer.o(.ARM.exidx.text.QEvt_getPoolId_) refers to qf_defer.o(.text.QEvt_getPoolId_) for [Anonymous Symbol]
+    qf_defer.o(.ARM.exidx.text.QEvt_refCtr_dec_) refers to qf_defer.o(.text.QEvt_refCtr_dec_) for [Anonymous Symbol]
+    qf_defer.o(.text.QActive_flushDeferred) refers to qf_qeq.o(.text.QEQueue_get) for QEQueue_get
+    qf_defer.o(.text.QActive_flushDeferred) refers to qf_dyn.o(.text.QF_gc) for QF_gc
+    qf_defer.o(.ARM.exidx.text.QActive_flushDeferred) refers to qf_defer.o(.text.QActive_flushDeferred) for [Anonymous Symbol]
+    qf_dyn.o(.text.QF_poolInit) refers to qf_act.o(.bss.QF_priv_) for QF_priv_
+    qf_dyn.o(.text.QF_poolInit) refers to qf_dyn.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_dyn.o(.text.QF_poolInit) refers to qf_mem.o(.text.QMPool_init) for QMPool_init
+    qf_dyn.o(.ARM.exidx.text.QF_poolInit) refers to qf_dyn.o(.text.QF_poolInit) for [Anonymous Symbol]
+    qf_dyn.o(.text.QF_poolGetMaxBlockSize) refers to qf_act.o(.bss.QF_priv_) for QF_priv_
+    qf_dyn.o(.ARM.exidx.text.QF_poolGetMaxBlockSize) refers to qf_dyn.o(.text.QF_poolGetMaxBlockSize) for [Anonymous Symbol]
+    qf_dyn.o(.text.QF_getPoolMin) refers to qf_act.o(.bss.QF_priv_) for QF_priv_
+    qf_dyn.o(.text.QF_getPoolMin) refers to qf_dyn.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_dyn.o(.ARM.exidx.text.QF_getPoolMin) refers to qf_dyn.o(.text.QF_getPoolMin) for [Anonymous Symbol]
+    qf_dyn.o(.text.QF_newX_) refers to qf_act.o(.bss.QF_priv_) for QF_priv_
+    qf_dyn.o(.text.QF_newX_) refers to qf_dyn.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_dyn.o(.text.QF_newX_) refers to qf_mem.o(.text.QMPool_get) for QMPool_get
+    qf_dyn.o(.ARM.exidx.text.QF_newX_) refers to qf_dyn.o(.text.QF_newX_) for [Anonymous Symbol]
+    qf_dyn.o(.text.QF_gc) refers to qf_dyn.o(.text.QEvt_verify_) for QEvt_verify_
+    qf_dyn.o(.text.QF_gc) refers to qf_dyn.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_dyn.o(.text.QF_gc) refers to qf_dyn.o(.text.QEvt_getPoolId_) for QEvt_getPoolId_
+    qf_dyn.o(.text.QF_gc) refers to qf_dyn.o(.text.QEvt_refCtr_dec_) for QEvt_refCtr_dec_
+    qf_dyn.o(.text.QF_gc) refers to qf_act.o(.bss.QF_priv_) for QF_priv_
+    qf_dyn.o(.text.QF_gc) refers to qf_mem.o(.text.QMPool_put) for QMPool_put
+    qf_dyn.o(.ARM.exidx.text.QF_gc) refers to qf_dyn.o(.text.QF_gc) for [Anonymous Symbol]
+    qf_dyn.o(.ARM.exidx.text.QEvt_verify_) refers to qf_dyn.o(.text.QEvt_verify_) for [Anonymous Symbol]
+    qf_dyn.o(.ARM.exidx.text.QEvt_getPoolId_) refers to qf_dyn.o(.text.QEvt_getPoolId_) for [Anonymous Symbol]
+    qf_dyn.o(.ARM.exidx.text.QEvt_refCtr_dec_) refers to qf_dyn.o(.text.QEvt_refCtr_dec_) for [Anonymous Symbol]
+    qf_dyn.o(.text.QF_newRef_) refers to qf_dyn.o(.text.QEvt_verify_) for QEvt_verify_
+    qf_dyn.o(.text.QF_newRef_) refers to qf_dyn.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_dyn.o(.text.QF_newRef_) refers to qf_dyn.o(.text.QEvt_getPoolId_) for QEvt_getPoolId_
+    qf_dyn.o(.text.QF_newRef_) refers to qf_dyn.o(.text.QEvt_refCtr_inc_) for QEvt_refCtr_inc_
+    qf_dyn.o(.ARM.exidx.text.QF_newRef_) refers to qf_dyn.o(.text.QF_newRef_) for [Anonymous Symbol]
+    qf_dyn.o(.ARM.exidx.text.QEvt_refCtr_inc_) refers to qf_dyn.o(.text.QEvt_refCtr_inc_) for [Anonymous Symbol]
+    qf_dyn.o(.text.QF_deleteRef_) refers to qf_dyn.o(.text.QEvt_verify_) for QEvt_verify_
+    qf_dyn.o(.text.QF_deleteRef_) refers to qf_dyn.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_dyn.o(.text.QF_deleteRef_) refers to qf_dyn.o(.text.QF_gc) for QF_gc
+    qf_dyn.o(.ARM.exidx.text.QF_deleteRef_) refers to qf_dyn.o(.text.QF_deleteRef_) for [Anonymous Symbol]
+    qf_mem.o(.text.QMPool_init) refers to qf_mem.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_mem.o(.ARM.exidx.text.QMPool_init) refers to qf_mem.o(.text.QMPool_init) for [Anonymous Symbol]
+    qf_mem.o(.text.QMPool_get) refers to qf_mem.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_mem.o(.ARM.exidx.text.QMPool_get) refers to qf_mem.o(.text.QMPool_get) for [Anonymous Symbol]
+    qf_mem.o(.text.QMPool_put) refers to qf_mem.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_mem.o(.ARM.exidx.text.QMPool_put) refers to qf_mem.o(.text.QMPool_put) for [Anonymous Symbol]
+    qf_ps.o(.text.QActive_psInit) refers to qf_ps.o(.bss.QActive_subscrList_) for QActive_subscrList_
+    qf_ps.o(.text.QActive_psInit) refers to qf_ps.o(.bss.QActive_maxPubSignal_) for QActive_maxPubSignal_
+    qf_ps.o(.text.QActive_psInit) refers to qf_ps.o(.text.QPSet_setEmpty) for QPSet_setEmpty
+    qf_ps.o(.text.QActive_psInit) refers to qf_ps.o(.text.QPSet_update_) for QPSet_update_
+    qf_ps.o(.ARM.exidx.text.QActive_psInit) refers to qf_ps.o(.text.QActive_psInit) for [Anonymous Symbol]
+    qf_ps.o(.ARM.exidx.text.QPSet_setEmpty) refers to qf_ps.o(.text.QPSet_setEmpty) for [Anonymous Symbol]
+    qf_ps.o(.ARM.exidx.text.QPSet_update_) refers to qf_ps.o(.text.QPSet_update_) for [Anonymous Symbol]
+    qf_ps.o(.text.QActive_publish_) refers to qf_ps.o(.bss.QActive_maxPubSignal_) for QActive_maxPubSignal_
+    qf_ps.o(.text.QActive_publish_) refers to qf_ps.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_ps.o(.text.QActive_publish_) refers to qf_ps.o(.bss.QActive_subscrList_) for QActive_subscrList_
+    qf_ps.o(.text.QActive_publish_) refers to qf_ps.o(.text.QPSet_verify_) for QPSet_verify_
+    qf_ps.o(.text.QActive_publish_) refers to qf_ps.o(.text.QEvt_getPoolId_) for QEvt_getPoolId_
+    qf_ps.o(.text.QActive_publish_) refers to qf_ps.o(.text.QEvt_refCtr_inc_) for QEvt_refCtr_inc_
+    qf_ps.o(.text.QActive_publish_) refers to qf_ps.o(.text.QPSet_notEmpty) for QPSet_notEmpty
+    qf_ps.o(.text.QActive_publish_) refers to qf_ps.o(.text.QPSet_findMax) for QPSet_findMax
+    qf_ps.o(.text.QActive_publish_) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qf_ps.o(.text.QActive_publish_) refers to qxk.o(.text.QXK_schedLock) for QXK_schedLock
+    qf_ps.o(.text.QActive_publish_) refers to qf_actq.o(.text.QActive_post_) for QActive_post_
+    qf_ps.o(.text.QActive_publish_) refers to qf_ps.o(.text.QPSet_remove) for QPSet_remove
+    qf_ps.o(.text.QActive_publish_) refers to qxk.o(.text.QXK_schedUnlock) for QXK_schedUnlock
+    qf_ps.o(.text.QActive_publish_) refers to qf_dyn.o(.text.QF_gc) for QF_gc
+    qf_ps.o(.ARM.exidx.text.QActive_publish_) refers to qf_ps.o(.text.QActive_publish_) for [Anonymous Symbol]
+    qf_ps.o(.ARM.exidx.text.QPSet_verify_) refers to qf_ps.o(.text.QPSet_verify_) for [Anonymous Symbol]
+    qf_ps.o(.ARM.exidx.text.QEvt_getPoolId_) refers to qf_ps.o(.text.QEvt_getPoolId_) for [Anonymous Symbol]
+    qf_ps.o(.ARM.exidx.text.QEvt_refCtr_inc_) refers to qf_ps.o(.text.QEvt_refCtr_inc_) for [Anonymous Symbol]
+    qf_ps.o(.ARM.exidx.text.QPSet_notEmpty) refers to qf_ps.o(.text.QPSet_notEmpty) for [Anonymous Symbol]
+    qf_ps.o(.ARM.exidx.text.QPSet_findMax) refers to qf_ps.o(.text.QPSet_findMax) for [Anonymous Symbol]
+    qf_ps.o(.ARM.exidx.text.QPSet_remove) refers to qf_ps.o(.text.QPSet_remove) for [Anonymous Symbol]
+    qf_ps.o(.text.QActive_subscribe) refers to qf_ps.o(.bss.QActive_maxPubSignal_) for QActive_maxPubSignal_
+    qf_ps.o(.text.QActive_subscribe) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qf_ps.o(.text.QActive_subscribe) refers to qf_ps.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_ps.o(.text.QActive_subscribe) refers to qf_ps.o(.bss.QActive_subscrList_) for QActive_subscrList_
+    qf_ps.o(.text.QActive_subscribe) refers to qf_ps.o(.text.QPSet_verify_) for QPSet_verify_
+    qf_ps.o(.text.QActive_subscribe) refers to qf_ps.o(.text.QPSet_insert) for QPSet_insert
+    qf_ps.o(.text.QActive_subscribe) refers to qf_ps.o(.text.QPSet_update_) for QPSet_update_
+    qf_ps.o(.ARM.exidx.text.QActive_subscribe) refers to qf_ps.o(.text.QActive_subscribe) for [Anonymous Symbol]
+    qf_ps.o(.ARM.exidx.text.QPSet_insert) refers to qf_ps.o(.text.QPSet_insert) for [Anonymous Symbol]
+    qf_ps.o(.text.QActive_unsubscribe) refers to qf_ps.o(.bss.QActive_maxPubSignal_) for QActive_maxPubSignal_
+    qf_ps.o(.text.QActive_unsubscribe) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qf_ps.o(.text.QActive_unsubscribe) refers to qf_ps.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_ps.o(.text.QActive_unsubscribe) refers to qf_ps.o(.bss.QActive_subscrList_) for QActive_subscrList_
+    qf_ps.o(.text.QActive_unsubscribe) refers to qf_ps.o(.text.QPSet_verify_) for QPSet_verify_
+    qf_ps.o(.text.QActive_unsubscribe) refers to qf_ps.o(.text.QPSet_remove) for QPSet_remove
+    qf_ps.o(.text.QActive_unsubscribe) refers to qf_ps.o(.text.QPSet_update_) for QPSet_update_
+    qf_ps.o(.ARM.exidx.text.QActive_unsubscribe) refers to qf_ps.o(.text.QActive_unsubscribe) for [Anonymous Symbol]
+    qf_ps.o(.text.QActive_unsubscribeAll) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qf_ps.o(.text.QActive_unsubscribeAll) refers to qf_ps.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_ps.o(.text.QActive_unsubscribeAll) refers to qf_ps.o(.bss.QActive_maxPubSignal_) for QActive_maxPubSignal_
+    qf_ps.o(.text.QActive_unsubscribeAll) refers to qf_ps.o(.bss.QActive_subscrList_) for QActive_subscrList_
+    qf_ps.o(.text.QActive_unsubscribeAll) refers to qf_ps.o(.text.QPSet_hasElement) for QPSet_hasElement
+    qf_ps.o(.text.QActive_unsubscribeAll) refers to qf_ps.o(.text.QPSet_remove) for QPSet_remove
+    qf_ps.o(.text.QActive_unsubscribeAll) refers to qf_ps.o(.text.QPSet_update_) for QPSet_update_
+    qf_ps.o(.ARM.exidx.text.QActive_unsubscribeAll) refers to qf_ps.o(.text.QActive_unsubscribeAll) for [Anonymous Symbol]
+    qf_ps.o(.ARM.exidx.text.QPSet_hasElement) refers to qf_ps.o(.text.QPSet_hasElement) for [Anonymous Symbol]
+    qf_qact.o(.text.QActive_ctor) refers to qf_act.o(.text.QF_bzero_) for QF_bzero_
+    qf_qact.o(.text.QActive_ctor) refers to qep_hsm.o(.text.QHsm_ctor) for QHsm_ctor
+    qf_qact.o(.text.QActive_ctor) refers to qf_qact.o(.rodata.QActive_ctor.vtable) for QActive_ctor.vtable
+    qf_qact.o(.ARM.exidx.text.QActive_ctor) refers to qf_qact.o(.text.QActive_ctor) for [Anonymous Symbol]
+    qf_qact.o(.text.QActive_register_) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qf_qact.o(.text.QActive_register_) refers to qf_qact.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_qact.o(.ARM.exidx.text.QActive_register_) refers to qf_qact.o(.text.QActive_register_) for [Anonymous Symbol]
+    qf_qact.o(.text.QActive_unregister_) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qf_qact.o(.text.QActive_unregister_) refers to qf_qact.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_qact.o(.ARM.exidx.text.QActive_unregister_) refers to qf_qact.o(.text.QActive_unregister_) for [Anonymous Symbol]
+    qf_qact.o(.rodata.QActive_ctor.vtable) refers to qep_hsm.o(.text.QHsm_init_) for QHsm_init_
+    qf_qact.o(.rodata.QActive_ctor.vtable) refers to qep_hsm.o(.text.QHsm_dispatch_) for QHsm_dispatch_
+    qf_qeq.o(.ARM.exidx.text.QEQueue_init) refers to qf_qeq.o(.text.QEQueue_init) for [Anonymous Symbol]
+    qf_qeq.o(.text.QEQueue_post) refers to qf_qeq.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_qeq.o(.text.QEQueue_post) refers to qf_qeq.o(.text.QEvt_getPoolId_) for QEvt_getPoolId_
+    qf_qeq.o(.text.QEQueue_post) refers to qf_qeq.o(.text.QEvt_refCtr_inc_) for QEvt_refCtr_inc_
+    qf_qeq.o(.ARM.exidx.text.QEQueue_post) refers to qf_qeq.o(.text.QEQueue_post) for [Anonymous Symbol]
+    qf_qeq.o(.ARM.exidx.text.QEvt_getPoolId_) refers to qf_qeq.o(.text.QEvt_getPoolId_) for [Anonymous Symbol]
+    qf_qeq.o(.ARM.exidx.text.QEvt_refCtr_inc_) refers to qf_qeq.o(.text.QEvt_refCtr_inc_) for [Anonymous Symbol]
+    qf_qeq.o(.text.QEQueue_postLIFO) refers to qf_qeq.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_qeq.o(.text.QEQueue_postLIFO) refers to qf_qeq.o(.text.QEvt_getPoolId_) for QEvt_getPoolId_
+    qf_qeq.o(.text.QEQueue_postLIFO) refers to qf_qeq.o(.text.QEvt_refCtr_inc_) for QEvt_refCtr_inc_
+    qf_qeq.o(.ARM.exidx.text.QEQueue_postLIFO) refers to qf_qeq.o(.text.QEQueue_postLIFO) for [Anonymous Symbol]
+    qf_qeq.o(.text.QEQueue_get) refers to qf_qeq.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_qeq.o(.ARM.exidx.text.QEQueue_get) refers to qf_qeq.o(.text.QEQueue_get) for [Anonymous Symbol]
+    qf_qmact.o(.text.QMActive_ctor) refers to qf_act.o(.text.QF_bzero_) for QF_bzero_
+    qf_qmact.o(.text.QMActive_ctor) refers to qep_msm.o(.text.QMsm_ctor) for QMsm_ctor
+    qf_qmact.o(.text.QMActive_ctor) refers to qf_qmact.o(.rodata.QMActive_ctor.vtable) for QMActive_ctor.vtable
+    qf_qmact.o(.ARM.exidx.text.QMActive_ctor) refers to qf_qmact.o(.text.QMActive_ctor) for [Anonymous Symbol]
+    qf_qmact.o(.rodata.QMActive_ctor.vtable) refers to qep_msm.o(.text.QMsm_init_) for QMsm_init_
+    qf_qmact.o(.rodata.QMActive_ctor.vtable) refers to qep_msm.o(.text.QMsm_dispatch_) for QMsm_dispatch_
+    qf_time.o(.text.QTimeEvt_ctorX) refers to qf_time.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_time.o(.text.QTimeEvt_ctorX) refers to qf_time.o(.text.QEvt_ctor) for QEvt_ctor
+    qf_time.o(.ARM.exidx.text.QTimeEvt_ctorX) refers to qf_time.o(.text.QTimeEvt_ctorX) for [Anonymous Symbol]
+    qf_time.o(.ARM.exidx.text.QEvt_ctor) refers to qf_time.o(.text.QEvt_ctor) for [Anonymous Symbol]
+    qf_time.o(.text.QTimeEvt_armX) refers to qf_time.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_time.o(.text.QTimeEvt_armX) refers to qf_time.o(.bss.QTimeEvt_timeEvtHead_) for QTimeEvt_timeEvtHead_
+    qf_time.o(.ARM.exidx.text.QTimeEvt_armX) refers to qf_time.o(.text.QTimeEvt_armX) for [Anonymous Symbol]
+    qf_time.o(.ARM.exidx.text.QTimeEvt_disarm) refers to qf_time.o(.text.QTimeEvt_disarm) for [Anonymous Symbol]
+    qf_time.o(.text.QTimeEvt_rearm) refers to qf_time.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_time.o(.text.QTimeEvt_rearm) refers to qf_time.o(.bss.QTimeEvt_timeEvtHead_) for QTimeEvt_timeEvtHead_
+    qf_time.o(.ARM.exidx.text.QTimeEvt_rearm) refers to qf_time.o(.text.QTimeEvt_rearm) for [Anonymous Symbol]
+    qf_time.o(.ARM.exidx.text.QTimeEvt_wasDisarmed) refers to qf_time.o(.text.QTimeEvt_wasDisarmed) for [Anonymous Symbol]
+    qf_time.o(.ARM.exidx.text.QTimeEvt_currCtr) refers to qf_time.o(.text.QTimeEvt_currCtr) for [Anonymous Symbol]
+    qf_time.o(.text.QTimeEvt_tick_) refers to qf_time.o(.bss.QTimeEvt_timeEvtHead_) for QTimeEvt_timeEvtHead_
+    qf_time.o(.text.QTimeEvt_tick_) refers to qf_time.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_time.o(.text.QTimeEvt_tick_) refers to qxk_xthr.o(.text.QXThread_timeout_) for QXThread_timeout_
+    qf_time.o(.text.QTimeEvt_tick_) refers to qf_actq.o(.text.QActive_post_) for QActive_post_
+    qf_time.o(.ARM.exidx.text.QTimeEvt_tick_) refers to qf_time.o(.text.QTimeEvt_tick_) for [Anonymous Symbol]
+    qf_time.o(.text.QTimeEvt_noActive) refers to qf_time.o(.rodata.Q_this_module_) for Q_this_module_
+    qf_time.o(.text.QTimeEvt_noActive) refers to qf_time.o(.bss.QTimeEvt_timeEvtHead_) for QTimeEvt_timeEvtHead_
+    qf_time.o(.ARM.exidx.text.QTimeEvt_noActive) refers to qf_time.o(.text.QTimeEvt_noActive) for [Anonymous Symbol]
+    qxk.o(.text.QXK_schedLock) refers to qxk.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk.o(.text.QXK_schedLock) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk.o(.ARM.exidx.text.QXK_schedLock) refers to qxk.o(.text.QXK_schedLock) for [Anonymous Symbol]
+    qxk.o(.text.QXK_schedUnlock) refers to qxk.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk.o(.text.QXK_schedUnlock) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk.o(.text.QXK_schedUnlock) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    qxk.o(.text.QXK_schedUnlock) refers to qxk.o(.text.QXK_activate_) for QXK_activate_
+    qxk.o(.ARM.exidx.text.QXK_schedUnlock) refers to qxk.o(.text.QXK_schedUnlock) for [Anonymous Symbol]
+    qxk.o(.text.QXK_sched_) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk.o(.text.QXK_sched_) refers to qxk.o(.text.QPSet_verify_) for QPSet_verify_
+    qxk.o(.text.QXK_sched_) refers to qxk.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk.o(.text.QXK_sched_) refers to qxk.o(.text.QPSet_isEmpty) for QPSet_isEmpty
+    qxk.o(.text.QXK_sched_) refers to qxk.o(.text.QPSet_findMax) for QPSet_findMax
+    qxk.o(.text.QXK_sched_) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qxk.o(.text.QXK_sched_) refers to qxk.o(.text.QPSet_hasElement) for QPSet_hasElement
+    qxk.o(.ARM.exidx.text.QXK_sched_) refers to qxk.o(.text.QXK_sched_) for [Anonymous Symbol]
+    qxk.o(.text.QXK_activate_) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk.o(.text.QXK_activate_) refers to qxk.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk.o(.text.QXK_activate_) refers to qf_actq.o(.text.QActive_get_) for QActive_get_
+    qxk.o(.text.QXK_activate_) refers to qf_dyn.o(.text.QF_gc) for QF_gc
+    qxk.o(.text.QXK_activate_) refers to qxk.o(.text.QPSet_verify_) for QPSet_verify_
+    qxk.o(.text.QXK_activate_) refers to qxk.o(.text.QPSet_remove) for QPSet_remove
+    qxk.o(.text.QXK_activate_) refers to qxk.o(.text.QPSet_update_) for QPSet_update_
+    qxk.o(.text.QXK_activate_) refers to qxk.o(.text.QPSet_isEmpty) for QPSet_isEmpty
+    qxk.o(.text.QXK_activate_) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qxk.o(.text.QXK_activate_) refers to qxk.o(.text.QPSet_findMax) for QPSet_findMax
+    qxk.o(.text.QXK_activate_) refers to qxk.o(.text.QPSet_hasElement) for QPSet_hasElement
+    qxk.o(.ARM.exidx.text.QXK_activate_) refers to qxk.o(.text.QXK_activate_) for [Anonymous Symbol]
+    qxk.o(.text.QXK_current) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk.o(.text.QXK_current) refers to qxk.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk.o(.text.QXK_current) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qxk.o(.ARM.exidx.text.QXK_current) refers to qxk.o(.text.QXK_current) for [Anonymous Symbol]
+    qxk.o(.ARM.exidx.text.QPSet_verify_) refers to qxk.o(.text.QPSet_verify_) for [Anonymous Symbol]
+    qxk.o(.ARM.exidx.text.QPSet_isEmpty) refers to qxk.o(.text.QPSet_isEmpty) for [Anonymous Symbol]
+    qxk.o(.ARM.exidx.text.QPSet_findMax) refers to qxk.o(.text.QPSet_findMax) for [Anonymous Symbol]
+    qxk.o(.ARM.exidx.text.QPSet_hasElement) refers to qxk.o(.text.QPSet_hasElement) for [Anonymous Symbol]
+    qxk.o(.ARM.exidx.text.QPSet_remove) refers to qxk.o(.text.QPSet_remove) for [Anonymous Symbol]
+    qxk.o(.ARM.exidx.text.QPSet_update_) refers to qxk.o(.text.QPSet_update_) for [Anonymous Symbol]
+    qxk.o(.text.QXK_contextSw_) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk.o(.ARM.exidx.text.QXK_contextSw_) refers to qxk.o(.text.QXK_contextSw_) for [Anonymous Symbol]
+    qxk.o(.text.QXK_threadExit_) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk.o(.text.QXK_threadExit_) refers to qxk.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk.o(.text.QXK_threadExit_) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qxk.o(.text.QXK_threadExit_) refers to qxk.o(.text.QPSet_remove) for QPSet_remove
+    qxk.o(.text.QXK_threadExit_) refers to qxk.o(.text.QPSet_update_) for QPSet_update_
+    qxk.o(.text.QXK_threadExit_) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    qxk.o(.ARM.exidx.text.QXK_threadExit_) refers to qxk.o(.text.QXK_threadExit_) for [Anonymous Symbol]
+    qxk.o(.text.QF_init) refers to qf_act.o(.bss.QF_priv_) for QF_priv_
+    qxk.o(.text.QF_init) refers to qf_act.o(.text.QF_bzero_) for QF_bzero_
+    qxk.o(.text.QF_init) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk.o(.text.QF_init) refers to qf_time.o(.bss.QTimeEvt_timeEvtHead_) for QTimeEvt_timeEvtHead_
+    qxk.o(.text.QF_init) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qxk.o(.text.QF_init) refers to qxk.o(.text.QPSet_update_) for QPSet_update_
+    qxk.o(.text.QF_init) refers to qxk.o(.rodata.QF_init.idle_ao) for QF_init.idle_ao
+    qxk.o(.text.QF_init) refers to qxk_port.o(.text.QXK_init) for QXK_init
+    qxk.o(.ARM.exidx.text.QF_init) refers to qxk.o(.text.QF_init) for [Anonymous Symbol]
+    qxk.o(.text.QF_stop) refers to os.o(.text.QF_onCleanup) for QF_onCleanup
+    qxk.o(.ARM.exidx.text.QF_stop) refers to qxk.o(.text.QF_stop) for [Anonymous Symbol]
+    qxk.o(.text.QF_run) refers to os.o(.text.QF_onStartup) for QF_onStartup
+    qxk.o(.text.QF_run) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk.o(.text.QF_run) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    qxk.o(.text.QF_run) refers to qxk.o(.text.QXK_activate_) for QXK_activate_
+    qxk.o(.text.QF_run) refers to os.o(.text.QXK_onIdle) for QXK_onIdle
+    qxk.o(.ARM.exidx.text.QF_run) refers to qxk.o(.text.QF_run) for [Anonymous Symbol]
+    qxk.o(.text.QActive_start_) refers to qxk.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk.o(.text.QActive_start_) refers to qf_qact.o(.text.QActive_register_) for QActive_register_
+    qxk.o(.text.QActive_start_) refers to qf_qeq.o(.text.QEQueue_init) for QEQueue_init
+    qxk.o(.text.QActive_start_) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk.o(.text.QActive_start_) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    qxk.o(.text.QActive_start_) refers to qxk.o(.text.QXK_activate_) for QXK_activate_
+    qxk.o(.text.QActive_start_) refers to qxk_port.o(.text.QXThread_stackInit_) for QXThread_stackInit_
+    qxk.o(.text.QActive_start_) refers to qxk.o(.text.QPSet_insert) for QPSet_insert
+    qxk.o(.text.QActive_start_) refers to qxk.o(.text.QPSet_update_) for QPSet_update_
+    qxk.o(.ARM.exidx.text.QActive_start_) refers to qxk.o(.text.QActive_start_) for [Anonymous Symbol]
+    qxk.o(.ARM.exidx.text.QPSet_insert) refers to qxk.o(.text.QPSet_insert) for [Anonymous Symbol]
+    qxk_mutex.o(.text.QXMutex_init) refers to qxk_mutex.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk_mutex.o(.text.QXMutex_init) refers to qf_qact.o(.text.QActive_register_) for QActive_register_
+    qxk_mutex.o(.ARM.exidx.text.QXMutex_init) refers to qxk_mutex.o(.text.QXMutex_init) for [Anonymous Symbol]
+    qxk_mutex.o(.text.QXMutex_lock) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk_mutex.o(.text.QXMutex_lock) refers to qxk_mutex.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk_mutex.o(.text.QXMutex_lock) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qxk_mutex.o(.text.QXMutex_lock) refers to qxk_mutex.o(.text.QPSet_remove) for QPSet_remove
+    qxk_mutex.o(.text.QXMutex_lock) refers to qxk_mutex.o(.text.QPSet_insert) for QPSet_insert
+    qxk_mutex.o(.text.QXMutex_lock) refers to qxk_mutex.o(.text.QPSet_update_) for QPSet_update_
+    qxk_mutex.o(.text.QXMutex_lock) refers to qxk_xthr.o(.text.QXThread_teArm_) for QXThread_teArm_
+    qxk_mutex.o(.text.QXMutex_lock) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    qxk_mutex.o(.text.QXMutex_lock) refers to qxk_mutex.o(.text.QPSet_hasElement) for QPSet_hasElement
+    qxk_mutex.o(.ARM.exidx.text.QXMutex_lock) refers to qxk_mutex.o(.text.QXMutex_lock) for [Anonymous Symbol]
+    qxk_mutex.o(.ARM.exidx.text.QPSet_remove) refers to qxk_mutex.o(.text.QPSet_remove) for [Anonymous Symbol]
+    qxk_mutex.o(.ARM.exidx.text.QPSet_insert) refers to qxk_mutex.o(.text.QPSet_insert) for [Anonymous Symbol]
+    qxk_mutex.o(.ARM.exidx.text.QPSet_update_) refers to qxk_mutex.o(.text.QPSet_update_) for [Anonymous Symbol]
+    qxk_mutex.o(.ARM.exidx.text.QPSet_hasElement) refers to qxk_mutex.o(.text.QPSet_hasElement) for [Anonymous Symbol]
+    qxk_mutex.o(.text.QXMutex_tryLock) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk_mutex.o(.text.QXMutex_tryLock) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qxk_mutex.o(.text.QXMutex_tryLock) refers to qxk_mutex.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk_mutex.o(.text.QXMutex_tryLock) refers to qxk_mutex.o(.text.QPSet_remove) for QPSet_remove
+    qxk_mutex.o(.text.QXMutex_tryLock) refers to qxk_mutex.o(.text.QPSet_insert) for QPSet_insert
+    qxk_mutex.o(.text.QXMutex_tryLock) refers to qxk_mutex.o(.text.QPSet_update_) for QPSet_update_
+    qxk_mutex.o(.ARM.exidx.text.QXMutex_tryLock) refers to qxk_mutex.o(.text.QXMutex_tryLock) for [Anonymous Symbol]
+    qxk_mutex.o(.text.QXMutex_unlock) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk_mutex.o(.text.QXMutex_unlock) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qxk_mutex.o(.text.QXMutex_unlock) refers to qxk_mutex.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk_mutex.o(.text.QXMutex_unlock) refers to qxk_mutex.o(.text.QPSet_remove) for QPSet_remove
+    qxk_mutex.o(.text.QXMutex_unlock) refers to qxk_mutex.o(.text.QPSet_insert) for QPSet_insert
+    qxk_mutex.o(.text.QXMutex_unlock) refers to qxk_mutex.o(.text.QPSet_update_) for QPSet_update_
+    qxk_mutex.o(.text.QXMutex_unlock) refers to qxk_mutex.o(.text.QPSet_notEmpty) for QPSet_notEmpty
+    qxk_mutex.o(.text.QXMutex_unlock) refers to qxk_mutex.o(.text.QPSet_findMax) for QPSet_findMax
+    qxk_mutex.o(.text.QXMutex_unlock) refers to qxk_xthr.o(.text.QXThread_teDisarm_) for QXThread_teDisarm_
+    qxk_mutex.o(.text.QXMutex_unlock) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    qxk_mutex.o(.text.QXMutex_unlock) refers to qxk.o(.text.QXK_activate_) for QXK_activate_
+    qxk_mutex.o(.ARM.exidx.text.QXMutex_unlock) refers to qxk_mutex.o(.text.QXMutex_unlock) for [Anonymous Symbol]
+    qxk_mutex.o(.ARM.exidx.text.QPSet_notEmpty) refers to qxk_mutex.o(.text.QPSet_notEmpty) for [Anonymous Symbol]
+    qxk_mutex.o(.ARM.exidx.text.QPSet_findMax) refers to qxk_mutex.o(.text.QPSet_findMax) for [Anonymous Symbol]
+    qxk_sema.o(.text.QXSemaphore_init) refers to qxk_sema.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk_sema.o(.text.QXSemaphore_init) refers to qxk_sema.o(.text.QPSet_setEmpty) for QPSet_setEmpty
+    qxk_sema.o(.ARM.exidx.text.QXSemaphore_init) refers to qxk_sema.o(.text.QXSemaphore_init) for [Anonymous Symbol]
+    qxk_sema.o(.ARM.exidx.text.QPSet_setEmpty) refers to qxk_sema.o(.text.QPSet_setEmpty) for [Anonymous Symbol]
+    qxk_sema.o(.text.QXSemaphore_wait) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk_sema.o(.text.QXSemaphore_wait) refers to qxk_sema.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk_sema.o(.text.QXSemaphore_wait) refers to qxk_sema.o(.text.QPSet_remove) for QPSet_remove
+    qxk_sema.o(.text.QXSemaphore_wait) refers to qxk_sema.o(.text.QPSet_update_) for QPSet_update_
+    qxk_sema.o(.text.QXSemaphore_wait) refers to qxk_sema.o(.text.QPSet_insert) for QPSet_insert
+    qxk_sema.o(.text.QXSemaphore_wait) refers to qxk_xthr.o(.text.QXThread_teArm_) for QXThread_teArm_
+    qxk_sema.o(.text.QXSemaphore_wait) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    qxk_sema.o(.text.QXSemaphore_wait) refers to qxk_sema.o(.text.QPSet_hasElement) for QPSet_hasElement
+    qxk_sema.o(.ARM.exidx.text.QXSemaphore_wait) refers to qxk_sema.o(.text.QXSemaphore_wait) for [Anonymous Symbol]
+    qxk_sema.o(.ARM.exidx.text.QPSet_remove) refers to qxk_sema.o(.text.QPSet_remove) for [Anonymous Symbol]
+    qxk_sema.o(.ARM.exidx.text.QPSet_update_) refers to qxk_sema.o(.text.QPSet_update_) for [Anonymous Symbol]
+    qxk_sema.o(.ARM.exidx.text.QPSet_insert) refers to qxk_sema.o(.text.QPSet_insert) for [Anonymous Symbol]
+    qxk_sema.o(.ARM.exidx.text.QPSet_hasElement) refers to qxk_sema.o(.text.QPSet_hasElement) for [Anonymous Symbol]
+    qxk_sema.o(.text.QXSemaphore_tryWait) refers to qxk_sema.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk_sema.o(.ARM.exidx.text.QXSemaphore_tryWait) refers to qxk_sema.o(.text.QXSemaphore_tryWait) for [Anonymous Symbol]
+    qxk_sema.o(.text.QXSemaphore_signal) refers to qxk_sema.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk_sema.o(.text.QXSemaphore_signal) refers to qxk_sema.o(.text.QPSet_notEmpty) for QPSet_notEmpty
+    qxk_sema.o(.text.QXSemaphore_signal) refers to qxk_sema.o(.text.QPSet_findMax) for QPSet_findMax
+    qxk_sema.o(.text.QXSemaphore_signal) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qxk_sema.o(.text.QXSemaphore_signal) refers to qxk_xthr.o(.text.QXThread_teDisarm_) for QXThread_teDisarm_
+    qxk_sema.o(.text.QXSemaphore_signal) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk_sema.o(.text.QXSemaphore_signal) refers to qxk_sema.o(.text.QPSet_insert) for QPSet_insert
+    qxk_sema.o(.text.QXSemaphore_signal) refers to qxk_sema.o(.text.QPSet_update_) for QPSet_update_
+    qxk_sema.o(.text.QXSemaphore_signal) refers to qxk_sema.o(.text.QPSet_remove) for QPSet_remove
+    qxk_sema.o(.text.QXSemaphore_signal) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    qxk_sema.o(.ARM.exidx.text.QXSemaphore_signal) refers to qxk_sema.o(.text.QXSemaphore_signal) for [Anonymous Symbol]
+    qxk_sema.o(.ARM.exidx.text.QPSet_notEmpty) refers to qxk_sema.o(.text.QPSet_notEmpty) for [Anonymous Symbol]
+    qxk_sema.o(.ARM.exidx.text.QPSet_findMax) refers to qxk_sema.o(.text.QPSet_findMax) for [Anonymous Symbol]
+    qxk_xthr.o(.text.QXThread_ctor) refers to qf_qact.o(.text.QActive_ctor) for QActive_ctor
+    qxk_xthr.o(.text.QXThread_ctor) refers to qf_time.o(.text.QTimeEvt_ctorX) for QTimeEvt_ctorX
+    qxk_xthr.o(.ARM.exidx.text.QXThread_ctor) refers to qxk_xthr.o(.text.QXThread_ctor) for [Anonymous Symbol]
+    qxk_xthr.o(.text.QXThread_delay) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk_xthr.o(.text.QXThread_delay) refers to qxk_xthr.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk_xthr.o(.text.QXThread_delay) refers to qxk_xthr.o(.text.QXThread_teArm_) for QXThread_teArm_
+    qxk_xthr.o(.text.QXThread_delay) refers to qxk_xthr.o(.text.QXThread_block_) for QXThread_block_
+    qxk_xthr.o(.ARM.exidx.text.QXThread_delay) refers to qxk_xthr.o(.text.QXThread_delay) for [Anonymous Symbol]
+    qxk_xthr.o(.text.QXThread_teArm_) refers to qxk_xthr.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk_xthr.o(.text.QXThread_teArm_) refers to qf_time.o(.bss.QTimeEvt_timeEvtHead_) for QTimeEvt_timeEvtHead_
+    qxk_xthr.o(.ARM.exidx.text.QXThread_teArm_) refers to qxk_xthr.o(.text.QXThread_teArm_) for [Anonymous Symbol]
+    qxk_xthr.o(.text.QXThread_block_) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk_xthr.o(.text.QXThread_block_) refers to qxk_xthr.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk_xthr.o(.text.QXThread_block_) refers to qxk_xthr.o(.text.QPSet_remove) for QPSet_remove
+    qxk_xthr.o(.text.QXThread_block_) refers to qxk_xthr.o(.text.QPSet_update_) for QPSet_update_
+    qxk_xthr.o(.text.QXThread_block_) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    qxk_xthr.o(.ARM.exidx.text.QXThread_block_) refers to qxk_xthr.o(.text.QXThread_block_) for [Anonymous Symbol]
+    qxk_xthr.o(.text.QXThread_delayCancel) refers to qxk_xthr.o(.text.QXThread_teDisarm_) for QXThread_teDisarm_
+    qxk_xthr.o(.text.QXThread_delayCancel) refers to qxk_xthr.o(.text.QXThread_unblock_) for QXThread_unblock_
+    qxk_xthr.o(.ARM.exidx.text.QXThread_delayCancel) refers to qxk_xthr.o(.text.QXThread_delayCancel) for [Anonymous Symbol]
+    qxk_xthr.o(.ARM.exidx.text.QXThread_teDisarm_) refers to qxk_xthr.o(.text.QXThread_teDisarm_) for [Anonymous Symbol]
+    qxk_xthr.o(.text.QXThread_unblock_) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk_xthr.o(.text.QXThread_unblock_) refers to qxk_xthr.o(.text.QPSet_insert) for QPSet_insert
+    qxk_xthr.o(.text.QXThread_unblock_) refers to qxk_xthr.o(.text.QPSet_update_) for QPSet_update_
+    qxk_xthr.o(.text.QXThread_unblock_) refers to qf_act.o(.bss.QActive_registry_) for QActive_registry_
+    qxk_xthr.o(.text.QXThread_unblock_) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    qxk_xthr.o(.ARM.exidx.text.QXThread_unblock_) refers to qxk_xthr.o(.text.QXThread_unblock_) for [Anonymous Symbol]
+    qxk_xthr.o(.text.QXThread_queueGet) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk_xthr.o(.text.QXThread_queueGet) refers to qxk_xthr.o(.rodata.Q_this_module_) for Q_this_module_
+    qxk_xthr.o(.text.QXThread_queueGet) refers to qxk_xthr.o(.text.QXThread_teArm_) for QXThread_teArm_
+    qxk_xthr.o(.text.QXThread_queueGet) refers to qxk_xthr.o(.text.QPSet_remove) for QPSet_remove
+    qxk_xthr.o(.text.QXThread_queueGet) refers to qxk_xthr.o(.text.QPSet_update_) for QPSet_update_
+    qxk_xthr.o(.text.QXThread_queueGet) refers to qxk.o(.text.QXK_sched_) for QXK_sched_
+    qxk_xthr.o(.ARM.exidx.text.QXThread_queueGet) refers to qxk_xthr.o(.text.QXThread_queueGet) for [Anonymous Symbol]
+    qxk_xthr.o(.ARM.exidx.text.QPSet_remove) refers to qxk_xthr.o(.text.QPSet_remove) for [Anonymous Symbol]
+    qxk_xthr.o(.ARM.exidx.text.QPSet_update_) refers to qxk_xthr.o(.text.QPSet_update_) for [Anonymous Symbol]
+    qxk_xthr.o(.ARM.exidx.text.QPSet_insert) refers to qxk_xthr.o(.text.QPSet_insert) for [Anonymous Symbol]
+    qxk_xthr.o(.text.QXThread_timeout_) refers to qxk_xthr.o(.text.QXThread_unblock_) for QXThread_unblock_
+    qxk_xthr.o(.ARM.exidx.text.QXThread_timeout_) refers to qxk_xthr.o(.text.QXThread_timeout_) for [Anonymous Symbol]
+    qxk_port.o(.text.QXThread_stackInit_) refers to qxk.o(.text.QXK_threadExit_) for QXK_threadExit_
+    qxk_port.o(.ARM.exidx.text.QXThread_stackInit_) refers to qxk_port.o(.text.QXThread_stackInit_) for [Anonymous Symbol]
+    qxk_port.o(.ARM.exidx.text.QXK_init) refers to qxk_port.o(.text.QXK_init) for [Anonymous Symbol]
+    qxk_port.o(.text.PendSV_Handler) refers to qxk.o(.bss.QXK_priv_) for QXK_priv_
+    qxk_port.o(.text.PendSV_Handler) refers to qxk.o(.text.QXK_activate_) for QXK_activate_
+    qxk_port.o(.text.PendSV_Handler) refers to qxk_port.o(.text.QXK_thread_ret) for QXK_thread_ret
+    qxk_port.o(.ARM.exidx.text.PendSV_Handler) refers to qxk_port.o(.text.PendSV_Handler) for [Anonymous Symbol]
+    qxk_port.o(.ARM.exidx.text.QXK_thread_ret) refers to qxk_port.o(.text.QXK_thread_ret) for [Anonymous Symbol]
+    qxk_port.o(.ARM.exidx.text.NMI_Handler) refers to qxk_port.o(.text.NMI_Handler) for [Anonymous Symbol]
+    startup_stm32f446xx.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_stm32f446xx.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_stm32f446xx.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_stm32f446xx.o(RESET) refers to startup_stm32f446xx.o(STACK) for __initial_sp
+    startup_stm32f446xx.o(RESET) refers to startup_stm32f446xx.o(.text) for Reset_Handler
+    startup_stm32f446xx.o(RESET) refers to qxk_port.o(.text.NMI_Handler) for NMI_Handler
+    startup_stm32f446xx.o(RESET) refers to qxk_port.o(.text.PendSV_Handler) for PendSV_Handler
+    startup_stm32f446xx.o(RESET) refers to systick.o(.text.SysTick_Handler) for SysTick_Handler
+    startup_stm32f446xx.o(.text) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_stm32f446xx.o(.text) refers to system_stm32f4xx.o(.text.SystemInit) for SystemInit
+    startup_stm32f446xx.o(.text) refers to __main.o(!!!main) for __main
+    startup_stm32f446xx.o(.text) refers to startup_stm32f446xx.o(HEAP) for Heap_Mem
+    startup_stm32f446xx.o(.text) refers to startup_stm32f446xx.o(STACK) for Stack_Mem
+    system_stm32f4xx.o(.ARM.exidx.text.SystemInit) refers to system_stm32f4xx.o(.text.SystemInit) for [Anonymous Symbol]
+    system_stm32f4xx.o(.text.SystemCoreClockUpdate) refers to system_stm32f4xx.o(.data.SystemCoreClock) for SystemCoreClock
+    system_stm32f4xx.o(.text.SystemCoreClockUpdate) refers to system_stm32f4xx.o(.rodata.AHBPrescTable) for AHBPrescTable
+    system_stm32f4xx.o(.ARM.exidx.text.SystemCoreClockUpdate) refers to system_stm32f4xx.o(.text.SystemCoreClockUpdate) for [Anonymous Symbol]
+    __main.o(!!!main) refers to __rtentry.o(.ARM.Collect$$rtentry$$00000000) for __rt_entry
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for __rt_entry_li
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for __rt_entry_main
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000C) for __rt_entry_postli_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000009) for __rt_entry_postsh_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000002) for __rt_entry_presh_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for __rt_entry_sh
+    __rtentry2.o(.ARM.Collect$$rtentry$$00000008) refers to boardinit2.o(.text) for _platform_post_stackheap_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) refers to libinit.o(.ARM.Collect$$libinit$$00000000) for __rt_lib_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) refers to boardinit3.o(.text) for _platform_post_lib_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to main.o(.text.main) for main
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to exit.o(.text) for exit
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$00000001) for .ARM.Collect$$rtentry$$00000001
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$00000008) for .ARM.Collect$$rtentry$$00000008
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for .ARM.Collect$$rtentry$$0000000A
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) for .ARM.Collect$$rtentry$$0000000B
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for .ARM.Collect$$rtentry$$0000000D
+    __rtentry4.o(.ARM.Collect$$rtentry$$00000004) refers to sys_stackheap_outer.o(.text) for __user_setup_stackheap
+    __rtentry4.o(.ARM.exidx) refers to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for .ARM.Collect$$rtentry$$00000004
+    sys_stackheap_outer.o(.text) refers to libspace.o(.text) for __user_perproc_libspace
+    sys_stackheap_outer.o(.text) refers to startup_stm32f446xx.o(.text) for __user_initial_stackheap
+    exit.o(.text) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for __rt_exit
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000030) for __rt_lib_init_alloca_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000002E) for __rt_lib_init_argv_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001D) for __rt_lib_init_atexit_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000023) for __rt_lib_init_clock_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000034) for __rt_lib_init_cpp_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000032) for __rt_lib_init_exceptions_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000001) for __rt_lib_init_fp_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000021) for __rt_lib_init_fp_trap_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000025) for __rt_lib_init_getenv_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000C) for __rt_lib_init_heap_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000013) for __rt_lib_init_lc_collate_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000015) for __rt_lib_init_lc_ctype_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000017) for __rt_lib_init_lc_monetary_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000019) for __rt_lib_init_lc_numeric_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001B) for __rt_lib_init_lc_time_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000006) for __rt_lib_init_preinit_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000010) for __rt_lib_init_rand_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000004) for __rt_lib_init_relocate_pie_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000035) for __rt_lib_init_return
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001F) for __rt_lib_init_signal_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000027) for __rt_lib_init_stdio_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000E) for __rt_lib_init_user_alloc_1
+    libspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
+    rtexit.o(.ARM.exidx) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for .ARM.Collect$$rtexit$$00000000
+    libinit2.o(.ARM.Collect$$libinit$$00000001) refers to fpinit.o(x$fpl$fpinit) for _fp_init
+    libinit2.o(.ARM.Collect$$libinit$$00000012) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$00000014) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$00000016) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$00000018) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$0000001A) refers to libinit2.o(.ARM.Collect$$libinit$$00000011) for .ARM.Collect$$libinit$$00000011
+    libinit2.o(.ARM.Collect$$libinit$$00000028) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
+    libinit2.o(.ARM.Collect$$libinit$$00000029) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
+    rtexit2.o(.ARM.Collect$$rtexit$$00000003) refers to libshutdown.o(.ARM.Collect$$libshutdown$$00000000) for __rt_lib_shutdown
+    rtexit2.o(.ARM.Collect$$rtexit$$00000004) refers to sys_exit.o(.text) for _sys_exit
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000001) for .ARM.Collect$$rtexit$$00000001
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for .ARM.Collect$$rtexit$$00000003
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for .ARM.Collect$$rtexit$$00000004
+    argv_veneer.o(.emb_text) refers to no_argv.o(.text) for __ARM_get_argv
+    sys_exit.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_exit.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    sys_exit_hlt.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_exit_hlt.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    _get_argv_nomalloc.o(.text) refers (Special) to hrguard.o(.text) for __heap_region$guard
+    _get_argv_nomalloc.o(.text) refers to defsig_rtmem_outer.o(.text) for __rt_SIGRTMEM
+    _get_argv_nomalloc.o(.text) refers to sys_command.o(.text) for _sys_command_string
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000002) for __rt_lib_shutdown_cpp_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000007) for __rt_lib_shutdown_fp_trap_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F) for __rt_lib_shutdown_heap_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000010) for __rt_lib_shutdown_return
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A) for __rt_lib_shutdown_signal_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000004) for __rt_lib_shutdown_stdio_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C) for __rt_lib_shutdown_user_alloc_1
+    sys_command.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_command.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    sys_command_hlt.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_command_hlt.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    defsig_rtmem_outer.o(.text) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    defsig_rtmem_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
+    defsig_rtmem_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
+    rt_raise.o(.text) refers to __raise.o(.text) for __raise
+    rt_raise.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_exit.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_rtmem_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    __raise.o(.text) refers to defsig.o(CL$$defsig) for __default_signal_handler
+    defsig_general.o(.text) refers to sys_wrch.o(.text) for _ttywrch
+    sys_wrch.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_wrch.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    sys_wrch_hlt.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_wrch_hlt.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    defsig.o(CL$$defsig) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    defsig_abrt_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_fpe_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtred_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_stak_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_pvfn_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_cppl_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_segv_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_other.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing gpio.o(.text), (0 bytes).
+    Removing gpio.o(.ARM.exidx.text.GPIO_Init), (8 bytes).
+    Removing os.o(.text), (0 bytes).
+    Removing os.o(.ARM.exidx.text.QF_onStartup), (8 bytes).
+    Removing os.o(.ARM.exidx.text.SysTick_Config), (8 bytes).
+    Removing os.o(.ARM.exidx.text.__NVIC_SetPriority), (8 bytes).
+    Removing os.o(.text.QF_onCleanup), (2 bytes).
+    Removing os.o(.ARM.exidx.text.QF_onCleanup), (8 bytes).
+    Removing os.o(.ARM.exidx.text.QXK_onIdle), (8 bytes).
+    Removing rcc.o(.text), (0 bytes).
+    Removing rcc.o(.ARM.exidx.text.SystemClock_Config), (8 bytes).
+    Removing systick.o(.text), (0 bytes).
+    Removing systick.o(.ARM.exidx.text.SysTick_Handler), (8 bytes).
+    Removing blinky.o(.text), (0 bytes).
+    Removing blinky.o(.ARM.exidx.text.Green_LED_Off), (8 bytes).
+    Removing blinky.o(.ARM.exidx.text.Green_LED_On), (8 bytes).
+    Removing blinky.o(.ARM.exidx.text.Yellow_LED_Off), (8 bytes).
+    Removing blinky.o(.ARM.exidx.text.Yellow_LED_On), (8 bytes).
+    Removing blinky.o(.text.Red_LED_Off), (16 bytes).
+    Removing blinky.o(.ARM.exidx.text.Red_LED_Off), (8 bytes).
+    Removing blinky.o(.text.Red_LED_On), (16 bytes).
+    Removing blinky.o(.ARM.exidx.text.Red_LED_On), (8 bytes).
+    Removing main.o(.text), (0 bytes).
+    Removing main.o(.ARM.exidx.text.main_blinky1), (8 bytes).
+    Removing main.o(.ARM.exidx.text.main_blinky2), (8 bytes).
+    Removing main.o(.text.main_blinky3), (30 bytes).
+    Removing main.o(.ARM.exidx.text.main_blinky3), (8 bytes).
+    Removing main.o(.ARM.exidx.text.main), (8 bytes).
+    Removing main.o(.bss.stack_blinky3), (160 bytes).
+    Removing main.o(.bss.blinky3), (60 bytes).
+    Removing main.o(.ARM.use_no_argv), (4 bytes).
+    Removing qep_hsm.o(.text), (0 bytes).
+    Removing qep_hsm.o(.ARM.exidx.text.QHsm_ctor), (8 bytes).
+    Removing qep_hsm.o(.ARM.exidx.text.QHsm_init_), (8 bytes).
+    Removing qep_hsm.o(.ARM.exidx.text.QHsm_dispatch_), (8 bytes).
+    Removing qep_hsm.o(.ARM.exidx.text.QHsm_top), (8 bytes).
+    Removing qep_hsm.o(.ARM.exidx.text.QEvt_verify_), (8 bytes).
+    Removing qep_hsm.o(.ARM.exidx.text.QHsm_tran_), (8 bytes).
+    Removing qep_hsm.o(.text.QHsm_isIn), (152 bytes).
+    Removing qep_hsm.o(.ARM.exidx.text.QHsm_isIn), (8 bytes).
+    Removing qep_hsm.o(.text.QHsm_childState), (160 bytes).
+    Removing qep_hsm.o(.ARM.exidx.text.QHsm_childState), (8 bytes).
+    Removing qep_hsm.o(.rodata.QP_versionStr), (8 bytes).
+    Removing qep_msm.o(.text), (0 bytes).
+    Removing qep_msm.o(.text.QMsm_ctor), (40 bytes).
+    Removing qep_msm.o(.ARM.exidx.text.QMsm_ctor), (8 bytes).
+    Removing qep_msm.o(.text.QMsm_init_), (198 bytes).
+    Removing qep_msm.o(.ARM.exidx.text.QMsm_init_), (8 bytes).
+    Removing qep_msm.o(.text.QMsm_dispatch_), (662 bytes).
+    Removing qep_msm.o(.ARM.exidx.text.QMsm_dispatch_), (8 bytes).
+    Removing qep_msm.o(.text.QMsm_execTatbl_), (146 bytes).
+    Removing qep_msm.o(.ARM.exidx.text.QMsm_execTatbl_), (8 bytes).
+    Removing qep_msm.o(.text.QEvt_verify_), (44 bytes).
+    Removing qep_msm.o(.ARM.exidx.text.QEvt_verify_), (8 bytes).
+    Removing qep_msm.o(.text.QMsm_exitToTranSource_), (122 bytes).
+    Removing qep_msm.o(.ARM.exidx.text.QMsm_exitToTranSource_), (8 bytes).
+    Removing qep_msm.o(.text.QMsm_enterHistory_), (210 bytes).
+    Removing qep_msm.o(.ARM.exidx.text.QMsm_enterHistory_), (8 bytes).
+    Removing qep_msm.o(.text.QMsm_isInState), (66 bytes).
+    Removing qep_msm.o(.ARM.exidx.text.QMsm_isInState), (8 bytes).
+    Removing qep_msm.o(.text.QMsm_childStateObj), (188 bytes).
+    Removing qep_msm.o(.ARM.exidx.text.QMsm_childStateObj), (8 bytes).
+    Removing qep_msm.o(.rodata.QMsm_ctor.vtable), (8 bytes).
+    Removing qep_msm.o(.rodata.l_msm_top_s), (20 bytes).
+    Removing qep_msm.o(.rodata.Q_this_module_), (8 bytes).
+    Removing qf_act.o(.text), (0 bytes).
+    Removing qf_act.o(.ARM.exidx.text.QF_bzero_), (8 bytes).
+    Removing qf_actq.o(.text), (0 bytes).
+    Removing qf_actq.o(.ARM.exidx.text.QActive_post_), (8 bytes).
+    Removing qf_actq.o(.ARM.exidx.text.QEvt_verify_), (8 bytes).
+    Removing qf_actq.o(.ARM.exidx.text.QEvt_getPoolId_), (8 bytes).
+    Removing qf_actq.o(.ARM.exidx.text.QEvt_refCtr_inc_), (8 bytes).
+    Removing qf_actq.o(.ARM.exidx.text.QPSet_insert), (8 bytes).
+    Removing qf_actq.o(.ARM.exidx.text.QPSet_update_), (8 bytes).
+    Removing qf_actq.o(.text.QActive_postLIFO_), (310 bytes).
+    Removing qf_actq.o(.ARM.exidx.text.QActive_postLIFO_), (8 bytes).
+    Removing qf_actq.o(.ARM.exidx.text.QActive_get_), (8 bytes).
+    Removing qf_actq.o(.text.QF_getQueueMin), (100 bytes).
+    Removing qf_actq.o(.ARM.exidx.text.QF_getQueueMin), (8 bytes).
+    Removing qf_actq.o(.text.QTicker_ctor), (38 bytes).
+    Removing qf_actq.o(.ARM.exidx.text.QTicker_ctor), (8 bytes).
+    Removing qf_actq.o(.text.QTicker_init_), (44 bytes).
+    Removing qf_actq.o(.ARM.exidx.text.QTicker_init_), (8 bytes).
+    Removing qf_actq.o(.text.QTicker_dispatch_), (88 bytes).
+    Removing qf_actq.o(.ARM.exidx.text.QTicker_dispatch_), (8 bytes).
+    Removing qf_actq.o(.text.QTicker_trig_), (142 bytes).
+    Removing qf_actq.o(.ARM.exidx.text.QTicker_trig_), (8 bytes).
+    Removing qf_actq.o(.rodata.QTicker_ctor.vtable), (8 bytes).
+    Removing qf_actq.o(.rodata.QTicker_trig_.tickEvt), (4 bytes).
+    Removing qf_defer.o(.text), (0 bytes).
+    Removing qf_defer.o(.text.QActive_defer), (42 bytes).
+    Removing qf_defer.o(.ARM.exidx.text.QActive_defer), (8 bytes).
+    Removing qf_defer.o(.text.QActive_recall), (134 bytes).
+    Removing qf_defer.o(.ARM.exidx.text.QActive_recall), (8 bytes).
+    Removing qf_defer.o(.text.QEvt_getPoolId_), (16 bytes).
+    Removing qf_defer.o(.ARM.exidx.text.QEvt_getPoolId_), (8 bytes).
+    Removing qf_defer.o(.text.QEvt_refCtr_dec_), (16 bytes).
+    Removing qf_defer.o(.ARM.exidx.text.QEvt_refCtr_dec_), (8 bytes).
+    Removing qf_defer.o(.text.QActive_flushDeferred), (70 bytes).
+    Removing qf_defer.o(.ARM.exidx.text.QActive_flushDeferred), (8 bytes).
+    Removing qf_defer.o(.rodata.Q_this_module_), (9 bytes).
+    Removing qf_dyn.o(.text), (0 bytes).
+    Removing qf_dyn.o(.text.QF_poolInit), (164 bytes).
+    Removing qf_dyn.o(.ARM.exidx.text.QF_poolInit), (8 bytes).
+    Removing qf_dyn.o(.text.QF_poolGetMaxBlockSize), (24 bytes).
+    Removing qf_dyn.o(.ARM.exidx.text.QF_poolGetMaxBlockSize), (8 bytes).
+    Removing qf_dyn.o(.text.QF_getPoolMin), (112 bytes).
+    Removing qf_dyn.o(.ARM.exidx.text.QF_getPoolMin), (8 bytes).
+    Removing qf_dyn.o(.text.QF_newX_), (294 bytes).
+    Removing qf_dyn.o(.ARM.exidx.text.QF_newX_), (8 bytes).
+    Removing qf_dyn.o(.ARM.exidx.text.QF_gc), (8 bytes).
+    Removing qf_dyn.o(.ARM.exidx.text.QEvt_verify_), (8 bytes).
+    Removing qf_dyn.o(.ARM.exidx.text.QEvt_getPoolId_), (8 bytes).
+    Removing qf_dyn.o(.ARM.exidx.text.QEvt_refCtr_dec_), (8 bytes).
+    Removing qf_dyn.o(.text.QF_newRef_), (112 bytes).
+    Removing qf_dyn.o(.ARM.exidx.text.QF_newRef_), (8 bytes).
+    Removing qf_dyn.o(.text.QEvt_refCtr_inc_), (16 bytes).
+    Removing qf_dyn.o(.ARM.exidx.text.QEvt_refCtr_inc_), (8 bytes).
+    Removing qf_dyn.o(.text.QF_deleteRef_), (74 bytes).
+    Removing qf_dyn.o(.ARM.exidx.text.QF_deleteRef_), (8 bytes).
+    Removing qf_mem.o(.text), (0 bytes).
+    Removing qf_mem.o(.text.QMPool_init), (280 bytes).
+    Removing qf_mem.o(.ARM.exidx.text.QMPool_init), (8 bytes).
+    Removing qf_mem.o(.text.QMPool_get), (252 bytes).
+    Removing qf_mem.o(.ARM.exidx.text.QMPool_get), (8 bytes).
+    Removing qf_mem.o(.ARM.exidx.text.QMPool_put), (8 bytes).
+    Removing qf_ps.o(.text), (0 bytes).
+    Removing qf_ps.o(.text.QActive_psInit), (88 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QActive_psInit), (8 bytes).
+    Removing qf_ps.o(.text.QPSet_setEmpty), (14 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QPSet_setEmpty), (8 bytes).
+    Removing qf_ps.o(.text.QPSet_update_), (20 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QPSet_update_), (8 bytes).
+    Removing qf_ps.o(.text.QActive_publish_), (438 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QActive_publish_), (8 bytes).
+    Removing qf_ps.o(.text.QPSet_verify_), (28 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QPSet_verify_), (8 bytes).
+    Removing qf_ps.o(.text.QEvt_getPoolId_), (16 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QEvt_getPoolId_), (8 bytes).
+    Removing qf_ps.o(.text.QEvt_refCtr_inc_), (16 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QEvt_refCtr_inc_), (8 bytes).
+    Removing qf_ps.o(.text.QPSet_notEmpty), (18 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QPSet_notEmpty), (8 bytes).
+    Removing qf_ps.o(.text.QPSet_findMax), (20 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QPSet_findMax), (8 bytes).
+    Removing qf_ps.o(.text.QPSet_remove), (26 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QPSet_remove), (8 bytes).
+    Removing qf_ps.o(.text.QActive_subscribe), (210 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QActive_subscribe), (8 bytes).
+    Removing qf_ps.o(.text.QPSet_insert), (26 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QPSet_insert), (8 bytes).
+    Removing qf_ps.o(.text.QActive_unsubscribe), (210 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QActive_unsubscribe), (8 bytes).
+    Removing qf_ps.o(.text.QActive_unsubscribeAll), (234 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QActive_unsubscribeAll), (8 bytes).
+    Removing qf_ps.o(.text.QPSet_hasElement), (24 bytes).
+    Removing qf_ps.o(.ARM.exidx.text.QPSet_hasElement), (8 bytes).
+    Removing qf_ps.o(.bss.QActive_subscrList_), (4 bytes).
+    Removing qf_ps.o(.bss.QActive_maxPubSignal_), (4 bytes).
+    Removing qf_ps.o(.rodata.Q_this_module_), (6 bytes).
+    Removing qf_qact.o(.text), (0 bytes).
+    Removing qf_qact.o(.ARM.exidx.text.QActive_ctor), (8 bytes).
+    Removing qf_qact.o(.ARM.exidx.text.QActive_register_), (8 bytes).
+    Removing qf_qact.o(.text.QActive_unregister_), (116 bytes).
+    Removing qf_qact.o(.ARM.exidx.text.QActive_unregister_), (8 bytes).
+    Removing qf_qeq.o(.text), (0 bytes).
+    Removing qf_qeq.o(.ARM.exidx.text.QEQueue_init), (8 bytes).
+    Removing qf_qeq.o(.text.QEQueue_post), (272 bytes).
+    Removing qf_qeq.o(.ARM.exidx.text.QEQueue_post), (8 bytes).
+    Removing qf_qeq.o(.text.QEvt_getPoolId_), (16 bytes).
+    Removing qf_qeq.o(.ARM.exidx.text.QEvt_getPoolId_), (8 bytes).
+    Removing qf_qeq.o(.text.QEvt_refCtr_inc_), (16 bytes).
+    Removing qf_qeq.o(.ARM.exidx.text.QEvt_refCtr_inc_), (8 bytes).
+    Removing qf_qeq.o(.text.QEQueue_postLIFO), (196 bytes).
+    Removing qf_qeq.o(.ARM.exidx.text.QEQueue_postLIFO), (8 bytes).
+    Removing qf_qeq.o(.text.QEQueue_get), (168 bytes).
+    Removing qf_qeq.o(.ARM.exidx.text.QEQueue_get), (8 bytes).
+    Removing qf_qeq.o(.rodata.Q_this_module_), (7 bytes).
+    Removing qf_qeq.o(.bss.QEQueue_dummy), (16 bytes).
+    Removing qf_qmact.o(.text), (0 bytes).
+    Removing qf_qmact.o(.text.QMActive_ctor), (40 bytes).
+    Removing qf_qmact.o(.ARM.exidx.text.QMActive_ctor), (8 bytes).
+    Removing qf_qmact.o(.rodata.QMActive_ctor.vtable), (8 bytes).
+    Removing qf_time.o(.text), (0 bytes).
+    Removing qf_time.o(.ARM.exidx.text.QTimeEvt_ctorX), (8 bytes).
+    Removing qf_time.o(.ARM.exidx.text.QEvt_ctor), (8 bytes).
+    Removing qf_time.o(.text.QTimeEvt_armX), (184 bytes).
+    Removing qf_time.o(.ARM.exidx.text.QTimeEvt_armX), (8 bytes).
+    Removing qf_time.o(.text.QTimeEvt_disarm), (92 bytes).
+    Removing qf_time.o(.ARM.exidx.text.QTimeEvt_disarm), (8 bytes).
+    Removing qf_time.o(.text.QTimeEvt_rearm), (196 bytes).
+    Removing qf_time.o(.ARM.exidx.text.QTimeEvt_rearm), (8 bytes).
+    Removing qf_time.o(.text.QTimeEvt_wasDisarmed), (66 bytes).
+    Removing qf_time.o(.ARM.exidx.text.QTimeEvt_wasDisarmed), (8 bytes).
+    Removing qf_time.o(.text.QTimeEvt_currCtr), (42 bytes).
+    Removing qf_time.o(.ARM.exidx.text.QTimeEvt_currCtr), (8 bytes).
+    Removing qf_time.o(.ARM.exidx.text.QTimeEvt_tick_), (8 bytes).
+    Removing qf_time.o(.text.QTimeEvt_noActive), (142 bytes).
+    Removing qf_time.o(.ARM.exidx.text.QTimeEvt_noActive), (8 bytes).
+    Removing qxk.o(.text), (0 bytes).
+    Removing qxk.o(.text.QXK_schedLock), (160 bytes).
+    Removing qxk.o(.ARM.exidx.text.QXK_schedLock), (8 bytes).
+    Removing qxk.o(.text.QXK_schedUnlock), (152 bytes).
+    Removing qxk.o(.ARM.exidx.text.QXK_schedUnlock), (8 bytes).
+    Removing qxk.o(.ARM.exidx.text.QXK_sched_), (8 bytes).
+    Removing qxk.o(.ARM.exidx.text.QXK_activate_), (8 bytes).
+    Removing qxk.o(.text.QXK_current), (138 bytes).
+    Removing qxk.o(.ARM.exidx.text.QXK_current), (8 bytes).
+    Removing qxk.o(.ARM.exidx.text.QPSet_verify_), (8 bytes).
+    Removing qxk.o(.ARM.exidx.text.QPSet_isEmpty), (8 bytes).
+    Removing qxk.o(.ARM.exidx.text.QPSet_findMax), (8 bytes).
+    Removing qxk.o(.ARM.exidx.text.QPSet_hasElement), (8 bytes).
+    Removing qxk.o(.ARM.exidx.text.QPSet_remove), (8 bytes).
+    Removing qxk.o(.ARM.exidx.text.QPSet_update_), (8 bytes).
+    Removing qxk.o(.text.QXK_contextSw_), (20 bytes).
+    Removing qxk.o(.ARM.exidx.text.QXK_contextSw_), (8 bytes).
+    Removing qxk.o(.ARM.exidx.text.QXK_threadExit_), (8 bytes).
+    Removing qxk.o(.ARM.exidx.text.QF_init), (8 bytes).
+    Removing qxk.o(.text.QF_stop), (8 bytes).
+    Removing qxk.o(.ARM.exidx.text.QF_stop), (8 bytes).
+    Removing qxk.o(.ARM.exidx.text.QF_run), (8 bytes).
+    Removing qxk.o(.ARM.exidx.text.QActive_start_), (8 bytes).
+    Removing qxk.o(.ARM.exidx.text.QPSet_insert), (8 bytes).
+    Removing qxk_mutex.o(.text), (0 bytes).
+    Removing qxk_mutex.o(.text.QXMutex_init), (98 bytes).
+    Removing qxk_mutex.o(.ARM.exidx.text.QXMutex_init), (8 bytes).
+    Removing qxk_mutex.o(.text.QXMutex_lock), (700 bytes).
+    Removing qxk_mutex.o(.ARM.exidx.text.QXMutex_lock), (8 bytes).
+    Removing qxk_mutex.o(.text.QPSet_remove), (26 bytes).
+    Removing qxk_mutex.o(.ARM.exidx.text.QPSet_remove), (8 bytes).
+    Removing qxk_mutex.o(.text.QPSet_insert), (26 bytes).
+    Removing qxk_mutex.o(.ARM.exidx.text.QPSet_insert), (8 bytes).
+    Removing qxk_mutex.o(.text.QPSet_update_), (20 bytes).
+    Removing qxk_mutex.o(.ARM.exidx.text.QPSet_update_), (8 bytes).
+    Removing qxk_mutex.o(.text.QPSet_hasElement), (24 bytes).
+    Removing qxk_mutex.o(.ARM.exidx.text.QPSet_hasElement), (8 bytes).
+    Removing qxk_mutex.o(.text.QXMutex_tryLock), (500 bytes).
+    Removing qxk_mutex.o(.ARM.exidx.text.QXMutex_tryLock), (8 bytes).
+    Removing qxk_mutex.o(.text.QXMutex_unlock), (618 bytes).
+    Removing qxk_mutex.o(.ARM.exidx.text.QXMutex_unlock), (8 bytes).
+    Removing qxk_mutex.o(.text.QPSet_notEmpty), (18 bytes).
+    Removing qxk_mutex.o(.ARM.exidx.text.QPSet_notEmpty), (8 bytes).
+    Removing qxk_mutex.o(.text.QPSet_findMax), (20 bytes).
+    Removing qxk_mutex.o(.ARM.exidx.text.QPSet_findMax), (8 bytes).
+    Removing qxk_mutex.o(.rodata.Q_this_module_), (10 bytes).
+    Removing qxk_sema.o(.text), (0 bytes).
+    Removing qxk_sema.o(.text.QXSemaphore_init), (98 bytes).
+    Removing qxk_sema.o(.ARM.exidx.text.QXSemaphore_init), (8 bytes).
+    Removing qxk_sema.o(.text.QPSet_setEmpty), (14 bytes).
+    Removing qxk_sema.o(.ARM.exidx.text.QPSet_setEmpty), (8 bytes).
+    Removing qxk_sema.o(.text.QXSemaphore_wait), (370 bytes).
+    Removing qxk_sema.o(.ARM.exidx.text.QXSemaphore_wait), (8 bytes).
+    Removing qxk_sema.o(.text.QPSet_remove), (26 bytes).
+    Removing qxk_sema.o(.ARM.exidx.text.QPSet_remove), (8 bytes).
+    Removing qxk_sema.o(.text.QPSet_update_), (20 bytes).
+    Removing qxk_sema.o(.ARM.exidx.text.QPSet_update_), (8 bytes).
+    Removing qxk_sema.o(.text.QPSet_insert), (26 bytes).
+    Removing qxk_sema.o(.ARM.exidx.text.QPSet_insert), (8 bytes).
+    Removing qxk_sema.o(.text.QPSet_hasElement), (24 bytes).
+    Removing qxk_sema.o(.ARM.exidx.text.QPSet_hasElement), (8 bytes).
+    Removing qxk_sema.o(.text.QXSemaphore_tryWait), (102 bytes).
+    Removing qxk_sema.o(.ARM.exidx.text.QXSemaphore_tryWait), (8 bytes).
+    Removing qxk_sema.o(.text.QXSemaphore_signal), (254 bytes).
+    Removing qxk_sema.o(.ARM.exidx.text.QXSemaphore_signal), (8 bytes).
+    Removing qxk_sema.o(.text.QPSet_notEmpty), (18 bytes).
+    Removing qxk_sema.o(.ARM.exidx.text.QPSet_notEmpty), (8 bytes).
+    Removing qxk_sema.o(.text.QPSet_findMax), (20 bytes).
+    Removing qxk_sema.o(.ARM.exidx.text.QPSet_findMax), (8 bytes).
+    Removing qxk_sema.o(.rodata.Q_this_module_), (9 bytes).
+    Removing qxk_xthr.o(.text), (0 bytes).
+    Removing qxk_xthr.o(.ARM.exidx.text.QXThread_ctor), (8 bytes).
+    Removing qxk_xthr.o(.ARM.exidx.text.QXThread_delay), (8 bytes).
+    Removing qxk_xthr.o(.ARM.exidx.text.QXThread_teArm_), (8 bytes).
+    Removing qxk_xthr.o(.ARM.exidx.text.QXThread_block_), (8 bytes).
+    Removing qxk_xthr.o(.text.QXThread_delayCancel), (82 bytes).
+    Removing qxk_xthr.o(.ARM.exidx.text.QXThread_delayCancel), (8 bytes).
+    Removing qxk_xthr.o(.ARM.exidx.text.QXThread_teDisarm_), (8 bytes).
+    Removing qxk_xthr.o(.ARM.exidx.text.QXThread_unblock_), (8 bytes).
+    Removing qxk_xthr.o(.text.QXThread_queueGet), (404 bytes).
+    Removing qxk_xthr.o(.ARM.exidx.text.QXThread_queueGet), (8 bytes).
+    Removing qxk_xthr.o(.ARM.exidx.text.QPSet_remove), (8 bytes).
+    Removing qxk_xthr.o(.ARM.exidx.text.QPSet_update_), (8 bytes).
+    Removing qxk_xthr.o(.ARM.exidx.text.QPSet_insert), (8 bytes).
+    Removing qxk_xthr.o(.ARM.exidx.text.QXThread_timeout_), (8 bytes).
+    Removing qxk_xthr.o(.bss.QXThread_dummy), (4 bytes).
+    Removing qxk_port.o(.text), (0 bytes).
+    Removing qxk_port.o(.ARM.exidx.text.QXThread_stackInit_), (8 bytes).
+    Removing qxk_port.o(.ARM.exidx.text.QXK_init), (8 bytes).
+    Removing qxk_port.o(.ARM.exidx.text.PendSV_Handler), (8 bytes).
+    Removing qxk_port.o(.ARM.exidx.text.QXK_thread_ret), (8 bytes).
+    Removing qxk_port.o(.ARM.exidx.text.NMI_Handler), (8 bytes).
+    Removing system_stm32f4xx.o(.text), (0 bytes).
+    Removing system_stm32f4xx.o(.ARM.exidx.text.SystemInit), (8 bytes).
+    Removing system_stm32f4xx.o(.text.SystemCoreClockUpdate), (302 bytes).
+    Removing system_stm32f4xx.o(.ARM.exidx.text.SystemCoreClockUpdate), (8 bytes).
+    Removing system_stm32f4xx.o(.data.SystemCoreClock), (4 bytes).
+    Removing system_stm32f4xx.o(.rodata.AHBPrescTable), (16 bytes).
+    Removing system_stm32f4xx.o(.rodata.APBPrescTable), (8 bytes).
+
+298 unused section(s) (total 13267 bytes) removed from the image.
