@@ -1,6 +1,10 @@
 
 #include "bsp.h"
 
+//extern QXSemaphore Morse_Sema;
+
+extern QXMutex Morse_mutex;
+
 void GPIO_Init(void)
 {
 	
@@ -42,6 +46,14 @@ void GPIO_Init(void)
 
 	/* Clear any pending interrupt */
 	EXTI->PR = (1U << 13);
+	
+	
+//	/* initialize the SW1_sema semaphore as binary, signaling semaphore */
+//    QXSemaphore_init(&Morse_Sema, /* pointer to semaphore to initialize */
+//                     1U,  /* initial semaphore count (singaling semaphore) */
+//                     1U); /* maximum semaphore count (binary semaphore) */
+
+			QXMutex_init(&Morse_mutex, 6U); /* priority ceiling 6 */
 }
 
 void EXTI15_10_IRQHandler(void)
