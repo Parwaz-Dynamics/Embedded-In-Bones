@@ -16,7 +16,7 @@ void main_blinky1(void){
 	{
 		uint32_t volatile i;
 		
-		for(i = 4500U; i > 0; --i)
+		for(i = 5400; i > 0; --i)
 		{
 			Green_LED_On();
 			Green_LED_Off();
@@ -34,7 +34,7 @@ void main_blinky2(void)
 	{
 		uint32_t volatile i;
 		
-		for(i = 30 * 4500U; i > 0; --i)
+		for(i = 3 * 5400; i > 0; --i)
 		{
 			Yellow_LED_On();
 			Yellow_LED_Off();
