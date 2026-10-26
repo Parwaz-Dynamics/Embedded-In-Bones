@@ -81,4 +81,23 @@ This list will evolve as I learn and discover new areas worth exploring.
 ## 📌 A Note to Myself
 
 Keep it up
-**Still learning. Still building. One layer deeper every day.** 🚀
+
+------------------------------------------------
+
+## 🔄 A Change in Direction: PCB Design & Embedded Systems Engineering
+
+For now, I'm taking a slight detour from RTOS development to explore another important side of embedded systems: **PCB design and hardware development**.
+
+I want to move beyond working with development boards and start understanding how to design and build my own PCBs. My plan is to learn the fundamentals of PCB design and manufacture one or two boards of my own.
+
+Alongside this, I'll be reading *Making Embedded Systems* by **Elecia White**. I see this book as an opportunity to learn more about the broader engineering side of embedded systems, including how embedded projects are designed, developed, debugged, and managed.
+
+My current plan is to:
+
+- Learn the fundamentals of PCB design.
+- Design and build one or two PCBs to gain practical experience.
+- Read *Making Embedded Systems* by Elecia White.
+- Return to Miro Samek's Modern Embedded Systems lectures after establishing a basic understanding of PCB design and completing my first boards.
+- Meanwhile work on another project where I can practice the already learned techniques.
+
+I'll resume the lectures from **Lecture #29 — Object-Oriented Programming**, where I paused.
