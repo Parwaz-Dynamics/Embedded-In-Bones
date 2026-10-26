@@ -3,6 +3,8 @@
 #define BSP_H
 #include "stm32f446xx.h"
 
+#include "qpc.h"
+
 
 // System Clock
 void SystemClock_Config(void);
@@ -24,5 +26,7 @@ void QF_onCleanup(void);
 void QF_onStartup(void);
 
 void QXK_onIdle(void);
+
+extern QXSemaphore SW1_sema;
 
 #endif

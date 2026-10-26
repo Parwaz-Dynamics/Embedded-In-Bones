@@ -8,6 +8,8 @@
 
 #include "qpc.h"
 
+QXSemaphore SW1_sema;
+
 uint32_t stack_blinky1[40];
 QXThread blinky1;
 
@@ -16,7 +18,7 @@ void main_blinky1(QXThread * const me){
 	{
 		uint32_t volatile i;
 		
-		for(i = 4500U; i > 0; --i)
+		for(i = 5400; i > 0; --i)
 		{
 			Green_LED_On();
 			Green_LED_Off();
@@ -34,12 +36,14 @@ void main_blinky2(QXThread * const me)
 	{
 		uint32_t volatile i;
 		
-		for(i = 30 * 4500U; i > 0; --i)
+		QXSemaphore_wait(&SW1_sema,  /* pointer to semaphore to wait on */
+                         QXTHREAD_NO_TIMEOUT); /* timeout for waiting */
+		
+		for(i = 5400 * 3; i > 0; --i)
 		{
 			Yellow_LED_On();
 			Yellow_LED_Off();
 		}
-		QXThread_delay(50U);
 	}
 }
 
@@ -61,6 +65,11 @@ int main(void)
 {	
 	GPIO_Init();
 	QF_init();
+	
+	/* initialize the SW1_sema semaphore as binary, signaling semaphore */
+    QXSemaphore_init(&SW1_sema, /* pointer to semaphore to initialize */
+                     0U,  /* initial semaphore count (singaling semaphore) */
+                     1U); /* maximum semaphore count (binary semaphore) */
 	
 	// start blinky thread 1
 	

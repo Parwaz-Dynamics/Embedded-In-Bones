@@ -3,8 +3,12 @@
 
 void GPIO_Init(void)
 {
+	
+	/* Enable GPIO clock */
+  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
+
 	// LED A5 -> Green
-    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
 		GPIOA->MODER &= ~((1<<10) | (1<<11));
 		GPIOA->MODER |= (1<<10) | (0<<11);
 	
@@ -16,5 +20,39 @@ void GPIO_Init(void)
 		GPIOA->MODER &= ~((1<<14) | (1<<15));
 		GPIOA->MODER |= (1<<14) | (0<<15);
 	
+	// LED A7 -> Red
+		GPIOA->MODER &= ~((1<<16) | (1<<17));
+		GPIOA->MODER |= (1<<16) | (0<<17);
 	
+  /* Enable SYSCFG clock */
+	RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
+
+	/* Connect EXTI13 to GPIOC */
+	SYSCFG->EXTICR[3] &= ~(0xFU << 4);
+	SYSCFG->EXTICR[3] |=  (0x2U << 4);
+
+	/* Unmask EXTI line 13 */
+	EXTI->IMR |= (1U << 13);
+
+	/* Disable rising-edge trigger */
+	EXTI->RTSR &= ~(1U << 13);
+
+	/* Enable falling-edge trigger */
+	EXTI->FTSR |= (1U << 13);
+
+	/* Clear any pending interrupt */
+	EXTI->PR = (1U << 13);
+}
+
+void EXTI15_10_IRQHandler(void)
+{
+	QXK_ISR_ENTRY();
+	
+	if(EXTI->PR & (1U << 13))
+	{
+		QXSemaphore_signal(&SW1_sema);
+	}
+	EXTI->PR = (1U << 13);  /* Clear pending flag */
+	
+	QXK_ISR_EXIT();
 }
