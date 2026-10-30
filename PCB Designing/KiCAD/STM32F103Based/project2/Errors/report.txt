@@ -1,0 +1,3 @@
+Plotted to 'C:\Users\Abdullah\Desktop\Parwaz Dynamics\Embedded-In-Bones\PCB Designing\KiCAD\STM32F103Based\project2\project2.pdf'.
+
+Info: Done.
