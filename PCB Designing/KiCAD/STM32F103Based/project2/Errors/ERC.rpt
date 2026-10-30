@@ -1,13 +1,17 @@
-ERC report (2026-10-30T12:14:33, Encoding UTF8)
+ERC report (2026-10-30T17:16:53, Encoding UTF8)
 Report includes: Errors, Warnings
 
 ***** Sheet /
+[pin_to_pin]: Pins of type Bidirectional and Power output are connected
+    ; warning
+    @(4400 mils, 6500 mils): Symbol U2 Pin 1 [SDO/SA0, Bidirectional, Line]
+    @(7300 mils, 4750 mils): Symbol #FLG02 Pin 1 [Power output, Line]
+[pin_to_pin]: Pins of type Bidirectional and Power output are connected
+    ; warning
+    @(4400 mils, 6600 mils): Symbol U2 Pin 2 [SDX, Bidirectional, Line]
+    @(7300 mils, 4750 mils): Symbol #FLG02 Pin 1 [Power output, Line]
 
-***** Sheet /InputOutput/
-
-***** Sheet /Battery Circuit/
-
- ** ERC messages: 0  Errors 0  Warnings 0
+ ** ERC messages: 2  Errors 0  Warnings 2
 
  ** Ignored checks:
     - Global label only appears once in the schematic
