@@ -1,0 +1,24 @@
+** Drc report for project2.kicad_pcb **
+** Created on 2026-10-31T17:58:53 **
+** Report includes: Warnings **
+
+** Found 2 DRC violations **
+[lib_footprint_mismatch]: Footprint 'USB_C_Receptacle_HRO_TYPE-C-31-M-12' does not match copy in library 'Connector_USB'
+    Local override; warning
+    @(71.5300 mm, 76.5000 mm): Footprint J1
+[lib_footprint_mismatch]: Footprint 'ESP32-C3-WROOM-02' does not match copy in library 'RF_Module'
+    Local override; warning
+    @(78.2000 mm, 55.4100 mm): Footprint U5
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **
